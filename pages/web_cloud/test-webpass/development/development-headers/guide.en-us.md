@@ -5,13 +5,13 @@ section: Development
 order: 5
 ---
 
-**Last updated 24th November 2023**
-
+**Last updated 27th November 2023**
 
 
 ## Objective  
 
-{{% description %}}
+Web PaaS adds a number of HTTP headers to both inbound and outbound messages. We don't modify or block existing headers on either request or response.
+
 
 ## Request headers
 

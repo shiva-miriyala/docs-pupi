@@ -4,7 +4,7 @@ slug: environments-cancel-activity
 section: Environments
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -18,6 +18,14 @@ You can cancel activities using the [CLI](../environments-administration/cli)
 or in the [Console](../environments-administration/web).
 
 > [!tabs]      
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> In the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 ## Non-cancellable activities
 

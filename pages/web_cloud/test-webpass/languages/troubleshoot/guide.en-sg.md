@@ -4,7 +4,7 @@ slug: troubleshoot
 section: Php
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -25,14 +25,21 @@ This means some requests have to wait until another finishes.
 Web PaaS sets the number of workers based on the available memory of your container
 and the estimated average memory size of each process.
 
-
+{{% version/specific %}}
 You have two ways to increase the number of workers:
 
 - Adjust the [worker sizing hints](../.././.-fpm) for your project.
 
 - Upgrade your Web PaaS plan to get more computing resources.
 
+<--->
+You have two ways to increase the number of workers:
 
+- Adjust the [worker sizing hints](../.././.-fpm) for your project.
+
+- Add [additional resources](../../manage-resources) with the `platform resources:set` command
+
+{{% /version/specific %}}
 
 ## Execution timeout
 
@@ -58,13 +65,20 @@ which can provide an indication of what code paths to investigate.
 grep $(date +%Y-%m-%dT%H --date='-1 hours') /var/log/php.access.log | sort -k 4 -r -n | head -20
 ```
 
-
+{{% version/specific %}}
 If you see that the processing time of certain requests is slow (such as taking longer than 1000&nbsp;ms),
 you should consider a continuous observability solution like [Blackfire](../../increase-observability/increase-observability-integrate-observability/blackfire)
 to monitor your app and help you improve the performance issue.
+<--->
+If you see that the processing time of certain requests is slow (such as taking longer than 1000&nbsp;ms),
+you should consider a [continuous observability solution](../../increase-observability/increase-observability-application-metrics)
+to monitor your app and help you improve the performance issue.
 
+Full access to [Blackfire.io](../../increase-observability/increase-observability-application-metrics/blackfire) is bundled with your PHP and Python {{< vendor/name >}} projects.
 
+{{% /version/specific %}}
 
+{{% version/specific %}}
 Otherwise, you may check if the following options are applicable:
 
 - Find the most visited pages and see if they can be cached and/or put behind a CDN.
@@ -72,7 +86,15 @@ Otherwise, you may check if the following options are applicable:
   Refer to [how caching works](../../define-routes/define-routes-cache).
 - Upgrade your Web PaaS plan to get more computing resources.
 
+<--->
+Otherwise, you may check if the following options are applicable:
 
+- Find the most visited pages and see if they can be cached and/or put behind a CDN.
+
+  Refer to [how caching works](../../define-routes/define-routes-cache).
+- Add [additional resources](../../manage-resources) with the `platform resources:set` command
+
+{{% /version/specific %}}
 
 ## Troubleshoot a crashed PHP process
 
@@ -96,7 +118,7 @@ you encounter a message like the following:
 WARNING: [pool web] child 429 exited on signal 9 (SIGKILL) after 50.938617 seconds from start
 ```
 
-
+{{% version/specific %}}
 That means the memory usage of your container exceeds the limit allowed on your plan, so the kernel kills the offending process.
 To solve this issue, try the following approaches:
 
@@ -106,7 +128,17 @@ To solve this issue, try the following approaches:
 
 - Upgrade your Web PaaS plan to get more computing resources.
 
+<--->
+That means the memory usage of your container exceeds the limit that's been allocated, so the kernel kills the offending process.
+To solve this issue, try the following approaches:
+<!-- @todo: resources link -->
+- Check if the memory usage of your app is as expected and try to optimize it.
 
+- Use [sizing hints](../.././.-fpm) to reduce the amount of PHP workers, which reduces the memory footprint.
+
+- Add [additional resources](../../manage-resources) with the `platform resources:set` command
+
+{{% /version/specific %}}
 
 ## Restart PHP processes stuck during a build or deployment
 
@@ -133,10 +165,10 @@ or the requests are taking too long to be processed (such as with calls to exter
 
 To address the issue, you can:
 
-
+{{% version/specific %}}
 - Lower the memory consumption of each request so that the amount of PHP workers gets automatically raised.
 
-  This can be customized with the `runtime.sizing_hints.request_memory` key in your `{{< vendor/configfile "app" >}}` file.
+  This can be customized with the `runtime.sizing_hints.request_memory` key in your `.platform.app.yaml` file.
   For more details, consult [PHP-FPM sizing](../.././.-fpm).
 - Add a [CDN](../../domains/domains-cdn).
 
@@ -148,4 +180,19 @@ To address the issue, you can:
 
 - Upgrade the container size to get more resources.
 
+<--->
+- Lower the memory consumption of each request so that the amount of PHP workers gets automatically raised.
 
+  This can be customized with the `runtime.sizing_hints.request_memory` key in your `.platform.app.yaml` file.
+  For more details, consult [PHP-FPM sizing](../.././.-fpm).
+- Add a [CDN](../../domains/domains-cdn).
+
+- Set up [HTTP caching](../../learn/learn-bestpractices/http-caching).
+
+- Follow the global [performance tuning recommendations](../.././.-tuning).
+
+- Remove stale plugins and extensions when using a CMS.
+
+- Add [additional resources](../../manage-resources) with the `platform resources:set` command
+
+{{% /version/specific %}}

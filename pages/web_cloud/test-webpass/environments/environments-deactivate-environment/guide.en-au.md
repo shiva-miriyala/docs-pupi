@@ -4,7 +4,7 @@ slug: environments-deactivate-environment
 section: Environments
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -34,6 +34,14 @@ Deactivating the project results in the following:
 To deactivate an environment, follow these steps:
 
 > [!tabs]      
+> In the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 ## Delete the branch
 
@@ -51,6 +59,14 @@ Reactivating an environment [syncs](/glossary.md#sync) data from its parent envi
 To reactivate an inactive environment, follow these steps:
 
 > [!tabs]      
+> In the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 If you're not using a [source integration](../../integrations/integrations-source),
 you can also activate an environment when pushing changes to it.

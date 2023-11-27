@@ -4,7 +4,7 @@ slug: troubleshoot-ssh
 section: Ssh
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -108,6 +108,14 @@ If you are using just `ssh` and not `platform ssh`, you may see only the second 
 To resolve this:
 
 > [!tabs]      
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> In the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 ## Generate SSH debug information
 

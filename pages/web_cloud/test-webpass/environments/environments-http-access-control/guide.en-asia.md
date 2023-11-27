@@ -4,7 +4,7 @@ slug: environments-http-access-control
 section: Environments
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -28,6 +28,14 @@ You can set up one or more combinations of a username and password.
 To add a username and password, follow these steps:
 
 > [!tabs]      
+> In the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 ## Filter IP addresses
 
@@ -47,3 +55,11 @@ For example, the following configuration allows only the IP `198.51.100.0` to ac
 To control access based on IP address, follow these steps:
 
 > [!tabs]      
+> In the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     

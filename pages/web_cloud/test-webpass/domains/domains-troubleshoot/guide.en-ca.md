@@ -5,13 +5,13 @@ section: Domains
 order: 7
 ---
 
-**Last updated 24th November 2023**
-
+**Last updated 27th November 2023**
 
 
 ## Objective  
 
-{{% description %}}
+If your site doesn't resolve after you've made DNS changes, check potential solutions to common issues.
+
 
 ## Verify DNS
 
@@ -122,6 +122,14 @@ If you want your site to be available with `example.com` and its `www.example.co
 To pass this verification, there are requirements you need to meet.
 
 > [!tabs]      
+> Without a CDN     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Using a CDN     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 Make sure that the [apex domain](/glossary.md#apex-domain) and its `www` subdomain are both pointing where needed.
 Note that it can take up to 72 hours for DNS changes to be effective.

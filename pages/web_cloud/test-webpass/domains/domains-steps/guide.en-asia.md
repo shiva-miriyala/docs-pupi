@@ -5,7 +5,7 @@ section: Domains
 order: 7
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -14,10 +14,12 @@ order: 7
 Once your project is ready for production, replace the automatically generated domain with your own custom domain.
 Note that adding a domain disables the automatically generated URL for your Production environment only.
 
-
+{{% version/specific %}}
 If you are an Enterprise or Elite customer and have a Grid or {{% names/dedicated-gen-3 %}} project, you can [customize the URLs for your non-production environments](/domains/steps/custom-domains-preview-environments).
 {{% names/dedicated-gen-2 %}} customers can also customize the domain for their Staging environment.
-
+<--->
+You can also [customize the URLs for your preview environments](/domains/steps/custom-domains-preview-environments).
+{{% /version/specific %}}
 
 ## Before you begin
 
@@ -53,6 +55,14 @@ For Dedicated plans, get the target for your project from your Web PaaS contact.
 {{< /version/only >}}
 
 > [!tabs]      
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> In the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 ## 2. Configure your DNS provider
 
@@ -65,12 +75,28 @@ Note that depending on your registrar and the time to live (TTL) you set,
 it can take anywhere from 15 minutes to 72 hours for DNS changes to be taken into account.
 
 > [!tabs]      
+> Not using a CDN     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Using a CDN     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 ## 3. Set your domain
 
 Add a single domain to your project:
 
 > [!tabs]      
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> In the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 ## What's next
 

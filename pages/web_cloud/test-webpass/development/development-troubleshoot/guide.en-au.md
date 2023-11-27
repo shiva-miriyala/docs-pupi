@@ -5,7 +5,7 @@ section: Development
 order: 5
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 ## Common tasks
@@ -19,6 +19,14 @@ A redeploy reuses your built app and services.
 To trigger a redeploy, follow these steps:
 
 > [!tabs]      
+> In the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 The redeploy takes place after any scheduled activities (either *Running* or *Pending*).
 
@@ -94,7 +102,7 @@ Typical causes and potential solutions include:
 
   - Check your app's [upstream properties](../create-apps/app-reference.md#upstream).
   - If your app listening at a port, make sure it's using the [`PORT` environment variable](./variables/use-variables.md#use-provided-variables).
-- Your `{{< vendor/configfile "app" >}}` configuration has an error and a process isn't starting
+- Your `.platform.app.yaml` configuration has an error and a process isn't starting
 
   or requests can't be forwarded to it correctly.
   - Check your `web.commands.start` entry or your `passthru` configuration.
@@ -107,9 +115,11 @@ Typical causes and potential solutions include:
 - Certain code paths in your application are too slow and timing out.
 
   - Check your code is running smoothly.
-  
+  {{% version/specific %}}
   - Consider adding an [observability solution](../development-increase-observability/integrate-observability) to get a better view of your application.
-  
+  <--->
+  - Consider using the [observability solution](../development-increase-observability/application-metrics) included in your project to get a better view of your application.
+  {{% /version/specific %}}
 - A PHP process is crashing because of a segmentation fault.
 
   - See [how to deal with crashed processes](../languages/php/troubleshoot.md#troubleshoot-a-crashed-php-process).

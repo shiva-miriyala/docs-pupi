@@ -4,7 +4,7 @@ slug: php
 section: New-Relic
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 ## Get your license key
@@ -33,7 +33,7 @@ platform variable:create --level environment --environment {{< variable "ENVIRON
 
 ## Enable the New Relic extension
 
-Enable the New Relic extension in your `{{< vendor/configfile "app" >}}` as follows:
+Enable the New Relic extension in your `.platform.app.yaml` as follows:
 
 ```yaml
 runtime:
@@ -44,7 +44,7 @@ runtime:
 Push the changes to your Web PaaS environment to enable New Relic as follows:
 
 ```bash
-git add {{< vendor/configfile "app" >}}
+git add .platform.app.yaml
 git commit -m "Enable New Relic."
 git push
 ```

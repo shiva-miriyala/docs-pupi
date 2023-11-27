@@ -4,13 +4,12 @@ slug: integrations-notifications
 section: Integrations
 ---
 
-**Last updated 24th November 2023**
-
+**Last updated 27th November 2023**
 
 
 ## Objective  
 
-{{% description %}}
+Web PaaS can notify you when various events happen on your project, in any environment. At this time the only notification provided is a low disk space warning, but others may be added in the future.
 
 To add or modify an integration for a project, you need to be a [project admin](../administration/users.md#project-roles).
 

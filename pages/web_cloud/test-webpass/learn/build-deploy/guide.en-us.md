@@ -5,7 +5,7 @@ section: Overview
 order: 2
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -41,12 +41,17 @@ Once the app has gone through all of the build steps, it can connect to services
 
 ### Build steps
 
-
+{{% version/specific %}}
 <!-- Web PaaS -->
 1\. **Validate configuration**:
 
    The configuration is checked by validating the `{{< vendor/configdir >}}` directory and scanning the repository for any app configurations to validate individually.
+<--->
+<!-- Upsun -->
+1\. **Validate configuration**:
 
+   The configuration is checked by validating the `{{< vendor/configdir >}}` directory and scanning the repository for any app configuration to validate.
+{{% /version/specific %}}
 2\. **Pull container images**:
 
    Any container images that have been built before and that don't have any changes are pulled to be reused.
@@ -57,7 +62,7 @@ Once the app has gone through all of the build steps, it can connect to services
 4\. **Run build flavor commands**:
 
    For some languages (NodeJS, PHP), a series of standard commands are run based on the build flavor.
-   You can change the flavor or skip the commands by specifying it in your `{{< vendor/configfile "app" >}}` file.
+   You can change the flavor or skip the commands by specifying it in your `.platform.app.yaml` file.
 5\. **Run build hook**:
 
    The `build` hook comprises one or more shell commands that you write to finish creating your production code base.

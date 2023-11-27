@@ -4,7 +4,7 @@ slug: vary-hooks-by-environment
 section: Hooks
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -19,7 +19,7 @@ Use this to vary those hooks based on the environment.
 
 Check the `PLATFORM_ENVIRONMENT_TYPE` variable to see if it's in a production environment:
 
-
+{{% version/specific %}}
 ```yaml {configFile="app"}
 hooks:
     deploy: |
@@ -30,4 +30,17 @@ hooks:
         fi
         # Commands to run regardless of the environment
 ```
-
+<--->
+```yaml {configFile="app"}
+applications:
+    myapp:
+        hooks:
+            deploy: |
+                if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
+                    # Run commands only when deploying to production
+                else
+                    # Run commands only when deploying to development or staging environments
+                fi
+                # Commands to run regardless of the environment
+```
+{{% /version/specific %}}

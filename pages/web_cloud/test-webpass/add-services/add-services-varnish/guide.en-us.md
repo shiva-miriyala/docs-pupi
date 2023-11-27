@@ -4,7 +4,7 @@ slug: add-services-varnish
 section: Add-Services
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -17,9 +17,9 @@ But you can include Varnish as a service.
 
 ## Supported versions
 
-{{% major-minor-versions-note configMinor="true" %}}
+You can select the major and minor version. Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
-
+{{% version/specific %}}
 <!-- API Version 1 -->
 
 <table>
@@ -35,17 +35,20 @@ But you can include Varnish as a service.
             <td>7.3 |  
 |  7.2 |  
 |  6.3</td>
-            <td>- 7.3  
-- 7.2  
-- 6.3</td>
-            <td>- 7.3  
-- 7.2  
-- 6.3</thd>
+            <td>None available</td>
+            <td>None available</thd>
         </tr>
     </tbody>
 </table>
 
+<--->
+<!-- API Version 2 -->
 
+7.3 |  
+|  7.2 |  
+|  6.3
+
+{{% /version/specific %}}
 
 ## How it works
 
@@ -137,7 +140,7 @@ For example, you might have the following configuration for two apps:
 
 ```yaml {configFile="services"}
 {{% snippet name="varnish" config="service" %}}
-    type: varnish:{{% latest "varnish" %}}
+    type: varnish:7.3
     relationships:
         blog: 'blog:http'
         main: 'app:http'
@@ -148,12 +151,12 @@ For example, you might have the following configuration for two apps:
 {{% /snippet %}}
 {{% snippet name="blog" config="apps" placeholder="true" root="backends/blog" %}}
 # The type of the application to build.
-type: "php:{{% latest "php" %}}"
+type: "php:8.2"
 {{% /snippet %}}
 
 {{% snippet name="app" config="apps" globKey="false" placeholder="true" root="backends/main" %}}
 # The type of the application to build.
-type: "nodejs:{{% latest "nodejs" %}}"
+type: "nodejs:20"
 {{% /snippet %}}
 ```
 
@@ -312,7 +315,7 @@ Define [app configuration](../add-services-create-apps/app-reference) similar to
 ```yaml {configFile="apps"}
 {{% snippet name="stats-app" config="apps" root="stats" %}}
 # The type of the application to build.
-type: "python:{{% latest "python" %}}"
+type: "python:3.12"
 # Unique relationship _to_ Varnish from 'stats-app', where no relationship
 #   is defined _from_ Varnish to the same app, to avoid circular relationships.
 relationships:
@@ -320,10 +323,10 @@ relationships:
 {{% /snippet %}}
 {{% snippet name="main-app" config="apps" globKey="false" root="backends/main" %}}
 # The type of the application to build.
-type: "nodejs:{{% latest "nodejs" %}}"
+type: "nodejs:20"
 {{% /snippet %}}
 {{% snippet name="varnish" config="service" placeholder="true" %}}
-    type: varnish:{{% latest "varnish" %}}
+    type: varnish:7.3
     # Unique relationship _from_ Varnish _to_ 'main-app', where no relationship
     #   is defined _to_ Varnish to the same app, to avoid circular relationships.
     relationships:
@@ -337,7 +340,7 @@ type: "nodejs:{{% latest "nodejs" %}}"
 
 ```yaml {configFile="services" v2Hide="true"}
 {{% snippet name="varnish" config="service" %}}
-    type: varnish:{{% latest "varnish" %}}
+    type: varnish:7.3
     # Unique relationship _from_ Varnish _to_ 'main-app', where no relationship
     #   is defined _to_ Varnish to the same app, to avoid circular relationships.
     relationships:

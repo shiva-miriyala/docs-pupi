@@ -5,7 +5,7 @@ section: Tutorials
 order: 9
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -25,11 +25,35 @@ You need:
 ## 1. Define a source operation to update your dependencies
 
 To facilitate updating your dependencies in your project,
-define a source operation in your `{{< vendor/configfile "app" >}}` file
+define a source operation in your `.platform.app.yaml` file
 depending on your dependency manager:
 
 <!--vale off -->
 > [!tabs]      
+> Composer     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> npm     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Yarn     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Go     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Pipenv     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Bundler     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 <!--vale on -->
 
 ## 2. Automate your dependency updates with a cron job
@@ -48,6 +72,14 @@ so you can run a cron job in your app container.
 
 
 > [!tabs]      
+> From the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> From the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 > [!primary]  
 > 
@@ -60,7 +92,7 @@ so you can run a cron job in your app container.
 2\. Add a build hook to your app configuration to install the CLI as part of the build process:
 
 
-
+{{% version/specific %}}
 ```yaml {configFile="app"}
 hooks:
     build: |
@@ -71,13 +103,26 @@ hooks:
         echo "Testing Web PaaS CLI"
         platform
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    myapp:
+        hooks:
+            build: |
+                set -e
+                echo "Installing Web PaaS CLI"
+                curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
 
+                echo "Testing Web PaaS CLI"
+                platform
+```
+{{% /version/specific %}}
 
 3\. Then, to configure a cron job to automatically update your dependencies once a day,
 
    use a configuration similar to the following:
 
-
+{{% version/specific %}}
 ```yaml {configFile="app"}
 crons:
     update:
@@ -89,7 +134,22 @@ crons:
                 platform sync -e development code data --no-wait --yes
                 platform source-operation:run update --no-wait --yes
 ```
-
+<--->
+```yaml {configFile="app"}
+applications:
+    myapp:
+        # ...
+        crons:
+            update:
+                # Run the code below every day at midnight.
+                spec: '0 0 * * *'
+                commands:
+                    start: |
+                        set -e
+                        platform sync -e development code data --no-wait --yes
+                        platform source-operation:run update --no-wait --yes
+```
+{{% /version/specific %}}
 
 The example above synchronizes the `development` environment with its parent
 and then runs the `update` source operation defined [previously](#1-define-a-source-operation-to-update-your-dependencies).

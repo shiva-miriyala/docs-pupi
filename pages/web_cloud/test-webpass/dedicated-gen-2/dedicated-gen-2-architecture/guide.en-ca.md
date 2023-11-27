@@ -4,13 +4,12 @@ slug: dedicated-gen-2-architecture
 section: Dedicated-Gen-2
 ---
 
-**Last updated 24th November 2023**
-
+**Last updated 27th November 2023**
 
 
 ## Objective  
 
-{{% description %}}
+{{% names/dedicated-gen-2 %}} clusters are launched into a Triple Redundant configuration consisting of 3 hosts. This is an N+1 configuration that's sized to withstand the total loss of any one of the 3 members of the cluster without incurring any downtime.
 
 Each instance hosts the entire application stack,
 allowing this architecture superior fault tolerance to traditional N-Tier installations. 

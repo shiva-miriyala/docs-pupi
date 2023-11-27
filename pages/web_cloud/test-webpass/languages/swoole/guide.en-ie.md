@@ -4,7 +4,7 @@ slug: swoole
 section: Php
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -22,9 +22,11 @@ Unlike PHP-FPM’s stateless operating, Swoole relies on establishing persistent
 > The Swoole installation script is compatible up to PHP 8.0.
 > 
 
-
+{{% version/specific %}}
 Check the documentation related to [Laravel Octane on Web PaaS](../../guides/guides-laravel/deploy/octane).
-
+<--->
+<!-- @todo: To be added once Laravel guide for Upsun is live -->
+{{% /version/specific %}}
 
 {{% swoole %}}
 
@@ -33,7 +35,7 @@ Check the documentation related to [Laravel Octane on Web PaaS](../../guides/gui
 Override the default web server with a [custom start command](./_index.md#alternate-start-commands).
 Octane should listen on a TCP socket.
 
-
+{{% version/specific %}}
 ```yaml {configFile="app"}
 web:
     upstream:
@@ -47,4 +49,21 @@ web:
             scripts: false
             allow: false
 ```
-
+<--->
+```yaml {configFile="app"}
+applications:
+    app:
+        type: 'php:8.2'
+        web:
+            upstream:
+                socket_family: tcp
+                protocol: http
+            commands:
+                start: php {{<variable "PATH_TO_SWOOLE_START_COMMAND" >}} --port=$PORT
+            locations:
+                "/":
+                    passthru: true
+                    scripts: false
+                    allow: false
+```
+{{% /version/specific %}}

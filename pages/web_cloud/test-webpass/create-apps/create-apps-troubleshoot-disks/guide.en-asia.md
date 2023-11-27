@@ -4,7 +4,7 @@ slug: create-apps-troubleshoot-disks
 section: Create-Apps
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -20,7 +20,7 @@ The storage is allocated among your services and applications using the `disk` p
 
 You might accidentally set the sum of all `disk` parameters in the files to exceed your plans storage limit.
 For example, by setting `disk: 4096` for a MySQL service in `{{< vendor/configfile "services" >}}`
-and `disk: 4096` in `{{< vendor/configfile "app" >}}` for a plan with a 5&nbsp;GB storage limit.
+and `disk: 4096` in `.platform.app.yaml` for a plan with a 5&nbsp;GB storage limit.
 
 In such cases, you get an error like the following:
 
@@ -69,14 +69,18 @@ But if you notice that the usage percentage is high, you may need to increase th
 If you find that your application or service is running out of disk space,
 you can increase the available storage.
 
-
+{{% version/specific %}}
 To increase the space available for applications and services,
-use the `disk` keys in your `{{< vendor/configfile "app" >}}` and `{{< vendor/configfile "services" >}}` files.
+use the `disk` keys in your `.platform.app.yaml` and `{{< vendor/configfile "services" >}}` files.
 The sum of all `disk` keys can't exceed the available storage in your plan.
 
 If you need more storage to fit the sum of all `disk` keys, increase your plan's storage limits.
 This can only be done by people with the [manage plans permission](../administration/users.md#organization-permissions).
-
+<--->
+To increase the space available for applications and services,
+use the `platform resources:set` command.
+For more information, see how to [manage resources](../../manage-resources).
+{{% /version/specific %}}
 
 ## No space left on device
 

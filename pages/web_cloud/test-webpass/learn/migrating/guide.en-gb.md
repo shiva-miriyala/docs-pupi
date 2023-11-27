@@ -5,7 +5,7 @@ section: Tutorials
 order: 9
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -18,7 +18,7 @@ To do so, follow these steps.
 
 You need:
 
-
+{{% version/specific %}}
 - An app that works and is ready to be built
 
 - Code in Git
@@ -27,7 +27,16 @@ You need:
 
 - The [{{< vendor/name >}} CLI](../../administration/administration-cli) installed locally
 
+<--->
+- An app that works and is ready to be built
 
+- Code in Git
+
+- A {{< vendor/name >}} account -- if you don't already have one, [register](https://upsun.com/register/).
+
+- The [{{< vendor/name >}} CLI](../../administration/administration-cli) installed locally
+
+{{% /version/specific %}}
 
 ## 1. Export from previous system
 
@@ -38,21 +47,134 @@ and for some apps, such as Drupal, configuration that you need to export from th
 ## 2. Create a project
 
 <!-- Web PaaS -->
-{{< codetabs v2hide="true" >}}
+> [!tabs]      
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> In the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
-+++
-title=Using the CLI
-+++
+<!-- Upsun -->
+> [!tabs]      
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> In the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
-Run the following command:
+## 3. Add configuration
+
+The exact configuration you want depends on your app.
+You likely want to configure three areas:
+
+- [The app itself](../../create-apps) -- this is the only required configuration
+
+- [Services](../../add-services)
+
+- [Routes](../../define-routes)
+
+
+{{% version/only "1" %}}
+<!-- Web PaaS -->
+You can also take guidance from the [project templates](../../development/development-templates),
+which are starting points for various technology stacks with working configuration examples.
+{{% /version/only %}}
+
+When you've added your configuration, make sure to commit it to Git.
+
+## 4. Push your code
+
+The way to push your code to Web PaaS depends on
+whether you're hosting your code with a third-party service using a [source integration](../../integrations/integrations-source).
+If you aren't, your repository is hosted in Web PaaS
+and you can use the CLI or just Git itself.
+
+> [!tabs]      
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Using a source integration     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Using Git     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+
+{{% version/ifelse "" "## 5. Define resources" %}}
+
+{{% version/only "2" %}}
+
+Once you push your code to Web PaaS, either directly or through an integration, the deployment itself is not yet complete.
+
+Web PaaS has only just now understood the _types_ of containers you want (like a Python app container, and a Redis and MariaDB service containers) by validating that push. 
+How much resources those containers get is still left for you to define.
+
+You can do so quickly with the following CLI command:
 
 ```bash
-platform project:create
+upsun resources:set
 ```
 
-When prompted, fill in details like the project name, [region](../../development/development-regions), and [plan](../../administration/administration-pricing).
+Follow the prompts to set CPU, RAM, disk, and number of instances for each container,
+and read [the manage resources](../../manage-resources) documentation for more information.
 
+{{% /version/only %}}
 
+## {{% version/ifelse "5" "6" %}}. Import data
+
+Once you have an environment, you can import the data you backed up in step 1.
+The exact process may depend on the service you use.
+
+For SQL databases, for example, you can use a version of this command:
+
+```bash
+platform sql < {{< variable "BACKUP_FILE_NAME" >}}
+```
+
+For any potential more details, see the [specific service](../../add-services).
+
+## {{% version/ifelse "6" "7" %}}. Import files
+
+Your app may include content files, meaning files that aren't intended to be part of your codebase so aren't in Git.
+You can upload such files to [mounts you created](/create-apps/app-reference.md#mounts).
+Upload to each mount separately.
+
+Suppose for instance you have the following file mounts defined:
+
+{{% version/specific %}}
+<!-- Web PaaS -->
+```yaml {configFile="app"}
+mounts:
+    'web/uploads':
+        source: local
+        source_path: uploads
+    'private':
+        source: local
+        source_path: private
+```
+<--->
+<!-- Upsun -->
+```yaml {configFile="app"}
+applications:
+    myapp:
+        mounts:
+            'web/uploads':
+                source: local
+                source_path: uploads
+            'private':
+                source: local
+                source_path: private
+```
+{{% /version/specific %}}
 
 Upload to each of directories above by running the following commands:
 
@@ -82,7 +204,10 @@ Now that your app is ready to be deployed, you can do more:
 
 - Configure [health notifications](../../integrations/integrations-notifications).
 
-
+{{% version/specific %}}
 - For monitoring and profiling, [integrate Blackfire](../../increase-observability/increase-observability-integrate-observability/blackfire).
 
+<--->
+- For monitoring and profiling, [integrate Blackfire](../../increase-observability/increase-observability-application-metrics/blackfire).
 
+{{% /version/specific %}}

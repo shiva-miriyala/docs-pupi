@@ -4,7 +4,7 @@ slug: projects-region-migration
 section: Projects
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -48,6 +48,14 @@ Otherwise, use the desired plan size from the start.
 ## 3. Add code and environments
 
 > [!tabs]      
+> Without a source integration     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> With a source integration     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 ## 4. Copy files
 
@@ -63,11 +71,15 @@ Then upload them to your new project:
 platform mount:upload
 ```
 
-
+{{% version/specific %}}
 <!-- Web PaaS -->
 See more options on [how to export files](../../learn/learn-tutorials/exporting)
 and [how to import files](/learn/tutorials/migrating.md#5-import-data).
-
+<--->
+<!-- Version 2 -->
+See more options on [how to export files](../../learn/learn-tutorials/exporting)
+and [how to import files](/learn/tutorials/migrating/from-psh.md#5-import-data).
+{{% /version/specific %}}
 
 ## 5. Copy data from services
 

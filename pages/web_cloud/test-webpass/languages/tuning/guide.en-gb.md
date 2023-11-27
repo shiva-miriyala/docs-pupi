@@ -4,7 +4,7 @@ slug: tuning
 section: Php
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -57,13 +57,22 @@ you need to clear the OPcache explicitly on deployment (which can be done by res
 
 To enable preloading, add a variable that specifies a preload script:
 
-
+{{% version/specific %}}
 ```yaml {configFile="app"}
 variables:
     php:
         opcache.preload: '{{< variable "PRELOAD_SCRIPT" >}}'
 ```
-
+<--->
+```yaml {configFile="app"}
+applications:
+    app:
+         type: 'php:8.2'
+         variables:
+               php:
+                     opcache.preload: '{{< variable "PRELOAD_SCRIPT" >}}'
+```
+{{% /version/specific %}}
 
 `{{< variable "PRELOAD_SCRIPT" >}}` is a file path relative to the [app root](../../create-apps/app-reference.md#root-directory).
 It may be any PHP script that calls `opcache_compile_file()`.
@@ -117,13 +126,22 @@ find . -type f -name '*.php' | wc -l
 
 An example configuration:
 
-
+{{% version/specific %}}
 ```yaml {configFile="app"}
 variables:
     php:
         'opcache.max_accelerated_files': 22000
 ```
-
+<--->
+```yaml {configFile="app"}
+applications:
+   app:
+      type: 'php:8.2'
+      variables:
+         php:
+            'opcache.max_accelerated_files': 22000
+```
+{{% /version/specific %}}
 
 #### Set memory consumption
 
@@ -169,13 +187,22 @@ php cachetool.phar opcache:status --fcgi=$SOCKET
 
    An example configuration:
 
-
+{{% version/specific %}}
 ```yaml {configFile="app"}
 variables:
       php:
          'opcache.memory_consumption': 96
 ```
-
+<--->
+```yaml {configFile="app"}
+applications:
+   app:
+      type: 'php:8.2'
+      variables:
+            php:
+               'opcache.memory_consumption': 96
+```
+{{% /version/specific %}}
 
 8\. [Restart PHP-FPM](#restart-php-fpm) and make sure that OPcache works as expected by rerunning CacheTool
 
@@ -200,13 +227,22 @@ you can disable that check and get a small performance improvement.
 
 Timestamp validation can be disabled by adding the following variable to your [app configuration](../../create-apps):
 
-
+{{% version/specific %}}
 ```yaml {configFile="app"}
 variables:
       php:
          'opcache.validate_timestamps': 0
 ```
-
+<--->
+```yaml {configFile="app"}
+applications:
+   app:
+      type: 'php:8.2'
+      variables:
+            php:
+               'opcache.validate_timestamps': 0
+```
+{{% /version/specific %}}
 
 When you have disabled OPcache timestamp validation,
 you need to explicitly clear OPcache on deployment by [restarting PHP-FPM](#restart-php-fpm).
@@ -225,9 +261,11 @@ To force a restart of PHP-FPM:
 
 ## Optimize your code
 
-
+{{% version/specific %}}
 To optimize your app, consider using a [profiler](../../increase-observability/increase-observability-integrate-observability).
-
+<--->
+To optimize your app, consider using a [profiler](../../increase-observability/increase-observability-application-metrics).
+{{% /version/specific %}}
 A profiler helps determine what slow spots can be found and addressed and helps improve performance.
 
 {{% version/only "1" %}}

@@ -5,7 +5,7 @@ section: Best practices
 order: 10
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -38,6 +38,14 @@ If you already have a source integration set up and want to enable the `prune-br
 follow these steps:
 
 > [!tabs]      
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> In the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 
 ## Upload your files through mounts

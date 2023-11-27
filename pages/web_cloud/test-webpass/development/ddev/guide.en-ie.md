@@ -4,7 +4,7 @@ slug: ddev
 section: Local
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -14,11 +14,14 @@ section: Local
 
 This guide assumes you have a project already running with {{< vendor/name >}} and you have the code on your computer.
 
-
+{{% version/specific %}}
 <!-- Web PaaS -->
 If you're starting from scratch, first [create a project from a PHP template]({{% create-project-link template=true %}}).
 
-
+<--->
+<!-- Upsun -->
+If you're starting from scratch, first [create a project](/get-started/).
+{{% /version/specific %}}
 
 ## Before you begin
 
@@ -35,13 +38,16 @@ Get basic configuration set up for your project by running the following command
 ```bash
 ddev config
 ```
-
+{{% version/specific %}}
 <!-- Web PaaS -->
 If you started with a Drupal template, your repository already had DDEV configuration files.
 Otherwise, you have to answer a couple of questions about what your repository is
 so the correct files are added.
 
-
+<--->
+<!-- Upsun -->
+Follow the prompts to add the correct DDEV configuration files to your repository.
+{{% /version/specific %}}
 
 ## 3. Add an API token
 

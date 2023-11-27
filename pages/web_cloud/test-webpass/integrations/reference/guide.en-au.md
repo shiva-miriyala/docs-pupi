@@ -4,7 +4,7 @@ slug: reference
 section: Activity
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -586,7 +586,7 @@ The following example shows a shortened excerpt of the `deployment` property:
             }
           },
           ...
-          "application_config_file": "{{< vendor/configfile "app" >}}",
+          "application_config_file": ".platform.app.yaml",
           "project_config_dir": "{{< vendor/configdir >}}",
           ...
           "development_service_size": "S",
@@ -749,7 +749,7 @@ The following example shows the full activity response to a Git push:
           "product_code": "{{< vendor/alt-name >}}",
           "variables_prefix": "PLATFORM_",
           "bot_email": "bot@{{< vendor/urlraw "host" >}}",
-          "application_config_file": "{{< vendor/configfile "app" >}}",
+          "application_config_file": ".platform.app.yaml",
           "project_config_dir": "{{< vendor/configdir >}}",
           "use_drupal_defaults": false,
           "use_legacy_subdomains": false,

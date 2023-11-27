@@ -5,7 +5,7 @@ section: Administration
 order: 11
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -60,6 +60,14 @@ For each user, you can view a summary of their roles and permissions
 across all projects in your organization.
 
 > [!tabs]      
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> In the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 ### Add a user to a project
 
@@ -68,6 +76,14 @@ To invite a user, you need to be a [project admin](#project-roles).
 To add a user, follow these steps:
 
 > [!tabs]      
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> In the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 The user has to create an account before they can access the project.
 Once you add a user to a project, they receive an invitation email with instructions.
@@ -83,6 +99,14 @@ be an organization owner, or have the [**Manage users** permission for the organ
 To change user permissions, follow these steps:
 
 > [!tabs]      
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> In the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 To apply SSH access changes after you add a remove a user from a project or environment type,
 [trigger a redeploy](../development/troubleshoot.md#force-a-redeploy). 
@@ -95,6 +119,14 @@ be an organization owner, or have the [**Manage users** permission for the organ
 To remove a user, follow these steps:
 
 > [!tabs]      
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> In the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 To apply SSH access changes after changing a user's permissions for an environment type,
 [trigger a redeploy](../development/troubleshoot.md#force-a-redeploy).
@@ -115,7 +147,7 @@ For more information on project access control, see how to [manage project users
 As an organization owner or an organization user with the **Manage users** permission,
 you can invite other users to your organization and grant them the following permissions:
 
-
+{{% version/specific %}}
 
 - **Manage billing** (`billing`):
 
@@ -137,7 +169,28 @@ you can invite other users to your organization and grant them the following per
 
   See all projects in an organization, even those the user can't access.
 
+<--->
 
+- **Manage billing** (`billing`):
+
+  Add, remove, and edit billing information.
+  Access invoices and vouchers.
+  Users with this permission receive monthly invoices by email.
+- **Manage plans** (`plans`):
+
+  Access to update settings of existing projects in an organization.
+- **Manage users** (`members`):
+
+  Add, remove, and edit organization-level users and permissions, except their own.
+  Users with this permission can't grant other users permissions that they themselves don't have.
+- **Create projects** (`projects:create`):
+
+  Create new projects within the organization.
+- **List projects** (`projects:list`):
+
+  See all projects in an organization, even those the user can't access.
+
+{{% /version/specific %}}
 
 > [!primary]  
 > 
@@ -159,15 +212,39 @@ except through an [ownership transfer](../administration/organizations.md#transf
 ### Add a user to an organization
 
 > [!tabs]      
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Using the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 All users you invite receive an invitation email with instructions.
 
 ### Manage organization users
 
 > [!tabs]      
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Using the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 ### Remove a user from an organization
 
 > [!tabs]      
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Using the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 Remove a user from an organization will remove them from all projects they were a member of.

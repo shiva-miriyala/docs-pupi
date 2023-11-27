@@ -4,13 +4,12 @@ slug: utility
 section: Activity
 ---
 
-**Last updated 24th November 2023**
-
+**Last updated 27th November 2023**
 
 
 ## Objective  
 
-{{% description %}}
+The following utility routines can help simplify common tasks in your activity scripts. They're free to copy, modify, bend, fold, spindle, and mutilate as needed for your own scripts. They also demonstrate some common patterns for working with the `activity` and `project` data structures.
 
 ## Route access
 

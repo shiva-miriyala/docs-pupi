@@ -5,7 +5,7 @@ section: Overview
 order: 2
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -30,7 +30,7 @@ This allows you to preview exactly what your site would look like if you merged 
 
 On Web PaaS, a **project** is linked to a Git repository and is composed of one or more **apps**.
 An app is a directory in your Git repository with a specific Web PaaS configuration
-and dedicated HTTP endpoints (via the `{{< vendor/configfile "app" >}}` file).
+and dedicated HTTP endpoints (via the `.platform.app.yaml` file).
 
 Projects are deployed in **environments**.
 An environment is a standalone copy of your live app which can be used for testing,
@@ -40,7 +40,7 @@ Every project you deploy on Web PaaS is built as a *virtual cluster* containing 
 The main branch of your Git repository is always deployed as a production cluster.
 Any other branch can be deployed as a staging or development cluster.
 
-
+{{% version/specific %}}
 <!-- Web PaaS -->
 There are three types of containers within your cluster,
 all configured by files stored alongside your code:
@@ -50,7 +50,7 @@ all configured by files stored alongside your code:
   is a single Nginx process responsible for mapping incoming requests to an app container,
   and for optionally providing HTTP caching.
 
-- One or more [*apps*](../../create-apps), configured via `{{< vendor/configfile "app" >}}` files, holding the code of your project.
+- One or more [*apps*](../../create-apps), configured via `.platform.app.yaml` files, holding the code of your project.
 
 
 - Some optional [*services*](../../add-services), configured in `{{< vendor/configfile "services" >}}`,
@@ -58,7 +58,22 @@ all configured by files stored alongside your code:
   like MySQL/MariaDB, Elasticsearch, Redis, or RabbitMQ.
   They come as optimized pre-built images.
 
+<--->
+<!-- Upsun -->
+There are three types of containers within your cluster,
+all usually configured from a single `.platform.app.yaml` file stored alongside your code:
 
+- The [*router*](../../define-routes) is a single Nginx process responsible for mapping incoming requests to an app container,
+
+  and for optionally providing HTTP caching.
+
+- One or more [*apps*](../../create-apps) holding the code of your project.
+
+
+- Some optional [*services*](../../add-services) like MySQL/MariaDB, Elasticsearch, Redis, or RabbitMQ.
+
+  They come as optimized pre-built images.
+{{% /version/specific %}}
 
 ## The workflow
 
@@ -77,7 +92,48 @@ Adding a [`post-deploy` hook](/create-apps/hooks/hooks-comparison.md#post-deploy
 Note that if you're using [Gatsby](../../guides/guides-gatsby/headless) to pull from a backend container on the same environment,
 you need a `post-deploy` hook to successfully build and deploy your app.
 
+<--->
+Note that if you're using Gatsby to pull from a backend container on the same environment,
+you need a `post-deploy` hook to successfully build and deploy your app.
 
+{{< /version/specific >}}
+
+### How your app is built
+
+During the [build step](/learn/overview/build-deploy.md#build-steps),
+dependencies specified in `.platform.app.yaml` are installed on application containers.
+
+You can also customize the build step by providing a [`build` hook](/create-apps/hooks/hooks-comparison.md#build-hook) composed of one or more shell commands
+that help create your production codebase.
+That could be compiling TypeScript files, running some scripts,
+rearranging files on disk, or whatever else you want.
+
+Note that at this point all you have access to is the filesystem;
+there are **no services or other databases available**.
+Your live website is unaffected.
+
+Once the build step is completed, the filesystem is frozen and a read-only container image is created.
+That filesystem is the final build artifact.
+
+### How your app is deployed
+
+Before starting the [deployment](./build-deploy.md#deploy-steps) of your app,
+Web PaaS pauses all incoming requests and holds them to avoid downtime.
+
+{{% version/specific %}}
+<!-- Web PaaS -->
+Then, the current containers are stopped and the new ones are started.
+Web PaaS then opens networking connections between the various containers,
+as specified in the configuration files.
+The connection information for each service is available from the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](../../development/development-variables/use-variables).
+
+<--->
+<!-- Upsun -->
+Then, the current containers are stopped and the new ones are started.
+Web PaaS then opens networking connections between the various containers,
+as specified in `.platform.app.yaml`.
+The connection information for each service is available from the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](../../development/development-variables/use-variables).
+{{% /version/specific %}}
 
 Similar to the build step, you can define a [deploy hook](/create-apps/hooks/hooks-comparison.md#deploy-hook) to prepare your app.
 Your app has complete access to all services, but the filesystem where your code lives is now read-only.

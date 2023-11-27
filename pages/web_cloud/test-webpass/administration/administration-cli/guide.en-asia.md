@@ -5,13 +5,13 @@ section: Administration
 order: 11
 ---
 
-**Last updated 24th November 2023**
-
+**Last updated 27th November 2023**
 
 
 ## Objective  
 
-{{% description %}}
+See how to use and manage your Web PaaS projects directly from your terminal. Anything you can do within the Console can be done with the CLI.
+
 
 The CLI uses the git interface and the [Web PaaS REST API](https://api.platform.sh/docs/) to accomplish tasks.
 Its source code is hosted on [GitHub](https://github.com/platformsh/cli).
@@ -190,6 +190,14 @@ The CLI provides tab autocompletion for commands, options, and some values (your
 To enable autocompletion, follow this step:
 
 > [!tabs]      
+> Using Homebrew     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Manually     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 ### Run commands on your container
 
@@ -222,6 +230,14 @@ platform ssh -e feature -- drush -y cache-rebuild
 To update to the latest version, use the same tool as for [installation](#1-install):
 
 > [!tabs]      
+> Homebrew     
+>> ``` bash     
+>> {!> web/web-paas/ !}  
+>> ```     
+> Scoop     
+>> ``` bash     
+>> {!> web/web-paas/ !}  
+>> ```     
 
 ## Upgrade from the legacy CLI
 

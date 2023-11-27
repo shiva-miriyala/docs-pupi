@@ -4,7 +4,7 @@ slug: add-services-vault
 section: Add-Services
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -20,9 +20,9 @@ To store secrets such as API keys, create sensitive [environment variables](../a
 
 ## Supported versions
 
-{{% major-minor-versions-note configMinor="true" %}}
+You can select the major and minor version. Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
-
+{{% version/specific %}}
 <!-- API Version 1 -->
 
 <table>
@@ -36,13 +36,18 @@ To store secrets such as API keys, create sensitive [environment variables](../a
     <tbody>
         <tr>
             <td>1.12</td>
-            <td>- 1.12</td>
-            <td>- 1.12</thd>
+            <td>1.12</td>
+            <td>1.6</thd>
         </tr>
     </tbody>
 </table>
 
+<--->
+<!-- API Version 2 -->
 
+1.12
+
+{{% /version/specific %}}
 
 ## Add Vault
 
@@ -91,7 +96,7 @@ To make any calls to the Vault KMS, you need your token. Get it from the `{{< ve
 echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "SERVICE_NAME" >}}[0].password"
 ```
 
-`{{< variable "SERVICE_NAME" >}}` is the name you [defined in your `{{< vendor/configfile "app" >}}` file](#2-add-the-relationship).
+`{{< variable "SERVICE_NAME" >}}` is the name you [defined in your `.platform.app.yaml` file](#2-add-the-relationship).
 
 The `-r` flag returns the string itself, not wrapped in quotes.
 
@@ -113,7 +118,7 @@ Assign it to a variable as follows:
 VAULT_URL=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "SERVICE_NAME" >}}[0].host"):$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "SERVICE_NAME" >}}[0].port")
 ```
 
-`{{< variable "SERVICE_NAME" >}}` is the name you [defined in your `{{< vendor/configfile "app" >}}` file](#2-add-the-relationship).
+`{{< variable "SERVICE_NAME" >}}` is the name you [defined in your `.platform.app.yaml` file](#2-add-the-relationship).
 
 ### Manage your keys
 
@@ -300,7 +305,7 @@ In the JSON object that's returned, you can notice that the `ciphertext` is diff
         "is_master": true
     },
     "password": "ChangeMe",
-    "type": "vault-kms:{{% latest "vault-kms" %}}",
+    "type": "vault-kms:1.12",
     "public": false,
     "host_mapped": false
 }

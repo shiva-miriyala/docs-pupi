@@ -4,21 +4,21 @@ slug: add-services-kafka
 section: Add-Services
 ---
 
-**Last updated 24th November 2023**
-
+**Last updated 27th November 2023**
 
 
 ## Objective  
 
-{{% description %}}
+Apache Kafka is an open-source stream-processing software platform.
+
 
 It is a framework for storing, reading and analyzing streaming data. See the [Kafka documentation](https://kafka.apache.org/documentation) for more information.
 
 ## Supported versions
 
-{{% major-minor-versions-note configMinor="true" %}}
+You can select the major and minor version. Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
-
+{{% version/specific %}}
 <!-- API Version 1 -->
 
 <table>
@@ -33,15 +33,19 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
         <tr>
             <td>3.2 |  
 |  3.4</td>
-            <td>- 3.2  
-- 3.4</td>
-            <td>- 3.2  
-- 3.4</td>
+            <td>None available</td>
+            <td>None available</td>
         </tr>
     </tbody>
 </table>
 
+<--->
+<!-- API Version 2 -->
 
+3.2 |  
+|  3.4
+
+{{% /version/specific %}}
 
 {{% relationship-ref-intro %}}
 
@@ -65,12 +69,20 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 
 {{% endpoint-description type="kafka" /%}}
 
-{{< codetabs v2hide="true" >}}
+> [!tabs]      
+> Java     
+>> ``` java     
+>> {!> web/web-paas/static/files/fetch/examples/java/kafka !}  
+>> ```     
+> Python     
+>> ``` python     
+>> {!> web/web-paas/static/files/fetch/examples/python/kafka !}  
+>> ```     
+> Ruby     
+>> ``` ruby     
+>> {!> web/web-paas/ !}  
+>> ```     
 
-+++
-title=Java
-file=static/files/fetch/examples/java/kafka
-highlight=java
-+++
 
 
+(The specific way to inject configuration into your application varies. Consult your application or framework's documentation.)

@@ -4,15 +4,16 @@ slug: custom-domains-preview-environments
 section: Steps
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
 ## Objective  
 
-
+{{% version/specific %}}
 {{< partial "progressive-rollout/body.md" >}}
-
+<--->
+{{% /version/specific %}}
 
 [Preview environments](/glossary.md#preview-environment) in your project can't use the custom domain [set up on your production environment](../domains-steps).<br/>
 By default and for each preview environment,
@@ -58,7 +59,7 @@ based on the following elements:
 
 You need:
 
-
+{{% version/specific %}}
 - A Grid or {{% names/dedicated-gen-3 %}} project on which you have **admin rights** <BR> 
 
 
@@ -103,6 +104,14 @@ Downgrading your plan doesn't affect custom domains set up on your production en
 To add a custom domain to a preview environment, follow these steps:
 
 > [!tabs]      
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> In the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 > [!primary]  
 > 
@@ -119,6 +128,14 @@ You now want to add the `mydev.com` custom domain to a preview environment calle
 To do so, follow these steps:
 
 > [!tabs]      
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> In the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 In the above example, the `Dev` environment needs to exist
 for you to add the `mydev.com` custom domain successfully.
@@ -128,11 +145,35 @@ the `mydev.com` custom domain is removed too.
 ## List the custom domains of a preview environment
 
 > [!tabs]      
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> In the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 ## Get a specific custom domain used on a preview environment
 
 > [!tabs]      
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> In the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 ## Remove a custom domain from a preview environment
 
 > [!tabs]      
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> In the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     

@@ -4,7 +4,7 @@ slug: migration
 section: Java
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -42,7 +42,7 @@ and [services](../../add-services).
 
 ### Application
 
-
+{{% version/specific %}}
 ```yaml {configFile="app"}
 name: app
 type: 'java:<VERSION>' [1]
@@ -53,9 +53,21 @@ web:
     commands:
         start: [3]
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    app:
+        type: 'java:<VERSION>'
 
+        hooks:
+            build: [2]
+        web:
+            commands:
+                start: [3]
+```
+{{% /version/specific %}}
 
-1\. [A Java version](/languages/java/_index.md#supported-versions), e,g.: `java:{{% latest "java" %}}`
+1\. [A Java version](/languages/java/_index.md#supported-versions), e,g.: `java:21`
 
 2\. [Hooks define what happens when building the application](../../create-apps/create-apps-hooks). This build process typically generates an executable file such as a uber-jar e.g.: `mvn clean package`
 
@@ -72,7 +84,7 @@ web:
 
 ### Route
 
-
+{{% version/specific %}}
 ```yaml {configFile="routes"}
 "https://{default}/":
     type: upstream
@@ -81,7 +93,27 @@ web:
     type: redirect
     to: "https://{default}/"
 ```
+<--->
+```yaml {configFile="app"}
+routes:
+    "https://{default}/":
+        type: upstream
+        upstream: "app:http" [1]
+    "https://www.{default}/":
+        type: redirect
+        to: "https://{default}/"
 
+applications:
+    app:
+        type: 'java:<VERSION>'
+
+        hooks:
+            build: [2]
+        web:
+            commands:
+                start: [3]
+```
+{{% /version/specific %}}
 
 1\. It defines the application will link in the route, e.g.: `"app:http"`
 
@@ -185,7 +217,7 @@ export JAVA_OPTS="$JAVA_MEMORY -XX:+ExitOnOutOfMemoryError"
 
 This `.environment` can interact to each application file. E.g.:
 
-
+{{% version/specific %}}
 ```yaml
 name: app
 type: "java:11"
@@ -198,7 +230,21 @@ web:
     commands:
         start: java -jar $JAVA_OPTS $CREDENTIAL -Dquarkus.http.port=$PORT jarfile.jar
 ```
-
+<--->
+```yaml
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'java:21'
+        hooks:
+            build: ./mvnw package -DskipTests -Dquarkus.package.uber-jar=true
+        relationships:
+            database: "db:postgresql"
+        web:
+            commands:
+                start: java -jar $JAVA_OPTS $CREDENTIAL -Dquarkus.http.port=$PORT jarfile.jar
+```
+{{% /version/specific %}}
 
 {{% version/only "1" %}}
 ### Using Java Config Reader

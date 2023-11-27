@@ -4,7 +4,7 @@ slug: environments-change-parent
 section: Environments
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -19,6 +19,14 @@ the parent defaults to the default environment.
 To change the environment's parent, follow these steps:
 
 > [!tabs]      
+> In the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 If you're not using a [source integration](../../integrations/integrations-source),
 you can also set a parent for your environment when pushing changes to it.

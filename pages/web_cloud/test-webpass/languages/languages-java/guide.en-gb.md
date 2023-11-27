@@ -5,13 +5,12 @@ section: Languages
 order: 4
 ---
 
-**Last updated 24th November 2023**
-
+**Last updated 27th November 2023**
 
 
 ## Objective  
 
-{{% description %}}
+Java is a general-purpose programming language, and one of the most popular in the world today. Web PaaS supports Java runtimes that can be used with build management tools such as Gradle, Maven, and Ant.
 
 ## Supported versions
 
@@ -19,7 +18,7 @@ order: 4
 
 ### OpenJDK versions:
 
-
+{{% version/specific %}}
 <!-- API Version 1 -->
 
 <table>
@@ -37,24 +36,33 @@ order: 4
 |  17 |  
 |  11 |  
 |  8</td>
-            <td>- 21  
-- 19  
-- 18  
-- 17  
-- 11  
-- 8</thd>
+            <td>17 |  
+|  11 |  
+|  8</thd>
         </tr>
     </tbody>
 </table>
 
+<--->
+<!-- API Version 2 -->
 
+21 |  
+|  19 |  
+|  18 |  
+|  17 |  
+|  11 |  
+|  8
+
+{{% /version/specific %}}
 
 These versions refer to the headless packages of OpenJDK.
 To save space and reduce potential vulnerabilities, they don't contain GUI classes, which can't be used on the server.
 
-{{% language-specification type="java" display_name="Java" %}}
+### Specify the language
 
+To use Java, specify java as your [app's `java`](/create-apps/app-reference.html#javas):
 
+{{% version/specific %}}
 
 ```yaml {configFile="app"}
 type: 'java:<VERSION_NUMBER>'
@@ -63,10 +71,28 @@ type: 'java:<VERSION_NUMBER>'
 For example:
 
 ```yaml {configFile="app"}
-type: 'java:{{% latest "java" %}}'
+type: 'java:21'
 ```
 
+<--->
 
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    <APP_NAME>:
+        type: 'java:<VERSION_NUMBER>'
+```
+
+For example:
+
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'java:21'
+```
+
+{{% /version/specific %}}
 
 ## Support build automation
 
@@ -84,7 +110,7 @@ If the version you need differs from the version on your container, you can inst
 
 Add something like the following to your [app configuration](../../create-apps):
 
-
+{{% version/specific %}}
 ```yaml {configFile="app"}
 variables:
     env:
@@ -98,7 +124,26 @@ hooks:
         mvn --version
         mvn clean package
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'java:21'
 
+        variables:
+            env:
+                MAVEN_VERSION: {{< variable "DESIRED_VERSION_NUMBER" "3.8.6" >}}
+
+        hooks:
+            build: |
+                curl -sfLO "https://dlcdn.apache.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz"
+                tar -zxf apache-maven-$MAVEN_VERSION-bin.tar.gz
+                export PATH="$PWD/apache-maven-$MAVEN_VERSION/bin:$PATH"
+                mvn --version
+                mvn clean package
+```
+{{% /version/specific %}}
 
 ## Other JVM languages
 
@@ -118,4 +163,4 @@ It’s worth remembering that the JVM by its specification [doesn't read Java co
 
 {{% /version/only %}}
 
-
+{{< repolist lang="java" displayName="Java" >}}

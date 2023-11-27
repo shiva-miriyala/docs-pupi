@@ -4,13 +4,13 @@ slug: add-services-memcached
 section: Add-Services
 ---
 
-**Last updated 24th November 2023**
-
+**Last updated 27th November 2023**
 
 
 ## Objective  
 
-{{% description %}}
+Memcached is a simple in-memory object store well-suited for application level caching.
+
 
 See the [Memcached documentation](https://memcached.org) for more information.
 
@@ -25,9 +25,9 @@ Both Memcached and Redis can be used for application caching. As a general rule,
 
 ## Supported versions
 
-{{% major-minor-versions-note configMinor="true" %}}
+You can select the major and minor version. Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
-
+{{% version/specific %}}
 <!-- API Version 1 -->
 
 <table>
@@ -43,17 +43,20 @@ Both Memcached and Redis can be used for application caching. As a general rule,
             <td>1.6 |  
 |  1.5 |  
 |  1.4</td>
-            <td>- 1.6  
-- 1.5  
-- 1.4</td>
-            <td>- 1.6  
-- 1.5  
-- 1.4</thd>
+            <td>None available</td>
+            <td>1.4</thd>
         </tr>
     </tbody>
 </table>
 
+<--->
+<!-- API Version 2 -->
 
+1.6 |  
+|  1.5 |  
+|  1.4
+
+{{% /version/specific %}}
 
 {{% relationship-ref-intro %}}
 
@@ -68,7 +71,7 @@ Both Memcached and Redis can be used for application caching. As a general rule,
     "host": "memcached.internal",
     "rel": "memcached",
     "scheme": "memcached",
-    "type": "memcached:{{% latest "memcached" %}}",
+    "type": "memcached:1.6",
     "port": 11211
 }
 ```
@@ -77,12 +80,59 @@ Both Memcached and Redis can be used for application caching. As a general rule,
 
 {{% endpoint-description type="memcached" php=true python=true /%}}
 
-{{< codetabs v2hide="true" >}}
+> [!tabs]      
+> Go     
+>> ``` go     
+>> {!> web/web-paas/static/files/fetch/examples/golang/memcached !}  
+>> ```     
+> Java     
+>> ``` java     
+>> {!> web/web-paas/static/files/fetch/examples/java/memcached !}  
+>> ```     
+> PHP     
+>> ``` php     
+>> {!> web/web-paas/static/files/fetch/examples/php/memcached !}  
+>> ```     
+> Python     
+>> ``` python     
+>> {!> web/web-paas/static/files/fetch/examples/python/memcached !}  
+>> ```     
 
-+++
-title=Go
-file=static/files/fetch/examples/golang/memcached
-highlight=go
-+++
+<!-- Version 2: .environment shortcode + context -->
+{{% version/only "2" %}}
+
+```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="myapp" >}}
+
+# Other options...
+
+# Relationships enable an app container's access to a service.
+relationships:
+    memcachedcache: "cachemc:memcached"
+{{< /snippet >}}
+{{< snippet name="cachemc" config="service" placeholder="true" >}}
+    type: memcached:1.6
+{{< /snippet >}}
+```
+
+```json  
+
+```  
+
+```bash {location="myapp/.environment"}
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
+
+# Set environment variables for individual credentials.
+export CACHE_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".memcachedcache[0].host")
+export CACHE_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".memcachedcache[0].port")
+
+# Surface a Memcached connection string for use in app.
+export CACHE_URL="${CACHE_HOST}:${CACHE_PORT}"
+```
+
+{{< /v2connect2app >}}
+
+{{% /version/only %}}
 
 

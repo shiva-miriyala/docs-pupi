@@ -5,7 +5,7 @@ section: Development
 order: 5
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -113,6 +113,14 @@ Consult the documentation for your application for how to enter SSH credentials.
 To get the host and username for connections, follow these steps:
 
 > [!tabs]      
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> In the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 The host is everything after the `@` and the username is what's before it.
 In this case, the host is `ssh.us.{{< vendor/urlraw "host" >}}` and the username is `jyu7waly36ncj-main-7rqtwti--app`.

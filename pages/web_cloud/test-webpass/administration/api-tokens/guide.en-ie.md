@@ -4,7 +4,7 @@ slug: api-tokens
 section: Cli
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -36,6 +36,14 @@ For security purposes, create a machine user for each type of task you want to a
 To create a machine user, follow these steps:
 
 > [!tabs]      
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> In the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 
 ## 2. Create an API token
@@ -114,6 +122,14 @@ To do so, set your API token as a [top-level environment variable](../../develop
 > 
 
 > [!tabs]      
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> In the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 Then add a build hook to your app configuration to install the CLI as part of the build process.
 

@@ -5,14 +5,14 @@ section: Languages
 order: 4
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 ## Supported versions
 
-{{% major-minor-versions-note configMinor="true" %}}
+You can select the major and minor version. Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
-
+{{% version/specific %}}
 <!-- API Version 1 -->
 
 <table>
@@ -27,20 +27,29 @@ order: 4
             <td>8.2 |  
 |  8.1 |  
 |  8.0</td>
-            <td>- 8.2  
-- 8.1  
-- 8.0</thd>
+            <td>8.2 |  
+|  8.1 |  
+|  8.0</thd>
         </tr>
     </tbody>
 </table>
 
+<--->
+<!-- API Version 2 -->
 
+8.2 |  
+|  8.1 |  
+|  8.0
+
+{{% /version/specific %}}
 
 Note that from PHP versions 7.1 to 8.1, the images support the Zend Thread Safe (ZTS) version of PHP.
 
-{{% language-specification type="php" display_name="PHP" %}}
+### Specify the language
 
+To use PHP, specify php as your [app's `php`](/create-apps/app-reference.html#phps):
 
+{{% version/specific %}}
 
 ```yaml {configFile="app"}
 type: 'php:<VERSION_NUMBER>'
@@ -49,14 +58,33 @@ type: 'php:<VERSION_NUMBER>'
 For example:
 
 ```yaml {configFile="app"}
-type: 'php:{{% latest "php" %}}'
+type: 'php:8.2'
 ```
 
+<--->
 
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    <APP_NAME>:
+        type: 'php:<VERSION_NUMBER>'
+```
 
-{{% deprecated-versions %}}
+For example:
 
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'php:8.2'
+```
 
+{{% /version/specific %}}
+
+### Deprecated versions
+ The following versions are deprecated. They're available, but they aren't receiving security updates from upstream and aren't guaranteed to work. They'll be removed in the future, so migrate to one of the [supported versions](#supported-versions).
+
+{{% version/specific %}}
 <!-- API Version 1 -->
 
 <table>
@@ -76,19 +104,31 @@ type: 'php:{{% latest "php" %}}'
 |  5.6 |  
 |  5.5 |  
 |  5.4</td>
-            <td>- 7.4  
-- 7.3  
-- 7.2  
-- 7.1  
-- 7.0  
-- 5.6  
-- 5.5  
-- 5.4</thd>
+            <td>7.4 |  
+|  7.3 |  
+|  7.2 |  
+|  7.1 |  
+|  7.0 |  
+|  5.6 |  
+|  5.5 |  
+|  5.4</thd>
         </tr>
     </tbody>
 </table>
 
+<--->
+<!-- API Version 2 -->
 
+7.4 |  
+|  7.3 |  
+|  7.2 |  
+|  7.1 |  
+|  7.0 |  
+|  5.6 |  
+|  5.5 |  
+|  5.4
+
+{{% /version/specific %}}
 
 ## Usage example
 
@@ -99,11 +139,18 @@ Configure your app to use PHP on Web PaaS.
 Choose a [supported version](#supported-versions)
 and add it to your [app configuration](../../create-apps):
 
-
+{{% version/specific %}}
 ```yaml {configFile="app"}
-type: 'php:{{% latest "php" %}}'
+type: 'php:8.2'
 ```
-
+<--->
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'php:8.2'
+```
+{{% /version/specific %}}
 
 ### 2. Serve your app
 
@@ -136,7 +183,7 @@ Adjust the `locations` block to fit your needs.
 In the following example, all requests made to your site's root (`/`) are sent to the `public` directory
 and nonexistent files are handled by `app.php`:
 
-
+{{% version/specific %}}
 ```yaml {configFile="app"}
 web:
     locations:
@@ -144,7 +191,19 @@ web:
             root: 'public'
             passthru: '/app.php'
 ```
-
+<--->
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'php:8.2'
+        web:
+            locations:
+                '/':
+                    root: 'public'
+                    passthru: '/app.php'
+```
+{{% /version/specific %}}
 
 See how to [create a basic PHP app with a front controller](../../create-apps/create-apps-web/php-basic).
 To have more control, you can define rules to specify which files you want to allow [from which location](../../create-apps/web/php-basic.md#set-different-rules-for-specific-locations).
@@ -153,11 +212,11 @@ To have more control, you can define rules to specify which files you want to al
 
 A complete basic app configuration looks like the following:
 
-
+{{% version/specific %}}
 ```yaml {configFile="app"}
 name: 'app'
 
-type: 'php:{{% latest "php" %}}'
+type: 'php:8.2'
 
 disk: 2048
 
@@ -167,7 +226,19 @@ web:
             root: 'public'
             passthru: '/app.php'
 ```
-
+<--->
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'php:8.2'
+        web:
+            locations:
+                '/':
+                    root: 'public'
+                    passthru: '/app.php'
+```
+{{% /version/specific %}}
 
 ## Dependencies
 
@@ -180,13 +251,24 @@ composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimi
 
 To use Composer 2.x on your project, either use PHP 8.2+ or, in your app configuration, add the following [dependency](../../create-apps/app-reference.md#dependencies):
 
-
+{{% version/specific %}}
 ```yaml {configFile="app"}
 dependencies:
     php:
         composer/composer: '^2'
 ```
-
+<--->
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'php:8.2'
+        ...
+        dependencies:
+            php:
+                composer/composer: '^2'
+```
+{{% /version/specific %}}
 
 Adding a dependency to the [dependencies block](../../create-apps/app-reference.md#dependencies) makes it available globally.
 So you can then use included dependencies as commands within your app container.
@@ -204,7 +286,7 @@ or interact with Composer itself through [its environment variables](https://get
 You can remove the default build flavor and run your own commands for complete control over your build.
 Set the build flavor to `none` and add the commands you need to your `build` hook, as in the following example:
 
-
+{{% version/specific %}}
 ```yaml {configFile="app"}
 build:
     flavor: none
@@ -214,7 +296,22 @@ hooks:
         set -e
         composer install --no-interaction --no-dev
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'php:8.2'
+        ...
+        build:
+            flavor: none
 
+        hooks:
+            build: |
+                set -e
+                composer install --no-interaction --no-dev
+```
+{{% /version/specific %}}
 
 That installs production dependencies with Composer but not development dependencies.
 The same can be achieved by using the default build flavor and [adding the `COMPOSER_NO_DEV` variable](../../development/development-variables/set-variables).
@@ -232,34 +329,61 @@ To install from an alternative repository:
 1\. Set an explicit `require` block:
 
 
-
+{{% version/specific %}}
 ```yaml {configFile="app"}
 dependencies:
     php:
         require:
             "platformsh/client": "2.x-dev"
 ```
-
+<--->
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'php:8.2'
+        ...
+        dependencies:
+            php:
+                require:
+                    "platformsh/client": "2.x-dev"
+```
+{{% /version/specific %}}
 
    This is equivalent to `composer require platform/client 2.x-dev`.
 
 2\. Add the repository to use:
 
 
-
+{{% version/specific %}}
 ```yaml {configFile="app"}
 repositories:
     - type: vcs
       url: "git@github.com:platformsh/platformsh-client-php.git"
 ```
-
+<--->
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'php:8.2'
+        ...
+        dependencies:
+            php:
+                require:
+                    "platformsh/client": "2.x-dev"
+                repositories:
+                    - type: vcs
+                      url: "git@github.com:platformsh/platformsh-client-php.git"
+```
+{{% /version/specific %}}
 
 That installs `platformsh/client` from the specified repository URL as a global dependency.
 
 For example, to install Composer 2 and the `platform/client 2.x-dev` library from a custom repository,
 use the following:
 
-
+{{% version/specific %}}
 ```yaml {configFile="app"}
 dependencies:
     php:
@@ -270,7 +394,23 @@ dependencies:
             - type: vcs
                 url: "git@github.com:platformsh/platformsh-client-php.git"
 ```
-
+<--->
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'php:8.2'
+        ...
+        dependencies:
+            php:
+                composer/composer: '^2'
+                require:
+                    "platformsh/client": "2.x-dev"
+                repositories:
+                    - type: vcs
+                      url: "git@github.com:platformsh/platformsh-client-php.git"
+```
+{{% /version/specific %}}
 
 ## Connect to services
 
@@ -279,16 +419,158 @@ The following examples show how to use PHP to access various [services](../../ad
 The individual service pages have more information on configuring each service.
 {{% /version/only %}}
 
-{{< codetabs v2hide="true" >}}
+> [!tabs]      
+> Elasticsearch     
+>> ``` php     
+>> {!> web/web-paas/static/files/fetch/examples/php/elasticsearch !}  
+>> ```     
+> Memcached     
+>> ``` php     
+>> {!> web/web-paas/static/files/fetch/examples/php/memcached !}  
+>> ```     
+> MongoDB     
+>> ``` php     
+>> {!> web/web-paas/static/files/fetch/examples/php/mongodb !}  
+>> ```     
+> MySQL     
+>> ``` php     
+>> {!> web/web-paas/static/files/fetch/examples/php/mysql !}  
+>> ```     
+> PostgreSQL     
+>> ``` php     
+>> {!> web/web-paas/static/files/fetch/examples/php/postgresql !}  
+>> ```     
+> RabbitMQ     
+>> ``` php     
+>> {!> web/web-paas/static/files/fetch/examples/php/rabbitmq !}  
+>> ```     
+> Redis     
+>> ``` php     
+>> {!> web/web-paas/static/files/fetch/examples/php/redis !}  
+>> ```     
+> Solr     
+>> ``` php     
+>> {!> web/web-paas/static/files/fetch/examples/php/solr !}  
+>> ```     
 
-+++
-title=Elasticsearch
-file=static/files/fetch/examples/php/elasticsearch
-highlight=php
-markdownify=false
-+++
+{{% version/only "1" %}}
+{{% config-reader %}}[PHP configuration reader library](https://github.com/platformsh/config-reader-php){{% /config-reader %}}
+{{% /version/only %}}
+
+{{% access-services version="2" %}}
+
+## PHP settings
+
+You can configure your PHP-FPM runtime configuration by specifying the [runtime in your app configuration](../../create-apps/app-reference.md#runtime).
+
+In addition to changes in runtime, you can also change the PHP settings.
+Some commonly used settings are:
+
+| Name | Default | Description |
+|------|---------|-------------|
+| `max_execution_time` | `300` | The maximum execution time, in seconds, for your PHP scripts and apps. A value of `0` means there are no time limits. |
+| `max_file_uploads` | `20` | The maximum number of files that can be uploaded in each request. |
+| `max_input_time` | `60` | The maximum time in seconds that your script is allowed to receive input (such as for file uploads). A value of `-1` means there are no time limits. |
+| `max_input_vars` | `1000` | The maximum number of input variables that are accepted in each request. |
+| `memory_limit` | `128M` | The memory limit, in megabytes, for PHP. Ensure that the PHP memory limit is set to a lower value than your environment's memory. |
+| `post_max_size` | `64M` | The maximum size, in megabytes, per uploaded file. To upload larger files, increase the value. |
+| `zend.assertions` | `-1` | Assertions are optimized and have no impact at runtime. Set assertions to `1` for your local development system. [See more on assertions](https://www.php.net/manual/en/regexp.reference.assertions). |
+| `opcache.memory_consumption` | `64` | The number of megabytes available for [the OPcache](./tuning.md#opcache-preloading). For large apps with many files, increase this value. |
+| `opcache.validate_timestamps` | `On` | If your app doesn't generate compiled PHP, you can [disable this setting](./tuning.md#disable-opcache-timestamp-validation). |
+
+### Retrieve the default values
+
+To retrieve the default PHP values, run the following [CLI command](../../administration/administration-cli):
+
+```bash
+platform ssh "php --info"
+```
+
+To get specific default values, use grep.
+For example, to get the value for `opcache.memory_consumption`, run the following command:
+
+```bash
+platform ssh "php --info" | grep opcache.memory_consumption
+```
+
+### Retrieve the settings
+
+To see the settings used on your environment:
+
+1\.  Find the PHP configuration files with the following [CLI command](../../administration/administration-cli):
 
 
+```bash
+platform ssh "php --ini"
+```
+
+    The output is something like the following:
+
+```bash
+Configuration File (php.ini) Path: /etc/php/8.0-zts/cli
+Loaded Configuration File:         /etc/php/8.0-zts/cli/php.ini
+Scan for additional .ini files in: /etc/php/8.0-zts/cli/conf.d
+Additional .ini files parsed:      (none)
+```
+
+2\.  Display the configuration file by adapting the following command with the output from step 1:
+
+
+```bash
+platform ssh "cat {{< variable "LOADED_CONFIGURATION_FILE_PATH" >}}"
+```
+
+### Customize PHP settings
+
+{{< version/only "1" >}}
+For {{% names/dedicated-gen-2 %}}, see the [configuration options](../../dedicated-gen-2/overview/grid.md#configuration-options).
+{{< /version/only >}}
+
+You can customize PHP values for your app in two ways.
+The recommended method is to use variables.
+
+> [!tabs]      
+> Using variables     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+
+If you're using [PHP-CLI](#execution-mode),
+you need to take into account the default settings of PHP-CLI when you customize your PHP settings.
+The default settings of PHP-CLI can't be overwritten and are the following:
+
+```text
+max_execution_time=0
+max_input_time=-1
+memory_limit=-1
+```
+
+### Disable functions for security
+
+A common recommendation for securing PHP installations is disabling built-in functions frequently used in remote attacks.
+By default, Web PaaS doesn't disable any functions.
+
+If you're sure a function isn't needed in your app, you can disable it.
+
+For example, to disable `pcntl_exec` and `pcntl_fork`, add the following to your [app configuration](../../create-apps):
+
+{{% version/specific %}}
+```yaml {configFile="app"}
+variables:
+    php:
+        disable_functions: "pcntl_exec,pcntl_fork"
+```
+<--->
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'php:8.2'
+        variables:
+            php:
+                disable_functions: "pcntl_exec,pcntl_fork"
+```
+{{% /version/specific %}}
 
 Common functions to disable include:
 
@@ -334,6 +616,18 @@ If you need multiple processes, they have to run in separate containers.
 See some generic examples on how to use alternate start commands:
 
 > [!tabs]      
+> Run a custom script     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Run a custom web server     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Run specific tasks     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 ## Foreign function interfaces
 
@@ -357,7 +651,7 @@ To leverage FFIs, follow these steps:
 2\.  Enable the FFI extension:
 
 
-
+{{% version/specific %}}
 
 ```yaml {configFile="app"}
 runtime:
@@ -365,7 +659,18 @@ runtime:
         - ffi
 ```
 
+<--->
 
+```yaml {configFile="app"}
+applications:
+    app:
+        type: 'php:8.2'
+        runtime:
+            extensions:
+                - ffi
+```
+
+{{% /version/specific %}}
 
 3\.  Make sure that your [preload script](./tuning.md#opcache-preloading) calls the `FFI::load()` function.
 
@@ -375,7 +680,7 @@ runtime:
 
     enable the preloader by adding the following configuration:
 
-
+{{% version/specific %}}
 
 ```yaml {configFile="app"}
 variables:
@@ -383,7 +688,18 @@ variables:
         opcache.enable_cli: true
 ```
 
+<--->
 
+```yaml {configFile="app"}
+applications:
+    app:
+        type: 'php:8.2'
+        variables:
+            php:
+                opcache.enable_cli: true
+```
+
+{{% /version/specific %}}
 
 5\.  Run your script with the following command:
 
@@ -398,163 +714,4 @@ See [complete working examples for C and Rust](https://github.com/platformsh-exa
 ## Project templates
 {{% /version/only %}}
 
-
-### Drupal 10 
-
-![image]()
-
-<p>This template builds Drupal 10 using the "Drupal Recommended" Composer project.  It is pre-configured to use MariaDB and Redis for caching.  The Drupal installer will skip asking for database credentials as they are already provided.</p>
-<p>Drupal is a flexible and extensible PHP-based CMS framework.</p>
-  
-#### Features
-- PHP 8.1<br />  
-- MariaDB 10.4<br />  
-- Redis 6<br />  
-- Drush included<br />  
-- Automatic TLS certificates<br />  
-- Composer-based build<br />  
- 
-[View the repository](https://github.com/platformsh-templates/drupal10) on GitHub.
-
-### GovCMS 9 
-
-![image]()
-
-<p>This template builds the Australian government's GovCMS Drupal 9 distribution using the Drupal Composer project for better flexibility.  It is pre-configured to use MariaDB and Redis for caching.  The Drupal installer will skip asking for database credentials as they are already provided.</p>
-<p>GovCMS is a Drupal distribution built for the Australian government, and includes configuration optimized for managing government websites.</p>
-  
-#### Features
-- PHP 8.0<br />  
-- MariaDB 10.4<br />  
-- Redis 6<br />  
-- Drush included<br />  
-- Automatic TLS certificates<br />  
-- Composer-based build<br />  
- 
-[View the repository](https://github.com/platformsh-templates/drupal9-govcms9) on GitHub.
-
-### Drupal 9 
-
-![image](images/drupal8.png)
-
-<p>This template builds Drupal 9 using the "Drupal Recommended" Composer project.  It is pre-configured to use MariaDB and Redis for caching.  The Drupal installer will skip asking for database credentials as they are already provided.</p>
-<p>Drupal is a flexible and extensible PHP-based CMS framework.</p>
-  
-#### Features
-- PHP 8.0<br />  
-- MariaDB 10.4<br />  
-- Redis 6<br />  
-- Drush included<br />  
-- Automatic TLS certificates<br />  
-- Composer-based build<br />  
- 
-[View the repository](https://github.com/platformsh-templates/drupal9) on GitHub.
-
-### Laravel 
-
-![image](images/laravel.png)
-
-<p>This template provides a basic Laravel skeleton.  It comes pre-configured to use a MariaDB database and Redis for caching and sessions using a Laravel-specific bridge library that runs during Composer autoload.  The public files symlink is also replaced with a custom web path definition so it is unnecessary.  It is intended for you to use as a starting point and modify for your own needs.</p>
-<p>Laravel is an opinionated, integrated rapid-application-development framework for PHP.</p>
-  
-#### Features
-- PHP 8.0<br />  
-- MariaDB 10.4<br />  
-- Redis 5.0<br />  
-- Automatic TLS certificates<br />  
-- Composer-based build<br />  
- 
-[View the repository](https://github.com/platformsh-templates/laravel) on GitHub.
-
-### Magento 2 Community Edition 
-
-![image](images/magento2.png)
-
-<p>This template builds Magento 2 CE on Web PaaS.  It includes additional scripts to customize Magento to run effectively in a build-and-deploy environment.  A MariaDB database and Redis cache server come pre-configured and work out of the box.  The installer has been modified to not ask for database information.  Background workers are run using a worker container rather than via cron.</p>
-<p>Magento is a fully integrated ecommerce system and web store written in PHP.  This is the Open Source version.</p>
-  
-#### Features
-- PHP 7.2<br />  
-- MariaDB 10.2<br />  
-- Redis 3.2<br />  
-- Dedicated worker instance for background processing<br />  
-- Automatic TLS certificates<br />  
-- Composer-based build<br />  
- 
-[View the repository](https://github.com/platformsh-templates/magento2ce) on GitHub.
-
-### Sylius 
-
-![image]()
-
-<p>This template builds a Sylius application for Web PaaS, which can be used as a starting point for developing complex e-commerce applications.</p>
-<p>Sylius is a modern e-commerce solution for PHP, based on Symfony Framework.</p>
-  
-#### Features
-- PHP 8.0<br />  
-- MySQL 10.2<br />  
-- Automatic TLS certificates<br />  
-- composer-based build<br />  
- 
-[View the repository](https://github.com/platformsh-templates/sylius) on GitHub.
-
-### WordPress (Bedrock) 
-
-![image]()
-
-<p>This template builds WordPress on Web PaaS using the Bedrock boilerplate by Roots with Composer. Plugins and themes should be managed with Composer exclusively. The only modifications made to the standard Bedrock boilerplate have been providing database credentials and main site url parameters via environment variables. With this configuration, the database is automatically configured such that the installer will not ask you for database credentials. While Bedrock provides support to replicate this configuration in a `.env` file for local development, an example Lando configuration file is included as the recommendated method to do so.</p>
-<p>WordPress is a blogging and lightweight CMS written in PHP, and Bedrock is a Composer-based WordPress boilerplate project with a slightly modified project structure and configuration protocol. </p>
-  
-#### Features
-- PHP 7.4<br />  
-- MariaDB 10.4<br />  
-- Automatic TLS certificates<br />  
-- Composer-based build<br />  
- 
-[View the repository](https://github.com/platformsh-templates/wordpress-bedrock) on GitHub.
-
-### WordPress (Composer) 
-
-![image]()
-
-<p>This template builds WordPress on Web PaaS using the <a href="https://github.com/johnpbloch/wordpress"><code>johnbloch/wordpress</code></a> "Composer Fork" of WordPress.  Plugins and themes should be managed with Composer exclusively.  A custom configuration file is provided that runs on Web PaaS to automatically configure the database, so the installer will not ask you for database credentials.  For local-only configuration you can use a `wp-config-local.php` file that gets excluded from Git.</p>
-<p>WordPress is a blogging and lightweight CMS written in PHP.</p>
-  
-#### Features
-- PHP 8.1<br />  
-- MariaDB 10.4<br />  
-- Automatic TLS certificates<br />  
-- Composer-based build<br />  
- 
-[View the repository](https://github.com/platformsh-templates/wordpress-composer) on GitHub.
-
-### WordPress (Vanilla) for Web PaaS 
-
-![image]()
-
-<p>This template builds WordPress on Web PaaS, installing WordPress to a subdirectory instead of to the project root. It does not use a package management tool like Composer, and updating core, themes, and plugins should be done with care. A custom configuration file is provided that runs on Web PaaS to automatically configure the database, so the installer will not ask you for database credentials.</p>
-<p>WordPress is a blogging and lightweight CMS written in PHP.</p>
-  
-#### Features
-- PHP 7.4<br />  
-- MariaDB 10.4<br />  
-- Automatic TLS certificates<br />  
- 
-[View the repository](https://github.com/platformsh-templates/wordpress-vanilla) on GitHub.
-
-### WooCommerce (Bedrock) for Web PaaS 
-
-![image]()
-
-<p>This template builds WordPress on Web PaaS using the Bedrock boilerplate by Roots with Composer. It includes WooCommerce and JetPack as dependencies, which when enabled will quickly allow you to create a store on WordPress.</p>
-<p>Plugins and themes should be managed with Composer exclusively. The only modifications made to the standard Bedrock boilerplate have been providing database credentials and main site url parameters via environment variables. With this configuration, the database is automatically configured such that the installer will not ask you for database credentials. While Bedrock provides support to replicate this configuration in a <code>.env</code> file for local development, an example Lando configuration file is included as the recommendated method to do so.</p>
-<p>WordPress is a blogging and lightweight CMS written in PHP, and Bedrock is a Composer-based WordPress boilerplate project with a slightly modified project structure and configuration protocol. WooCommerce is an open-source eCommerce platform and plugin for WordPress.</p>
-  
-#### Features
-- PHP 7.4<br />  
-- MariaDB 10.4<br />  
-- Automatic TLS certificates<br />  
-- Composer-based build<br />  
- 
-[View the repository](https://github.com/platformsh-templates/wordpress-woocommerce) on GitHub.
-
+{{< repolist lang="php" displayName="PHP" >}}

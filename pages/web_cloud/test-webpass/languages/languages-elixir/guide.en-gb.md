@@ -5,19 +5,18 @@ section: Languages
 order: 4
 ---
 
-**Last updated 24th November 2023**
-
+**Last updated 27th November 2023**
 
 
 ## Objective  
 
-{{% description %}}
+Web PaaS supports building and deploying applications written in Elixir. There is no default flavor for the build phase, but you can define it explicitly in your build hook. Web PaaS Elixir images support both committed dependencies and download-on-demand. The underlying Erlang version is 22.0.7.
 
 ## Supported versions
 
-{{% major-minor-versions-note configMinor="true" %}}
+You can select the major and minor version. Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
-
+{{% version/specific %}}
 <!-- API Version 1 -->
 
 <table>
@@ -33,19 +32,26 @@ order: 4
 |  1.14 |  
 |  1.13 |  
 |  1.12</td>
-            <td>- 1.15  
-- 1.14  
-- 1.13  
-- 1.12</thd>
+            <td>None available</thd>
         </tr>
     </tbody>
 </table>
 
+<--->
+<!-- API Version 2 -->
 
+1.15 |  
+|  1.14 |  
+|  1.13 |  
+|  1.12
 
-{{% language-specification type="elixir" display_name="Elixir" %}}
+{{% /version/specific %}}
 
+### Specify the language
 
+To use Elixir, specify elixir as your [app's `elixir`](/create-apps/app-reference.html#elixirs):
+
+{{% version/specific %}}
 
 ```yaml {configFile="app"}
 type: 'elixir:<VERSION_NUMBER>'
@@ -54,10 +60,28 @@ type: 'elixir:<VERSION_NUMBER>'
 For example:
 
 ```yaml {configFile="app"}
-type: 'elixir:{{% latest "elixir" %}}'
+type: 'elixir:1.15'
 ```
 
+<--->
 
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    <APP_NAME>:
+        type: 'elixir:<VERSION_NUMBER>'
+```
+
+For example:
+
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'elixir:1.15'
+```
+
+{{% /version/specific %}}
 
 ## Built-in variables
 
@@ -81,20 +105,29 @@ Some of the environment variables are in JSON format and are base64 encoded. You
 
 If you are using Hex to manage your dependencies, you need to specify the `MIX_ENV` environment variable:
 
-
+{{% version/specific %}}
 ```yaml {configFile="app"}
 variables:
     env:
         MIX_ENV: 'prod'
 ```
-
+<--->
+```yaml {configFile="app"}
+applications:
+    app:
+        type: 'elixir:1.15'
+        variables:
+            env:
+                MIX_ENV: 'prod'
+```
+{{% /version/specific %}}
 
 The `SECRET_KEY_BASE` variable is generated automatically based on the [`PLATFORM_PROJECT_ENTROPY` variable](../development/variables/use-variables.md#use-provided-variables).
 You can change it.
 
 Include in your build hook the steps to retrieve a local Hex and `rebar`, and then run `mix do deps.get, deps.compile, compile` on your application to build a binary.
 
-
+{{% version/specific %}}
 ```yaml {configFile="app"}
 hooks:
     build: |
@@ -102,7 +135,18 @@ hooks:
         mix local.rebar --force
         mix do deps.get --only prod, deps.compile, compile
 ```
-
+<--->
+```yaml {configFile="app"}
+applications:
+    app:
+        type: 'elixir:1.15'
+        hooks:
+            build: |
+                mix local.hex --force
+                mix local.rebar --force
+                mix do deps.get --only prod, deps.compile, compile
+```
+{{% /version/specific %}}
 
 > [!primary]  
 > 
@@ -115,11 +159,11 @@ you can then start it from the `web.commands.start` directive.
 
 The following basic app configuration is sufficient to run most Elixir applications.
 
-
+{{% version/specific %}}
 ```yaml {configFile="app"}
 name: app
 
-type: 'elixir:{{% latest "elixir" %}}'
+type: 'elixir:1.15'
 
 variables:
     env:
@@ -139,7 +183,31 @@ web:
             allow: false
             passthru: true
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    app:
+        type: 'elixir:1.15'
 
+        variables:
+            env:
+                MIX_ENV: 'prod'
+
+        hooks:
+            build: |
+                mix local.hex --force
+                mix local.rebar --force
+                mix do deps.get --only prod, deps.compile, compile
+
+        web:
+            commands:
+                start: mix phx.server
+            locations:
+                /:
+                    allow: false
+                    passthru: true
+```
+{{% /version/specific %}}
 
 Note that there is still an Nginx proxy server sitting in front of your application. If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily) or you may route all requests to the Elixir application unconditionally, as in the example above.
 
@@ -185,14 +253,23 @@ See [Config Reader Documentation](../development/variables/use-variables.md#acce
 
 The services configuration is available in the environment variable `PLATFORM_RELATIONSHIPS`.
 
-Given a relationship defined in `{{< vendor/configfile "app" >}}`:
+Given a relationship defined in `.platform.app.yaml`:
 
-
+{{% version/specific %}}
 ```yaml {configFile="app"}
 relationships:
     postgresdatabase: "dbpostgres:postgresql"
 ```
-
+<--->
+```yaml {configFile="app"}
+applications:
+    app:
+        type: 'elixir:1.15'
+        ...
+        relationships:
+            postgresdatabase: "dbpostgres:postgresql"
+```
+{{% /version/specific %}}
 
 Assuming you have in `mix.exs` the Poison library to parse JSON:
 

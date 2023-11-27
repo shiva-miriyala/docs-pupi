@@ -4,7 +4,7 @@ slug: dependencies
 section: Python
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -41,6 +41,14 @@ You might want to define a specific version of pip in your deployments to furthe
 To do so, modify your [app configuration](../../create-apps), as in the following examples:
 
 > [!tabs]      
+> Latest version     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Specific version     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 ### pip freeze
 
@@ -61,6 +69,14 @@ in your deployments to ensure repeatable builds.
 Because Pipenv depends on pip, you might want to also specify the pip version.
 
 > [!tabs]      
+> Latest version     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Specific version     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 ## Poetry
 
@@ -81,20 +97,39 @@ To set up Poetry on Web PaaS, follow these steps:
 
     Set the variables as follows:
 
-
+{{% version/specific %}}
 ```yaml {configFile="app"}
 variables:
     env:
         POETRY_VIRTUALENVS_IN_PROJECT: true
         POETRY_VIRTUALENVS_CREATE: true
 ```
-
+<--->
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'python:3.12'
+        variables:
+            env:
+                POETRY_VIRTUALENVS_IN_PROJECT: true
+                POETRY_VIRTUALENVS_CREATE: true
+```
+{{% /version/specific %}}
 
 2\.  Install Poetry.
 
     You can specify the latest or a specific version of Poetry in your deployments to ensure repeatable builds.
 
 > [!tabs]      
+> Latest version     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Specific version     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 3\.  Make Poetry available outside the build hook.
 

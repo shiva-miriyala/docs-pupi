@@ -4,7 +4,7 @@ slug: environments-default-environment
 section: Environments
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -45,6 +45,14 @@ If it does, GitHub, GitLab, or BitBucket hosts your primary remote repository fo
 ## 1. Create a `main` environment
 
 > [!tabs]      
+> Without a source integration     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> With a source integration     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 ## 2. Copy settings
 
@@ -68,6 +76,14 @@ platform environment:info -e main parent -
 ## 4. Make `main` the parent for other environments
 
 > [!tabs]      
+> Without a source integration     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> With a source integration     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 ## 5. Deactivate the `old` branch
 
@@ -81,6 +97,14 @@ platform environment:delete --no-delete-branch old
 ## 6. Set `main` as the default branch
 
 > [!tabs]      
+> Without a source integration     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> With a source integration     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 ## 7. Update DNS records
 

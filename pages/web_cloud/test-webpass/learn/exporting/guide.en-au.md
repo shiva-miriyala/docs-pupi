@@ -5,7 +5,7 @@ section: Tutorials
 order: 9
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -34,6 +34,14 @@ Your app's code is maintained through the Git version control system.
 To download your entire app's code history:
 
 > [!tabs]      
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Using Git     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 ## 2. Download your files
 
@@ -76,6 +84,14 @@ All other variables are [part of `$PLATFORM_VARIABLES`](/development/variables/u
 To back up your environment variables:
 
 > [!tabs]      
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> In the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 ## What's next
 

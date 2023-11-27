@@ -4,7 +4,7 @@ slug: add-services-mysql
 section: Add-Services
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -28,7 +28,7 @@ or [MySQL documentation](https://dev.mysql.com/doc/refman/en/) for more informat
 
 ## Supported versions
 
-{{% major-minor-versions-note configMinor="true" %}}
+You can select the major and minor version. Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
 The service types `mariadb` and `mysql` both refer to MariaDB.
 The service type `oracle-mysql` refers to MySQL as released by Oracle, Inc.
@@ -37,10 +37,9 @@ MySQL and MariaDB have the same behavior and the rest of this page applies to bo
 
 | **`mariadb`** | **`mysql`** | **`oracle-mysql`** |
 |---------------|-------------|--------------------|
-|  - 8.0  
-- 5.7 |
+|   |
 
-
+{{% version/specific %}}
 <!-- API Version 1 -->
 
 ### Switching type and version
@@ -78,89 +77,529 @@ Configure your service with at least 256 MB in disk space.
 
 {{% endpoint-description type="mariadb" sectionLink="#multiple-databases" multipleText="databases" /%}}
 
-{{< codetabs v2hide="true" >}}
+> [!tabs]      
+> Go     
+>> ``` go     
+>> {!> web/web-paas/static/files/fetch/examples/golang/mysql !}  
+>> ```     
+> Java     
+>> ``` java     
+>> {!> web/web-paas/static/files/fetch/examples/java/mysql !}  
+>> ```     
+> PHP     
+>> ``` php     
+>> {!> web/web-paas/static/files/fetch/examples/php/mysql !}  
+>> ```     
+> Python     
+>> ``` python     
+>> {!> web/web-paas/static/files/fetch/examples/python/mysql !}  
+>> ```     
 
-+++
-title=Go
-file=static/files/fetch/examples/golang/mysql
-highlight=go
-+++
+<!-- Version 2: .environment shortcode + context -->
+{{% version/only "2" %}}
 
+```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="myapp" >}}
 
+# Other options...
 
-1\. Rename the existing table.
-
-
-```text
-RENAME TABLE {{< variable "EXISTING_TABLE" >}} {{< variable "OLD_TABLE" >}};
+# Relationships enable an app container's access to a service.
+relationships:
+    database: "db:mysql"
+{{< /snippet >}}
+{{< snippet name="db" config="service" placeholder="true" >}}
+    type: mariadb:11.0
+{{< /snippet >}}
 ```
 
-1\. Create a new table from the data in the existing table.
+```json  
 
+```  
 
-```text
-CREATE TABLE {{< variable "EXISTING_TABLE" >}} SELECT * from {{< variable "OLD_TABLE" >}};
+```bash {location="myapp/.environment"}
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
+
+# Set environment variables for individual credentials.
+export DB_CONNECTION=="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].scheme')"
+export DB_USERNAME="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].username')"
+export DB_PASSWORD="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].password')"
+export DB_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].host')"
+export DB_PORT="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].port')"
+export DB_DATABASE="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].path')"
+
+# Surface connection string variable for use in app.
+export DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}"
 ```
 
-Now when you run `SHOW CREATE TABLE {{< variable "EXISTING_TABLE" >}}`, you see `ENGINE=InnoDB`.
+{{< /v2connect2app >}}
 
-## Service timezone
+{{% /version/only %}}
 
-To change the timezone for a given connection, run `SET time_zone = {{< variable "TIMEZONE" >}};`.
+### Configure connections
 
-## Exporting data
+There may be cases where you want to configure a database connection manually.
 
-To download all data from your SQL database, use the Web PaaS CLI.
-If you have a single SQL database, the following command exports all data to a local file:
+To get the URL to connect to the database, run the following command:
 
 ```bash
-platform db:dump
+platform relationships
 ```
 
-If you have multiple SQL databases, you are prompted for which one to export.
-You can also specify a database by its relationship name:
+The result is the complete [information for all relationships](#relationship-reference) with an additional `url` property.
+Use the `url` property as your connection.
+
+{{% service-values-change %}}
+
+You can also see a guide on how to [convert the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable to a different form](https://community.platform.sh/t/convert-platform-relationships-to-database-url/841).
+
+## Configuration options
+
+You can configure your MySQL service in the [services configuration](../) with the following options:
+
+| Name         | Type                    | Version                            | Description |
+| ------------ | ----------------------- | ---------------------------------- | ----------- |
+| `schemas`    | An array of `string`s   | 10.0+                              | All databases to be created. Defaults to a single `main` database. |
+| `endpoints`  | An endpoints dictionary | 10.0+                              | Endpoints with their permissions. See [multiple databases](#multiple-databases). |
+| `properties` | A properties dictionary | MariaDB: 10.1+; Oracle MySQL: 8.0+ | Additional properties for the database. Equivalent to using a `my.cnf` file. See [property options](#configure-the-database). |
+
+Example configuration:
+
+{{< version/specific >}}
+<!-- Version 1 -->
+
+```yaml {configFile="services"}
+{{< snippet name="db" config="service" >}}
+    type: mariadb:11.0
+    disk: 2048
+    configuration:
+        schemas:
+            - main
+        endpoints:
+            mysql:
+                default_schema: main
+                privileges:
+                    main: admin
+        properties:
+            max_allowed_packet: 64
+{{< /snippet >}}
+```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="services"}
+{{< snippet name="db" config="service" >}}
+    type: mariadb:11.0
+    configuration:
+        schemas:
+            - main
+        endpoints:
+            mysql:
+                default_schema: main
+                privileges:
+                    main: admin
+        properties:
+            max_allowed_packet: 64
+{{< /snippet >}}
+```
+
+{{< /version/specific >}}
+
+{{% relationship-ref-intro %}}
+
+{{% service-values-change %}}
+
+### MariaDB reference
+
+```json
+{
+    "username": "user",
+    "scheme": "mysql",
+    "service": "mariadb104",
+    "fragment": null,
+    "ip": "169.254.255.221",
+    "hostname": "e3wffyxtwnrxujeyg5u3kvqi6y.mariadb104.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "port": 3306,
+    "cluster": "rjify4yjcwxaa-master-7rqtwti",
+    "host": "mysql.internal",
+    "rel": "mysql",
+    "path": "main",
+    "query": {
+        "is_master": true
+    },
+    "password": "",
+    "type": "mariadb:11.0",
+    "public": false,
+    "host_mapped": false
+}
+```
+
+### Oracle MySQL reference
+
+```json
+{
+    "username": "user",
+    "scheme": "mysql",
+    "service": "oraclemysql",
+    "fragment": null,
+    "ip": "169.254.150.190",
+    "hostname": "7q5hllmmhoeuthu6th7qovoone.oraclemysql.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "port": 3306,
+    "cluster": "rjify4yjcwxaa-master-7rqtwti",
+    "host": "oraclemysql.internal",
+    "rel": "mysql",
+    "path": "main",
+    "query": {
+        "is_master": true
+    },
+    "password": "",
+    "type": "oracle-mysql:8.0",
+    "public": false,
+    "host_mapped": false
+}
+```
+
+## Access the service directly
+
+You can access the service using the {{< vendor/name >}} CLI by running `{{< vendor/cli >}} sql`.
+
+You can also access it from you app container via [SSH](../../development/development-ssh).
+From your [relationship data](#relationship-reference), you need: `host`, `port`, `user`, `path`.
+Then run the following command:
 
 ```bash
-platform db:dump --relationship {{< variable "RELATIONSHIP_NAME" >}}
+mysql -h {{< variable "HOST" >}} -P {{< variable "PORT" >}} -u {{< variable "USER" >}} {{< variable "PATH" >}}
 ```
 
-### Compression
-
-By default, the file is uncompressed.
-To compress it, use the `--gzip` (`-z`) option:
+Assuming the values from the [MariaDB reference](#mariadb-reference), that would be:
 
 ```bash
-platform db:dump --gzip
+mysql -h mysql.internal -P 3306 -u user main
 ```
 
-### Using the output in bash
-
-To pipe the result to another command, use the `--stdout` option.
-For example, to create a bzip2-compressed file, run:
+If your database relationship has a password, pass the `-p` switch and enter the password when prompted:
 
 ```bash
-platform db:dump --stdout | bzip2 > dump.sql.bz2
+mysql -p -h mysql.internal -P 3306 -u user main
 ```
 
-## Importing data
+## Define permissions
 
-To load data into a database, pipe an SQL dump through the `platform sql` command, like so:
+With version `10.0` or later, you can define multiple users with different permissions for your database.
+To do so, define multiple endpoints in your [service configuration](#configuration-options).
 
-```bash
-platform sql < my_database_backup.sql
+For each endpoint you add, you can define the following properties:
+
+| Name             | Type                     | Required | Description |
+| ---------------- | ------------------------ | -------- | ----------- |
+| `default_schema` | `string`                 |          | Which of the defined schemas to default to. If not specified, the `path` property of the relationship is `null` and so tools such as the {{< vendor/name >}} CLI can't access the relationship. |
+| `privileges`     | A permissions dictionary |          | For each of the defined schemas, what permissions the given endpoint has. |
+
+Possible permissions:
+
+| Name        | Type          | Description                                         |
+| ----------- | ------------- | --------------------------------------------------- |
+| Read-only   | `ro`          | Can select, create temporary tables, and see views. |
+| Read-write  | `rw`          | In addition to read-only permissions, can also insert, update, delete, manage and execute events, execute routines, create and drop indexes, manage and execute triggers, and lock tables. |
+| Admin       | `admin`       | In addition to read-write permissions, can also create, drop, and alter tables; create views; and create and alter routines. |
+| Replication | `replication` | For [replicating databases](../.././.-mysql-replication). In addition to read-only permissions, can also lock tables. |
+
+## Multiple databases
+
+With version `10.0` or later, you can define multiple databases.
+To do so, define multiple `schemas` in your [service configuration](#configuration-options).
+
+You can also specify multiple `endpoints` for [permissions](#define-permissions).
+If neither `schemas` nor `endpoints` is included, it's equivalent to the following default:
+
+{{< version/specific >}}
+<!-- Version 1 -->
+
+```yaml {configFile="services"}
+{{< snippet name="db" config="service" >}}
+    type: mariadb:11.0
+    disk: 2048
+    configuration:
+        schemas:
+            - main
+        endpoints:
+            mysql:
+                default_schema: main
+                privileges:
+                    main: admin
+{{< /snippet >}}
 ```
 
-That runs the database backup against the SQL database on Web PaaS.
-That works for any SQL file, so the usual caveats about importing an SQL dump apply
-(for example, it's best to run against an empty database).
+<--->
+<!-- Version 2 -->
 
-As with exporting, you can specify a specific environment and a specific database relationship to use:
-
-```bash
-platform sql --relationship {{< variable "RELATIONSHIP_NAME" >}} -e {{< variable "BRANCH_NAME" >}} < my_database_backup.sql
+```yaml {configFile="services"}
+{{< snippet name="db" config="service" >}}
+    type: mariadb:11.0
+    configuration:
+        schemas:
+            - main
+        endpoints:
+            mysql:
+                default_schema: main
+                privileges:
+                    main: admin
+{{< /snippet >}}
 ```
+
+{{< /version/specific >}}
+
+If either `schemas` or `endpoints` are defined, no default is applied and you have to specify the full configuration.
 
 > [!primary]  
+> 
+> Removing a schema from the list of `schemas` on further deployments results in the deletion of the schema.
+> 
+> {{</note >}}
+> 
+> 
+> ### Multiple databases example
+> 
+> The following configuration example creates a single MariaDB service named `db` with two databases, `main` and `legacy`.
+> Access to the database is defined through three endpoints:
+> 
+> * `admin` has full access to both databases.
+> * `reporter` has SELECT query access to `main` but no access to `legacy`.
+> * `importer` has SELECT/INSERT/UPDATE/DELETE (but not DDL) access to `legacy` but no access to `main`.
+> 
+> {{< version/specific >}}
+> <!-- Version 1 -->
+> 
+> ```yaml {configFile="services"}
+> {{< snippet name="db" config="service" >}}
+>     type: mariadb:11.0
+>     disk: 2048
+>     configuration:
+>         schemas:
+>             - main
+>             - legacy
+>         endpoints:
+>             admin:
+>                 default_schema: main
+>                 privileges:
+>                     main: admin
+>                     legacy: admin
+>             reporter:
+>                 privileges:
+>                     main: ro
+>             importer:
+>                 default_schema: legacy
+>                 privileges:
+>                     legacy: rw
+> {{< /snippet >}}
+> ```
+> 
+> <--->
+> <!-- Version 2 -->
+> 
+> ```yaml {configFile="services"}
+> {{< snippet name="db" config="service" >}}
+>     type: mariadb:11.0
+>     configuration:
+>         schemas:
+>             - main
+>             - legacy
+>         endpoints:
+>             admin:
+>                 default_schema: main
+>                 privileges:
+>                     main: admin
+>                     legacy: admin
+>             reporter:
+>                 privileges:
+>                     main: ro
+>             importer:
+>                 default_schema: legacy
+>                 privileges:
+>                     legacy: rw
+> {{< /snippet >}}
+> ```
+> 
+> {{< /version/specific >}}
+> 
+> Expose these endpoints to your app as relationships in your [app configuration](../../create-apps):
+> 
+> ```yaml {configFile="app"}
+> {{% snippet name="myapp" config="app" root="myapp" %}}
+> 
+> # Other options...
+> 
+> # Relationships enable an app container's access to a service.
+> relationships:
+>     database: "db:admin"
+>     reports: "db:reporter"
+>     imports: "db:importer"
+> {{% /snippet %}}
+> ```
+> 
+> These relationships are then available in the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](#relationship-reference).
+> Each has its own credentials you can use to connect to the given database.
+> 
+> ## Configure the database
+> 
+> For MariaDB 10.1 and later and Oracle MySQL 8.0 and later, you can set some configuration properties
+> (equivalent to using a `my.cnf` file).
+> 
+> In your settings, add the `properties` key to the `configuration` key.
+> It offers the following properties:
+> 
+> | Name                                  | Type      | Default                                                      | Description                                                                                                                                                                           |
+> |---------------------------------------|-----------|--------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+> | `max_allowed_packet`                  | `integer` | `16`                                                         | The maximum size for packets in MB. Can be from `1` to `100`.                                                                                                                         |
+> | `default_charset`                     | `string`  | `utf8mb4` after February 2020 and `latin1` before            | The default character set. Affects any tables created after it's set.                                                                                                                 |
+> | `default_collation`                   | `string`  | `utf8mb4_unicode_ci` after February 2020 and `latin1` before | The default collation. Affects any tables created after it's set.                                                                                                                     |
+> | `optimizer_switch`                    | `string`  |                                                              | A place to set various server optimization variables. See the [MariaDB documentation](https://mariadb.com/kb/en/optimizer-switch/).                                                   |
+> | `optimizer_use_condition_selectivity` | `integer` | `4` in version 10.4.1+ and `1` before that                   | Which statistics are used by the optimizer. From `1` to `5`. See the [MariaDB documentation](https://mariadb.com/kb/en/server-system-variables/#optimizer_use_condition_selectivity). |
+> | `innodb_adaptive_hash_index`          | `integer` | `0` in version 10.5+ and `1` before that                     | Enable/Disable InnoDB Hash Index. See the [MariaDB documentation](https://mariadb.com/kb/en/innodb-system-variables/#innodb_adaptive_hash_index).                                     |
+> | `max_heap_table_size`                 | `integer` | `32`                                                         | The maximum size for user-created MEMORY tables in MB. Can be from `1` to `4096`.                                                                                                     |
+> | `table_definition_cache`              | `integer` | `400`                                                        | The number of table definitions that can be cached. See the [MariaDB documentation](https://mariadb.com/kb/en/server-system-variables/#table_definition_cache).                       |
+> | `table_open_cache`                    | `integer` | `400`                                                        | The maximum number of open tables cached in one table cache instance. See the [MariaDB documentation](https://mariadb.com/kb/en/server-system-variables/#table_open_cache).           |
+> | `wsrep_sync_wait`                     | `integer` | `0` (Disabled)                                               | Ensure execution of statements in fully synced nodes. See the [MariaDB documentation](https://mariadb.com/kb/en/galera-cluster-system-variables/#wsrep_sync_wait).                    |
+> 
+> An example of setting these properties:
+> 
+> {{< version/specific >}}
+> <!-- Version 1 -->
+> 
+> ```yaml {configFile="services"}
+> {{< snippet name="db" config="service" >}}
+>     type: mariadb:11.0
+>     disk: 2048
+>     configuration:
+>         properties:
+>             max_allowed_packet: 64
+>             default_charset: utf8mb4
+>             default_collation: utf8mb4_unicode_ci
+> {{< /snippet >}}
+> ```
+> 
+> <--->
+> <!-- Version 2 -->
+> 
+> ```yaml {configFile="services"}
+> {{< snippet name="db" config="service" >}}
+>     type: mariadb:11.0
+>     configuration:
+>         properties:
+>             max_allowed_packet: 64
+>             default_charset: utf8mb4
+>             default_collation: utf8mb4_unicode_ci
+> {{< /snippet >}}
+> ```
+> 
+> {{< /version/specific >}}
+> 
+> You can also change a table's character set and collation through `ALTER TABLE` commands:
+> 
+> ```sql
+> -- To change defaults when creating new tables:
+> ALTER DATABASE main CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+> 
+> -- To change defaults when creating new columns:
+> ALTER TABLE table_name CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+> 
+> -- To convert existing data:
+> ALTER TABLE table_name CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+> ```
+> 
+> For further details, see the [MariaDB documentation](https://mariadb.com/kb/en/character-set-and-collation-overview/).
+> 
+> {{% databases-passwords %}}
+> 
+> ## Storage Engine
+> 
+> {{% version/specific %}}
+> It's best to use the InnoDB storage engine wherever possible.
+> MyISAM is only properly supported in non-Dedicated environments.
+> In Dedicated environments, there is no replication of MyISAM tables.
+> 
+> If MyISAM tables have been inadvertently created or imported in a Dedicated environment
+> (if you see `ENGINE=MyISAM` in the response to `SHOW CREATE TABLE EXISTING_TABLE`),
+> convert them to use the InnoDB storage engine as follows:
+> <--->
+> It's best to use the InnoDB storage engine wherever possible instead of MyISAM.
+> If MyISAM tables have been inadvertently created or imported in your environments
+> (if you see `ENGINE=MyISAM` in the response to `SHOW CREATE TABLE EXISTING_TABLE`),
+> convert them to use the InnoDB storage engine as follows:
+> {{% /version/specific %}}
+> 
+> 1. Rename the existing table.
+> 
+>    ```text
+>    RENAME TABLE {{< variable "EXISTING_TABLE" >}} {{< variable "OLD_TABLE" >}};
+>    ```
+> 
+> 1. Create a new table from the data in the existing table.
+> 
+>    ```text
+>    CREATE TABLE {{< variable "EXISTING_TABLE" >}} SELECT * from {{< variable "OLD_TABLE" >}};
+>    ```
+> 
+> Now when you run `SHOW CREATE TABLE {{< variable "EXISTING_TABLE" >}}`, you see `ENGINE=InnoDB`.
+> 
+> ## Service timezone
+> 
+> To change the timezone for a given connection, run `SET time_zone = {{< variable "TIMEZONE" >}};`.
+> 
+> ## Exporting data
+> 
+> To download all data from your SQL database, use the Web PaaS CLI.
+> If you have a single SQL database, the following command exports all data to a local file:
+> 
+> ```bash
+> platform db:dump
+> ```
+> 
+> If you have multiple SQL databases, you are prompted for which one to export.
+> You can also specify a database by its relationship name:
+> 
+> ```bash
+> platform db:dump --relationship {{< variable "RELATIONSHIP_NAME" >}}
+> ```
+> 
+> ### Compression
+> 
+> By default, the file is uncompressed.
+> To compress it, use the `--gzip` (`-z`) option:
+> 
+> ```bash
+> platform db:dump --gzip
+> ```
+> 
+> ### Using the output in bash
+> 
+> To pipe the result to another command, use the `--stdout` option.
+> For example, to create a bzip2-compressed file, run:
+> 
+> ```bash
+> platform db:dump --stdout | bzip2 > dump.sql.bz2
+> ```
+> 
+> ## Importing data
+> 
+> To load data into a database, pipe an SQL dump through the `platform sql` command, like so:
+> 
+> ```bash
+> platform sql < my_database_backup.sql
+> ```
+> 
+> That runs the database backup against the SQL database on Web PaaS.
+> That works for any SQL file, so the usual caveats about importing an SQL dump apply
+> (for example, it's best to run against an empty database).
+> 
+> As with exporting, you can specify a specific environment and a specific database relationship to use:
+> 
+> ```bash
+> platform sql --relationship {{< variable "RELATIONSHIP_NAME" >}} -e {{< variable "BRANCH_NAME" >}} < my_database_backup.sql
+> ```
+> 
+> {{< note >}}
 > 
 > Importing a database backup is a destructive operation.
 > It overwrites data already in your database.

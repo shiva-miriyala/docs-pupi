@@ -4,13 +4,12 @@ slug: dedicated-gen-2-overview
 section: Dedicated-Gen-2
 ---
 
-**Last updated 24th November 2023**
-
+**Last updated 27th November 2023**
 
 
 ## Objective  
 
-{{% description %}}
+{{% names/dedicated-gen-2 %}} is a robust, redundant layer. It's well-suited for those who like the Web PaaS development experience but need more resources and redundancy for their production environment. It's available only with an Enterprise contract.
 
 {{% names/dedicated-gen-2 %}} consists of two parts: a Development Environment and a {{% names/dedicated-gen-2 %}} cluster.
 

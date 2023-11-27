@@ -5,7 +5,7 @@ section: Environments
 hidden: true
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -72,6 +72,14 @@ Your environments can have one of two statuses:
 You can see the status of your environments in the [Console](../administration/administration-web) or the [CLI](../administration/administration-cli).
 
 > [!tabs]      
+> In the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 You can [change an environment's status](.././.-deactivate-environment) at any time.
 
@@ -196,7 +204,7 @@ Staging
 To prevent unnecessary consumption of resources,
 Web PaaS automatically pauses preview environments ([of both development and staging types](/glossary.md#environment-type)) that haven't been redeployed in 14 days.
 
-
+{{% version/specific %}}
 
 > [!primary]  
 > 
@@ -221,13 +229,25 @@ if you are in one of the following situations:
 - You are using your staging environment to run integration or penetration tests
 
 
+<--->
 
+You can also pause an environment manually at any time.
+
+{{% /version/specific %}}
 
 ### Pause an environment
 
 To pause an environment, follow these steps:
 
 > [!tabs]      
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> In the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 ### Resume a paused environment
 
@@ -235,6 +255,14 @@ Pushing new code or redeploying a paused environment automatically resumes it.
 You can also resume it manually at any time.
 
 > [!tabs]      
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> In the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 The environment is redeployed and becomes available for use again.
 

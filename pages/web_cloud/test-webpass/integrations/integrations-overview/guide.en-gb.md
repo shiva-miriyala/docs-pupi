@@ -4,18 +4,17 @@ slug: integrations-overview
 section: Integrations
 ---
 
-**Last updated 24th November 2023**
-
+**Last updated 27th November 2023**
 
 
 ## Objective  
 
-{{% description %}}
+Web PaaS can be integrated with external services.
 
 Web PaaS supports native integrations with multiple services, first and foremost Git hosting services such as GitHub, GitLab, or Bitbucket.
 You can continue to use those tools for your development workflow, and have Web PaaS environments created automatically for your pull requests and branches.
 
-
+{{% version/specific %}}
 <!-- Web PaaS -->
 You can also add native integrations with performance monitoring tools.
 Web PaaS recommends [Blackfire](../integrations-increase-observability/integrate-observability//blackfire),
@@ -24,7 +23,8 @@ Note that only a project administrator (someone with `admin` level access to the
 
 See [User administration](../../administration/administration-users) for more details.
 
-
+<--->
+{{% /version/specific %}}
 
 ## List active integrations
 

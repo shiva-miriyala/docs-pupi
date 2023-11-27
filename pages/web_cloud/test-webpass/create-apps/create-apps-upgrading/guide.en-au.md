@@ -4,7 +4,7 @@ slug: create-apps-upgrading
 section: Create-Apps
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 ## Changes in version 2022.02
@@ -61,7 +61,7 @@ mysearch:
             path: "myconfdir"
 ```
 
-* The syntax for the `mounts` key in `{{< vendor/configfile "app" >}}` has changed.
+* The syntax for the `mounts` key in `.platform.app.yaml` has changed.
 Rather than a parsed string, the value of each mount is a [multi-key definition](./app-reference.md#mounts).
 That is, the following example:
 
@@ -130,7 +130,7 @@ web:
 As of July 2016, we no longer create default configuration files if one isn't provided.
 The defaults we used to provide were tailored specifically for Drupal 7, which is now a legacy-support version with the release of Drupal 8 and not especially useful for non-Drupal or non-PHP sites.
 They also defaulted to software versions that are no longer current and recommended.
-Instead, you must provide your own `{{< vendor/configfile "app" >}}`, `{{< vendor/configfile "routes" >}}`, and `{{< vendor/configfile "services" >}}` files.
+Instead, you must provide your own `.platform.app.yaml`, `{{< vendor/configfile "routes" >}}`, and `{{< vendor/configfile "services" >}}` files.
 
 Additionally, a version for a language or service should always be specified as well. That allows you to control when you upgrade from one version to another without relying on a network default.
 
@@ -196,7 +196,7 @@ crons:
 
 ## Changes in version 2016.3
 
-As we are aiming to always provide you more control and flexibility on how to deploy your applications, the `{{< vendor/configfile "app" >}}` format has been greatly improved. It is now way more flexible, and also much more explicit to describe what you want to do.
+As we are aiming to always provide you more control and flexibility on how to deploy your applications, the `.platform.app.yaml` format has been greatly improved. It is now way more flexible, and also much more explicit to describe what you want to do.
 
 The `web` key is now a set of `locations` where you can define very precisely the behavior of each URL prefix.
 
@@ -257,7 +257,7 @@ expires: 3d                   # Converted to [locations][/][expires]
 
 ## Changes in version 2015.7
 
-The `{{< vendor/configfile "app" >}}` configuration file now allows for a much clearer syntax, which you can (and should) start using now.
+The `.platform.app.yaml` configuration file now allows for a much clearer syntax, which you can (and should) start using now.
 
 The old format had a single string to identify the `toolstack` you use:
 
@@ -288,7 +288,7 @@ repository](https://github.com/platformsh-templates/drupal7/blob/master/.platfor
 on GitHub.
 
 Configuration items for PHP that previously was part of
-`{{< vendor/configfile "services" >}}` are now moved into `{{< vendor/configfile "app" >}}`, which
+`{{< vendor/configfile "services" >}}` are now moved into `.platform.app.yaml`, which
 gains the following top-level items:
 
 -   `name`: should be `"php"`
@@ -300,7 +300,7 @@ gains the following top-level items:
 Note that there is now a sane default for `access` (SSH access to PHP is
 granted to all users that have role "collaborator" and above on the
 environment) so most customers can now just omit this key in
-`{{< vendor/configfile "app" >}}`.
+`.platform.app.yaml`.
 
 In addition, version 1.7.0 now has consistency checks for configuration
 files and rejects `git push` operations that contain configuration

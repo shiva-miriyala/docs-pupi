@@ -4,7 +4,7 @@ slug: postgresql-symfony
 section: Sanitize-Db
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -17,6 +17,18 @@ section: Sanitize-Db
 {{% sanitize-dbs/sanitize-intro database="PostgreSQL" framework="Symfony" %}}
 
 > [!tabs]      
+> Manually     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Using a Symfony Command     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Using a shell script     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 ## What's next
 

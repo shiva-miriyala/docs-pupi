@@ -4,7 +4,7 @@ slug: create-apps-timezone
 section: Create-Apps
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -38,6 +38,18 @@ The different timezones on Web PaaS are the following:
 How you can set an app runtime timezone depends on your actual app runtime:
 
 > [!tabs]      
+> PHP     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Python     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Java     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 ## Set a cron timezone
 

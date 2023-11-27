@@ -5,7 +5,7 @@ section: Administration
 order: 11
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -16,15 +16,28 @@ You can group multiple projects in one organization and manage them together.
 
 To manage users within your organization, see how to [manage organization users](./users.md#manage-organization-users).
 
-<!--  -->
+<!-- {{% version/specific %}} -->
 <!-- To manage users within your organization, see how to [manage organization users](./users.md#manage-organization-users). -->
+<!-- <---> -->
+<!-- To manage users within your organization, you have two options: -->
 <!--  -->
+<!-- 1. [Managing users](./users.md#manage-organization-users) at an organization-wide or per-project basis - that is, individually. -->
+<!-- 1. [Managing users as a part of a team](../administration-teams). -->
+<!-- {{% /version/specific %}} -->
 
 ## Manage your organization settings
 
 As an organization owner, you can manage the basic settings for your organization such as its name and URL.
 
 > [!tabs]      
+> Using the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 ## Manage your organization billing
 
@@ -32,6 +45,10 @@ As an organization owner or an organization user with the **Manage billing** per
 you can access and download invoices and edit billing information such as the stored credit card and billing address.
 
 > [!tabs]      
+> Using the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 ## Create a new organization
 
@@ -41,6 +58,14 @@ You can create new organizations with different payment methods and billing addr
 and organize your projects as you want.
 
 > [!tabs]      
+> Using the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 ## Delete an existing organization
 
@@ -50,6 +75,14 @@ Note that if your organization owns projects or owes remaining invoices, you can
 To have it deleted, [contact support](../../learn/learn-overview/get-support).
 
 > [!tabs]      
+> Using the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 ## Transfer project ownership
 

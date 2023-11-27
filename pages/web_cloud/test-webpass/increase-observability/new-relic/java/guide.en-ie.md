@@ -4,7 +4,7 @@ slug: java
 section: New-Relic
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 ## Get your license key
@@ -37,7 +37,7 @@ To set up New Relic in the Java project, we have two ways:
 
 - Using the Maven project
 
-- Download the code through `{{< vendor/configfile "app" >}}`.
+- Download the code through `.platform.app.yaml`.
 
 
 ### Using Maven
@@ -109,7 +109,7 @@ web:
 
 ### Manual Configuration
 
-To use this installation it is only required that you modify `{{< vendor/configfile "app" >}}`, which will download and set the New Relic Java agent for you.
+To use this installation it is only required that you modify `.platform.app.yaml`, which will download and set the New Relic Java agent for you.
 
 ```yaml
 name: app

@@ -4,7 +4,7 @@ slug: access-logs
 section: Logs
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 ## Activity logs
@@ -14,6 +14,14 @@ are each logged as activities.
 You can access the logs either in the Console or using the [CLI](../../administration/administration-cli):
 
 > [!tabs]      
+> In the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 If a running activity is stuck, you can [cancel the activity](../../environments/environments-cancel-activity).
 
@@ -40,6 +48,14 @@ If your app has its own logging mechanism, use it to write to a dedicated logs [
 To access the logs of various types of events:
 
 > [!tabs]      
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Using SSH directly     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 All log files are trimmed to 100 MB automatically.
 If you need larger logs, set up a [cron job](../../create-apps/app-reference.md#crons) to upload them to third-party storage.

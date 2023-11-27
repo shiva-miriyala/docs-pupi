@@ -5,13 +5,13 @@ section: Development
 order: 5
 ---
 
-**Last updated 24th November 2023**
-
+**Last updated 27th November 2023**
 
 
 ## Objective  
 
-{{% description %}}
+Variables give you control over your project's build process and runtime environment. You can set them in your code to make changes across your project or independent of the code for environment-specific settings.
+
 
 In this way, your app has additional information, such as database credentials, the host or port it can use, and which server to connect to.
 

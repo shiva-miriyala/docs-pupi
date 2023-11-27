@@ -5,7 +5,7 @@ section: Development
 order: 5
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -45,7 +45,7 @@ This means you can access the private repository through links like:
 <code>git@{{% variable "GIT_PROVIDER" %}}:{{% variable "PATH_OR_USERNAME" %}}/{{% variable "REPOSITORY" %}}.git</code>.
 For example, you can clone a repository in your [`build` hook](../development-create-apps/hooks):
 
-
+{{% version/specific %}}
 <!-- Web PaaS -->
 ```yaml {configFile="app"}
 hooks:
@@ -53,7 +53,17 @@ hooks:
         set -e
         git clone git@bitbucket.org:username/module.git
 ```
-
+<--->
+<!-- Upsun -->
+```yaml {configFile="app"}
+applications:
+    {{< variable "APP_NAME" >}}:
+        hooks:
+            build: |
+                set -e
+                git clone git@bitbucket.org:username/module.git
+```
+{{% /version/specific %}}
 
 You can also use [private repositories as submodules](./submodules.md#use-private-git-repositories).
 

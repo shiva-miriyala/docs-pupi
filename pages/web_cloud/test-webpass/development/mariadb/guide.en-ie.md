@@ -4,7 +4,7 @@ slug: mariadb
 section: Sanitize-Db
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -17,6 +17,14 @@ section: Sanitize-Db
 {{% sanitize-dbs/sanitize-intro database="MySQL" %}}
 
 > [!tabs]      
+> Manually     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> With Drupal and Drush     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 ## What's next
 

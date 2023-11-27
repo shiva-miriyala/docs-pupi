@@ -4,7 +4,7 @@ slug: debug
 section: Nodejs
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -31,11 +31,27 @@ platform branch debug-branch
 ## 2. Get access
 
 > [!tabs]      
+> Remote     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Local     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 
 ## 3. Run your app in inspect mode
 
 > [!tabs]      
+> Remote     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Local     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 
 Replace `<START_FILE>` with the file defined for [your app's `start` command](./_index.md#4-start-your-app).
@@ -62,6 +78,14 @@ You can now connect the debugger as if you were debugging a local application.
 See examples with some common tools:
 
 > [!tabs]      
+> Using Chrome developer tools     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Using Visual Studio Code     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 Now when you load the site at your deployed URL (if debugging remote) or localhost (if debugging locally),
 the local debugger you've attached is called.
@@ -69,6 +93,14 @@ the local debugger you've attached is called.
 Set breakpoints:
 
 > [!tabs]      
+> Remote     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Local     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 
 ## Other issues

@@ -4,13 +4,12 @@ slug: tideways
 section: Integrate-Observability
 ---
 
-**Last updated 24th November 2023**
-
+**Last updated 27th November 2023**
 
 
 ## Objective  
 
-{{% description %}}
+Web PaaS supports [Tideways APM](https://tideways.com/) for PHP. This functionality is only available on PHP 7.0 and later.
 
 > [!primary]  
 > The upstream now maintains two versions for Tideways, and both plugins are available on Web PaaS:
@@ -34,7 +33,7 @@ platform variable:create --visible-build false php:tideways.api_key --value '<yo
 
 ### 3. Enable the Tideways extension
 
-Enable the Tideways extension in your `{{< vendor/configfile "app" >}}` as follows:
+Enable the Tideways extension in your `.platform.app.yaml` as follows:
 
 ```yaml
 runtime:
@@ -47,7 +46,7 @@ Enabling the extension also activates the Tideways background process.
 Push the changes to your Web PaaS environment to enable Tideways as follows:
 
 ```bash
-git add {{< vendor/configfile "app" >}}
+git add .platform.app.yaml
 git commit -m "Enable Tideways."
 git push
 ```

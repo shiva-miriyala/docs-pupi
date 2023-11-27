@@ -4,7 +4,7 @@ slug: tls
 section: Steps
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -40,6 +40,14 @@ If it doesn't start that way, [change the format](#change-the-private-key-format
 To add your custom certificate, follow these steps:
 
 > [!tabs]      
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> In the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 ### Change the private key format
 

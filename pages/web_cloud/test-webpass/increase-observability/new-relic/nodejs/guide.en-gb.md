@@ -4,7 +4,7 @@ slug: nodejs
 section: New-Relic
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 ## Get your license key
@@ -36,7 +36,7 @@ platform variable:create --level environment --environment {{< variable "ENVIRON
 The File System being read-only, New Relic isn't able to create its log file.
 To allow New Relic to output logs, add a writable directory to put the log file in.
 
-At the end of the `build` hook in your `{{< vendor/configfile "app" >}}`, create a `newrelic` directory in your application root:
+At the end of the `build` hook in your `.platform.app.yaml`, create a `newrelic` directory in your application root:
 
 ```yaml
 hooks:

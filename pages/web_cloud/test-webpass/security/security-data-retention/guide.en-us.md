@@ -5,13 +5,12 @@ section: Security
 order: 8
 ---
 
-**Last updated 24th November 2023**
-
+**Last updated 27th November 2023**
 
 
 ## Objective  
 
-{{% description %}}
+Web PaaS logs and stores various types of data as a normal part of its business. This information is only retained as needed to perform relevant business functions. Retention periods vary depending on the type of data stored. If a legal obligation, law enforcement request, or ongoing business need so requires, data may be retained after the original purpose for which it was collected ceases to exist.
 
 ## Account information
 
@@ -33,7 +32,7 @@ See how to [access logs](../security-increase-observability/logs/access-logs).
 
 When an environment is deleted, its application logs are deleted as well.
 
-
+{{% version/specific %}}
 <!-- Web PaaS -->
 ## Grid Backups
 
@@ -102,7 +101,17 @@ Backups for {{% names/dedicated-gen-2 %}} environments are retained based on whe
 
 See more about [backups of {{% names/dedicated-gen-2 %}} environments](../security-dedicated-gen-2/overview/backups).
 
+<--->
+<!-- Upsun -->
+## Backups
 
+[Automated backups](../environments/backup.md#use-automated-backups) are retained for 2 days
+(meaning, 2 days worth of backups are retained at any given point).
+
+[Manual backups](../environments/backup.md#create-a-manual-backup) are retained until you delete them or replace them with another backup.</br>
+As {{< vendor/name >}} provides a maximum of [2 manual backups per environment type](../security-backups),
+the third manual backup automatically replaces the oldest backup.
+{{% /version/specific %}}
 
 ## Tombstone backups
 

@@ -4,7 +4,7 @@ slug: discord
 section: Activity
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 

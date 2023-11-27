@@ -4,7 +4,7 @@ slug: environments-search-engine-visibility
 section: Environments
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -20,6 +20,14 @@ and then set it to be visible to search engines.
 To change your production environment's visibility to search engines, follow these steps:
 
 > [!tabs]      
+> Using the CLI     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> In the Console     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 Web PaaS can't guarantee that indexers follow the instructions.
 If you're concerned about access, set up [HTTP access control](../.././.-http-access-control).

@@ -4,7 +4,7 @@ slug: extensions
 section: Php
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -22,7 +22,7 @@ Some of them are available for Web PaaS containers.
 
 You can define the PHP extensions you want to enable or disable:
 
-
+{{% version/specific %}}
 ```yaml {configFile="app"}
 runtime:
     extensions:
@@ -33,7 +33,21 @@ runtime:
     disabled_extensions:
         - sqlite3
 ```
-
+<--->
+```yaml {configFile="app"}
+applications:
+    app:
+        type: 'php:8.2'
+        runtime:
+            extensions:
+                - raphf
+                - http
+                - igbinary
+                - redis
+            disabled_extensions:
+                - sqlite3
+```
+{{% /version/specific %}}
 
 You can also [include configuration options](../../create-apps/app-reference.md#extensions) for specific extensions.
 
@@ -96,10 +110,19 @@ but it takes slightly more work:
    For example, if the extension is named `spiffy.so` and is in your [app root](../../create-apps/app-reference.md#root-directory),
    your configuration looks like the following:
 
-
+{{% version/specific %}}
 ```yaml {configFile="app"}
 variables:
     php:
         extension: /app/spiffy.so
 ```
-
+<--->
+```yaml {configFile="app"}
+applications:
+    app:
+        type: 'php:8.2'
+        variables:
+            php:
+                extension: /app/spiffy.so
+```
+{{% /version/specific %}}

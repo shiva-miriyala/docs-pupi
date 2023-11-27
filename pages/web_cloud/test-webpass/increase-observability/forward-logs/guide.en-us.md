@@ -4,7 +4,7 @@ slug: forward-logs
 section: Logs
 ---
 
-**Last updated 24th November 2023**
+**Last updated 27th November 2023**
 
 
 
@@ -52,6 +52,18 @@ To enable log forwarding for a specific project using the [Web PaaS CLI](../../a
 follow the steps for your selected service.
 
 > [!tabs]      
+> New Relic     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Splunk     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Sumo Logic     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
 
 To start forwarding logs, [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
 
@@ -85,481 +97,13 @@ Many third-party services offer endpoints for ingesting syslog events.
 You can forward your Web PaaS and Blackfire logs to any of those endpoints.
 
 > [!tabs]      
->      
+> Using the CLI     
 >> ```      
->> ---------- | --------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
->> | `auth-token`     | `string`  |            | The token to authenticate with the given service.                                                                                                     |
->> | `auth-mode`      | `string`  | `prefix`   | The mode for authentication with the given service. Can be `prefix` or `structured_data`. Defaults to `prefix`.                                       |
->> | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
->> | `message-format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`.                                                                            |
->> | `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`.                                               |
->> | `verify-tls`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol.                                                           |
->> 
->> To include a property, add it as a flag, for example `--protocol tcp`.
->> This should let you connect to any service that has syslog endpoints.
->> 
->> To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
->> 
->> 
+>> {!> web/web-paas/ !}  
 >> ```     
->      
+> In the Console     
 >> ```      
->> ---- | --------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
->> | `auth-token`     | `string`  |            | The token to authenticate with the given service.                                                                                                     |
->> | `auth-mode`      | `string`  | `prefix`   | The mode for authentication with the given service. Can be `prefix` or `structured_data`. Defaults to `prefix`.                                       |
->> | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
->> | `message-format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`.                                                                            |
->> | `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`.                                               |
->> | `verify-tls`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol.                                                           |
->> 
->> To include a property, add it as a flag, for example `--protocol tcp`.
->> This should let you connect to any service that has syslog endpoints.
->> 
->> To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
->> 
->> 
->> ```     
->      
->> ```      
->> --- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
->> | `auth-token`     | `string`  |            | The token to authenticate with the given service.                                                                                                     |
->> | `auth-mode`      | `string`  | `prefix`   | The mode for authentication with the given service. Can be `prefix` or `structured_data`. Defaults to `prefix`.                                       |
->> | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
->> | `message-format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`.                                                                            |
->> | `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`.                                               |
->> | `verify-tls`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol.                                                           |
->> 
->> To include a property, add it as a flag, for example `--protocol tcp`.
->> This should let you connect to any service that has syslog endpoints.
->> 
->> To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
->> 
->> 
->> ```     
->      
->> ```      
->> ---- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
->> | `auth-token`     | `string`  |            | The token to authenticate with the given service.                                                                                                     |
->> | `auth-mode`      | `string`  | `prefix`   | The mode for authentication with the given service. Can be `prefix` or `structured_data`. Defaults to `prefix`.                                       |
->> | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
->> | `message-format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`.                                                                            |
->> | `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`.                                               |
->> | `verify-tls`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol.                                                           |
->> 
->> To include a property, add it as a flag, for example `--protocol tcp`.
->> This should let you connect to any service that has syslog endpoints.
->> 
->> To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
->> 
->> 
->> ```     
->      
->> ```      
->> ----------------------------------------------------------------------------------------------------------------------------------------------- |
->> | `auth-token`     | `string`  |            | The token to authenticate with the given service.                                                                                                     |
->> | `auth-mode`      | `string`  | `prefix`   | The mode for authentication with the given service. Can be `prefix` or `structured_data`. Defaults to `prefix`.                                       |
->> | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
->> | `message-format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`.                                                                            |
->> | `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`.                                               |
->> | `verify-tls`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol.                                                           |
->> 
->> To include a property, add it as a flag, for example `--protocol tcp`.
->> This should let you connect to any service that has syslog endpoints.
->> 
->> To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
->> 
->> 
->> ```     
->      
->> ```      
->> ----------------------------------------------------------------------------------------------------------------------------------------- |
->> | `auth-token`     | `string`  |            | The token to authenticate with the given service.                                                                                                     |
->> | `auth-mode`      | `string`  | `prefix`   | The mode for authentication with the given service. Can be `prefix` or `structured_data`. Defaults to `prefix`.                                       |
->> | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
->> | `message-format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`.                                                                            |
->> | `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`.                                               |
->> | `verify-tls`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol.                                                           |
->> 
->> To include a property, add it as a flag, for example `--protocol tcp`.
->> This should let you connect to any service that has syslog endpoints.
->> 
->> To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
->> 
->> 
->> ```     
->      
->> ```      
->> ----------------------------------------------------------------------------------------------------------------------------------- |
->> | `auth-token`     | `string`  |            | The token to authenticate with the given service.                                                                                                     |
->> | `auth-mode`      | `string`  | `prefix`   | The mode for authentication with the given service. Can be `prefix` or `structured_data`. Defaults to `prefix`.                                       |
->> | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
->> | `message-format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`.                                                                            |
->> | `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`.                                               |
->> | `verify-tls`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol.                                                           |
->> 
->> To include a property, add it as a flag, for example `--protocol tcp`.
->> This should let you connect to any service that has syslog endpoints.
->> 
->> To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
->> 
->> 
->> ```     
->      
->> ```      
->> ----------------------------------------------------------------------------------------------------------------------------- |
->> | `auth-token`     | `string`  |            | The token to authenticate with the given service.                                                                                                     |
->> | `auth-mode`      | `string`  | `prefix`   | The mode for authentication with the given service. Can be `prefix` or `structured_data`. Defaults to `prefix`.                                       |
->> | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
->> | `message-format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`.                                                                            |
->> | `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`.                                               |
->> | `verify-tls`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol.                                                           |
->> 
->> To include a property, add it as a flag, for example `--protocol tcp`.
->> This should let you connect to any service that has syslog endpoints.
->> 
->> To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
->> 
->> 
->> ```     
->      
->> ```      
->> ----------------------------------------------------------------------------------------------------------------------- |
->> | `auth-token`     | `string`  |            | The token to authenticate with the given service.                                                                                                     |
->> | `auth-mode`      | `string`  | `prefix`   | The mode for authentication with the given service. Can be `prefix` or `structured_data`. Defaults to `prefix`.                                       |
->> | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
->> | `message-format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`.                                                                            |
->> | `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`.                                               |
->> | `verify-tls`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol.                                                           |
->> 
->> To include a property, add it as a flag, for example `--protocol tcp`.
->> This should let you connect to any service that has syslog endpoints.
->> 
->> To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
->> 
->> 
->> ```     
->      
->> ```      
->> ----------------------------------------------------------------------------------------------------------------- |
->> | `auth-token`     | `string`  |            | The token to authenticate with the given service.                                                                                                     |
->> | `auth-mode`      | `string`  | `prefix`   | The mode for authentication with the given service. Can be `prefix` or `structured_data`. Defaults to `prefix`.                                       |
->> | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
->> | `message-format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`.                                                                            |
->> | `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`.                                               |
->> | `verify-tls`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol.                                                           |
->> 
->> To include a property, add it as a flag, for example `--protocol tcp`.
->> This should let you connect to any service that has syslog endpoints.
->> 
->> To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
->> 
->> 
->> ```     
->      
->> ```      
->> ----------------------------------------------------------------------------------------------------------- |
->> | `auth-token`     | `string`  |            | The token to authenticate with the given service.                                                                                                     |
->> | `auth-mode`      | `string`  | `prefix`   | The mode for authentication with the given service. Can be `prefix` or `structured_data`. Defaults to `prefix`.                                       |
->> | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
->> | `message-format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`.                                                                            |
->> | `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`.                                               |
->> | `verify-tls`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol.                                                           |
->> 
->> To include a property, add it as a flag, for example `--protocol tcp`.
->> This should let you connect to any service that has syslog endpoints.
->> 
->> To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
->> 
->> 
->> ```     
->      
->> ```      
->> ----------------------------------------------------------------------------------------------------- |
->> | `auth-token`     | `string`  |            | The token to authenticate with the given service.                                                                                                     |
->> | `auth-mode`      | `string`  | `prefix`   | The mode for authentication with the given service. Can be `prefix` or `structured_data`. Defaults to `prefix`.                                       |
->> | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
->> | `message-format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`.                                                                            |
->> | `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`.                                               |
->> | `verify-tls`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol.                                                           |
->> 
->> To include a property, add it as a flag, for example `--protocol tcp`.
->> This should let you connect to any service that has syslog endpoints.
->> 
->> To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
->> 
->> 
->> ```     
->      
->> ```      
->> ----------------------------------------------------------------------------------------------- |
->> | `auth-token`     | `string`  |            | The token to authenticate with the given service.                                                                                                     |
->> | `auth-mode`      | `string`  | `prefix`   | The mode for authentication with the given service. Can be `prefix` or `structured_data`. Defaults to `prefix`.                                       |
->> | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
->> | `message-format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`.                                                                            |
->> | `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`.                                               |
->> | `verify-tls`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol.                                                           |
->> 
->> To include a property, add it as a flag, for example `--protocol tcp`.
->> This should let you connect to any service that has syslog endpoints.
->> 
->> To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
->> 
->> 
->> ```     
->      
->> ```      
->> ----------------------------------------------------------------------------------------- |
->> | `auth-token`     | `string`  |            | The token to authenticate with the given service.                                                                                                     |
->> | `auth-mode`      | `string`  | `prefix`   | The mode for authentication with the given service. Can be `prefix` or `structured_data`. Defaults to `prefix`.                                       |
->> | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
->> | `message-format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`.                                                                            |
->> | `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`.                                               |
->> | `verify-tls`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol.                                                           |
->> 
->> To include a property, add it as a flag, for example `--protocol tcp`.
->> This should let you connect to any service that has syslog endpoints.
->> 
->> To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
->> 
->> 
->> ```     
->      
->> ```      
->> ----------------------------------------------------------------------------------- |
->> | `auth-token`     | `string`  |            | The token to authenticate with the given service.                                                                                                     |
->> | `auth-mode`      | `string`  | `prefix`   | The mode for authentication with the given service. Can be `prefix` or `structured_data`. Defaults to `prefix`.                                       |
->> | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
->> | `message-format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`.                                                                            |
->> | `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`.                                               |
->> | `verify-tls`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol.                                                           |
->> 
->> To include a property, add it as a flag, for example `--protocol tcp`.
->> This should let you connect to any service that has syslog endpoints.
->> 
->> To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
->> 
->> 
->> ```     
->      
->> ```      
->> ----------------------------------------------------------------------------- |
->> | `auth-token`     | `string`  |            | The token to authenticate with the given service.                                                                                                     |
->> | `auth-mode`      | `string`  | `prefix`   | The mode for authentication with the given service. Can be `prefix` or `structured_data`. Defaults to `prefix`.                                       |
->> | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
->> | `message-format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`.                                                                            |
->> | `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`.                                               |
->> | `verify-tls`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol.                                                           |
->> 
->> To include a property, add it as a flag, for example `--protocol tcp`.
->> This should let you connect to any service that has syslog endpoints.
->> 
->> To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
->> 
->> 
->> ```     
->      
->> ```      
->> ----------------------------------------------------------------------- |
->> | `auth-token`     | `string`  |            | The token to authenticate with the given service.                                                                                                     |
->> | `auth-mode`      | `string`  | `prefix`   | The mode for authentication with the given service. Can be `prefix` or `structured_data`. Defaults to `prefix`.                                       |
->> | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
->> | `message-format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`.                                                                            |
->> | `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`.                                               |
->> | `verify-tls`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol.                                                           |
->> 
->> To include a property, add it as a flag, for example `--protocol tcp`.
->> This should let you connect to any service that has syslog endpoints.
->> 
->> To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
->> 
->> 
->> ```     
->      
->> ```      
->> ----------------------------------------------------------------- |
->> | `auth-token`     | `string`  |            | The token to authenticate with the given service.                                                                                                     |
->> | `auth-mode`      | `string`  | `prefix`   | The mode for authentication with the given service. Can be `prefix` or `structured_data`. Defaults to `prefix`.                                       |
->> | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
->> | `message-format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`.                                                                            |
->> | `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`.                                               |
->> | `verify-tls`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol.                                                           |
->> 
->> To include a property, add it as a flag, for example `--protocol tcp`.
->> This should let you connect to any service that has syslog endpoints.
->> 
->> To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
->> 
->> 
->> ```     
->      
->> ```      
->> ----------------------------------------------------------- |
->> | `auth-token`     | `string`  |            | The token to authenticate with the given service.                                                                                                     |
->> | `auth-mode`      | `string`  | `prefix`   | The mode for authentication with the given service. Can be `prefix` or `structured_data`. Defaults to `prefix`.                                       |
->> | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
->> | `message-format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`.                                                                            |
->> | `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`.                                               |
->> | `verify-tls`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol.                                                           |
->> 
->> To include a property, add it as a flag, for example `--protocol tcp`.
->> This should let you connect to any service that has syslog endpoints.
->> 
->> To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
->> 
->> 
->> ```     
->      
->> ```      
->> ----------------------------------------------------- |
->> | `auth-token`     | `string`  |            | The token to authenticate with the given service.                                                                                                     |
->> | `auth-mode`      | `string`  | `prefix`   | The mode for authentication with the given service. Can be `prefix` or `structured_data`. Defaults to `prefix`.                                       |
->> | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
->> | `message-format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`.                                                                            |
->> | `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`.                                               |
->> | `verify-tls`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol.                                                           |
->> 
->> To include a property, add it as a flag, for example `--protocol tcp`.
->> This should let you connect to any service that has syslog endpoints.
->> 
->> To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
->> 
->> 
->> ```     
->      
->> ```      
->> ----------------------------------------------- |
->> | `auth-token`     | `string`  |            | The token to authenticate with the given service.                                                                                                     |
->> | `auth-mode`      | `string`  | `prefix`   | The mode for authentication with the given service. Can be `prefix` or `structured_data`. Defaults to `prefix`.                                       |
->> | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
->> | `message-format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`.                                                                            |
->> | `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`.                                               |
->> | `verify-tls`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol.                                                           |
->> 
->> To include a property, add it as a flag, for example `--protocol tcp`.
->> This should let you connect to any service that has syslog endpoints.
->> 
->> To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
->> 
->> 
->> ```     
->      
->> ```      
->> ----------------------------------------- |
->> | `auth-token`     | `string`  |            | The token to authenticate with the given service.                                                                                                     |
->> | `auth-mode`      | `string`  | `prefix`   | The mode for authentication with the given service. Can be `prefix` or `structured_data`. Defaults to `prefix`.                                       |
->> | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
->> | `message-format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`.                                                                            |
->> | `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`.                                               |
->> | `verify-tls`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol.                                                           |
->> 
->> To include a property, add it as a flag, for example `--protocol tcp`.
->> This should let you connect to any service that has syslog endpoints.
->> 
->> To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
->> 
->> 
->> ```     
->      
->> ```      
->> ----------------------------------- |
->> | `auth-token`     | `string`  |            | The token to authenticate with the given service.                                                                                                     |
->> | `auth-mode`      | `string`  | `prefix`   | The mode for authentication with the given service. Can be `prefix` or `structured_data`. Defaults to `prefix`.                                       |
->> | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
->> | `message-format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`.                                                                            |
->> | `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`.                                               |
->> | `verify-tls`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol.                                                           |
->> 
->> To include a property, add it as a flag, for example `--protocol tcp`.
->> This should let you connect to any service that has syslog endpoints.
->> 
->> To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
->> 
->> 
->> ```     
->      
->> ```      
->> ----------------------------- |
->> | `auth-token`     | `string`  |            | The token to authenticate with the given service.                                                                                                     |
->> | `auth-mode`      | `string`  | `prefix`   | The mode for authentication with the given service. Can be `prefix` or `structured_data`. Defaults to `prefix`.                                       |
->> | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
->> | `message-format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`.                                                                            |
->> | `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`.                                               |
->> | `verify-tls`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol.                                                           |
->> 
->> To include a property, add it as a flag, for example `--protocol tcp`.
->> This should let you connect to any service that has syslog endpoints.
->> 
->> To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
->> 
->> 
->> ```     
->      
->> ```      
->> ----------------------- |
->> | `auth-token`     | `string`  |            | The token to authenticate with the given service.                                                                                                     |
->> | `auth-mode`      | `string`  | `prefix`   | The mode for authentication with the given service. Can be `prefix` or `structured_data`. Defaults to `prefix`.                                       |
->> | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
->> | `message-format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`.                                                                            |
->> | `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`.                                               |
->> | `verify-tls`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol.                                                           |
->> 
->> To include a property, add it as a flag, for example `--protocol tcp`.
->> This should let you connect to any service that has syslog endpoints.
->> 
->> To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
->> 
->> 
->> ```     
->      
->> ```      
->> ----------------- |
->> | `auth-token`     | `string`  |            | The token to authenticate with the given service.                                                                                                     |
->> | `auth-mode`      | `string`  | `prefix`   | The mode for authentication with the given service. Can be `prefix` or `structured_data`. Defaults to `prefix`.                                       |
->> | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
->> | `message-format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`.                                                                            |
->> | `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`.                                               |
->> | `verify-tls`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol.                                                           |
->> 
->> To include a property, add it as a flag, for example `--protocol tcp`.
->> This should let you connect to any service that has syslog endpoints.
->> 
->> To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
->> 
->> 
->> ```     
->      
->> ```      
->> ----------- |
->> | `auth-token`     | `string`  |            | The token to authenticate with the given service.                                                                                                     |
->> | `auth-mode`      | `string`  | `prefix`   | The mode for authentication with the given service. Can be `prefix` or `structured_data`. Defaults to `prefix`.                                       |
->> | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
->> | `message-format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`.                                                                            |
->> | `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`.                                               |
->> | `verify-tls`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol.                                                           |
->> 
->> To include a property, add it as a flag, for example `--protocol tcp`.
->> This should let you connect to any service that has syslog endpoints.
->> 
->> To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
->> 
->> 
->> ```     
->      
->> ```      
->> ----- |
->> | `auth-token`     | `string`  |            | The token to authenticate with the given service.                                                                                                     |
->> | `auth-mode`      | `string`  | `prefix`   | The mode for authentication with the given service. Can be `prefix` or `structured_data`. Defaults to `prefix`.                                       |
->> | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
->> | `message-format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`.                                                                            |
->> | `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`.                                               |
->> | `verify-tls`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol.                                                           |
->> 
->> To include a property, add it as a flag, for example `--protocol tcp`.
->> This should let you connect to any service that has syslog endpoints.
->> 
->> To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
->> 
->> 
+>> {!> web/web-paas/ !}  
 >> ```     
 
 ## Forward to an HTTP endpoint
@@ -593,3 +137,15 @@ To preserve the original log level, use a language-specific syslog module/packag
 The following example code snippets show how logs can be written to Syslog:
 
 > [!tabs]      
+> PHP     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Python     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
+> Go     
+>> ```      
+>> {!> web/web-paas/ !}  
+>> ```     
