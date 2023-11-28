@@ -4,7 +4,7 @@ slug: dependencies
 section: Python
 ---
 
-**Last updated 27th November 2023**
+**Last updated 28th November 2023**
 
 
 
@@ -97,25 +97,14 @@ To set up Poetry on Web PaaS, follow these steps:
 
     Set the variables as follows:
 
-{{% version/specific %}}
+
 ```yaml {configFile="app"}
 variables:
     env:
         POETRY_VIRTUALENVS_IN_PROJECT: true
         POETRY_VIRTUALENVS_CREATE: true
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'python:3.12'
-        variables:
-            env:
-                POETRY_VIRTUALENVS_IN_PROJECT: true
-                POETRY_VIRTUALENVS_CREATE: true
-```
-{{% /version/specific %}}
+
 
 2\.  Install Poetry.
 
@@ -156,4 +145,4 @@ The following Community resources can help get you started with them:
 
 - [Running R Shiny using Miniconda on Web PaaS](https://community.platform.sh/t/how-to-run-r-shiny-on-platform-sh/231)
 
-{{% /version/only %}}
+

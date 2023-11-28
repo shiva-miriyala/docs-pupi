@@ -5,7 +5,7 @@ section: Development
 order: 5
 ---
 
-**Last updated 27th November 2023**
+**Last updated 28th November 2023**
 
 
 ## Objective  
@@ -234,4 +234,4 @@ You need to name your Web PaaS variables to match the ones used in your script.
 Make sure that the Web PaaS variables start with a string present in your `switch` statement.
 
 You can apply similar logic for [other frameworks and languages](../../development/variables/use-variables.md#access-variables-in-your-app).
-{{% /version/only %}}
+

@@ -4,7 +4,7 @@ slug: redis
 section: Php
 ---
 
-**Last updated 27th November 2023**
+**Last updated 28th November 2023**
 
 
 
@@ -33,7 +33,7 @@ To ease the installation of a customer version of PhpRedis, use a [PhpRedis inst
 Invoke this script from your build hook, specifying a version.
 Any tagged version of the library is acceptable:
 
-{{% version/specific %}}
+
 ```yaml {configFile="app"}
 hooks:
     build: |
@@ -41,18 +41,7 @@ hooks:
         # Install PhpRedis v5.3.7:
         curl -fsS https://raw.githubusercontent.com/platformsh/snippets/main/src/install-phpredis.sh | { bash /dev/fd/3 5.3.7 ; } 3<&0
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    app:
-        type: 'php:8.2'
-        hooks:
-            build: |
-                set -e
-                # Install PhpRedis v5.3.7:
-                curl -fsS https://raw.githubusercontent.com/platformsh/snippets/main/src/install-phpredis.sh | { bash /dev/fd/3 5.3.7 ; } 3<&0
-```
-{{% /version/specific %}}
+
 
 ## Install Relay
 
@@ -70,7 +59,7 @@ To ease the installation of a customer version of Relay, use the [Relay install 
 Invoke this script from your build hook, specifying a version.
 Any tagged version of the library is acceptable:
 
-{{% version/specific %}}
+
 ```yaml {configFile="app"}
 hooks:
     build: |
@@ -78,18 +67,7 @@ hooks:
         # Install Relay v0.6.0:
         curl -fsS https://raw.githubusercontent.com/platformsh/snippets/main/src/install-relay.sh | { bash /dev/fd/3 v0.6.0 ; } 3<&0
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    app:
-        type: 'php:8.2'
-        hooks:
-            build: |
-                set -e
-                # Install Relay v0.6.0:
-                curl -fsS https://raw.githubusercontent.com/platformsh/snippets/main/src/install-relay.sh | { bash /dev/fd/3 v0.6.0 ; } 3<&0
-```
-{{% /version/specific %}}
+
 
 ## Change extension or version
 

@@ -4,7 +4,7 @@ slug: xdebug
 section: Php
 ---
 
-**Last updated 27th November 2023**
+**Last updated 28th November 2023**
 
 
 
@@ -23,13 +23,10 @@ Xdebug is automatically disabled.
 
 ## Before you begin
 
-{{% version/specific %}}
+
 <!-- Web PaaS -->
 The following table shows the PHP versions where Xdebug is available on Grid environments:
-<--->
-<!-- Upsun -->
-The following table shows the PHP versions where Xdebug is available:
-{{% /version/specific %}}
+
 
 
 {{< php-extensions/single extension="xdebug" >}}
@@ -48,22 +45,13 @@ Xdebug runs as a second PHP-FPM process used only for debugging requests, leavin
 
 To enable Xdebug, add the following to your [app configuration](../../create-apps/create-apps-app-reference):
 
-{{% version/specific %}}
+
 ```yaml {configFile="app"}
 runtime:
     xdebug:
         idekey: {{< variable "YOUR_KEY" >}}
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    app:
-        type: 'php:8.2'
-        runtime:
-            xdebug:
-                idekey: {{< variable "YOUR_KEY" >}}
-```
-{{% /version/specific %}}
+
 
 {{< variable "YOUR_KEY" >}} can be any arbitrary alphanumeric string.
 
@@ -75,7 +63,7 @@ If you have enabled the [router cache](../../define-routes/define-routes-cache),
 you need to explicitly add the Xdebug cookie (`XDEBUG_SESSION`) to the cookie allowlist.
 Depending on the cookies already listed, the result should look similar to the following:
 
-{{% version/specific %}}
+
 ```yaml {configFile="routes"}
 "https://{default}/":
     # ...
@@ -83,23 +71,7 @@ Depending on the cookies already listed, the result should look similar to the f
         enabled: true
         cookies: ['/^SS?ESS/', 'XDEBUG_SESSION']
 ```
-<--->
-```yaml {configFile="routes"}
-applications:
-    app:
-        type: 'php:8.2'
-        runtime:
-            xdebug:
-                idekey: {{< variable "YOUR_KEY" >}}
 
-routes:
-    "https://{default}/":
-        # ...
-        cache:
-            enabled: true
-            cookies: ['/^SS?ESS/', 'XDEBUG_SESSION']
-```
-{{% /version/specific %}}
 
 Xdebug has several configuration options available.
 They can be set the same way as any other [PHP setting](./_index.md#php-settings).
@@ -169,4 +141,4 @@ The common steps for setup usually include:
 
 Learn more about how to [set up Xdebug on Dedicated server clusters](https://community.platform.sh/t/set-up-xdebug-on-dedicated-pro-server-clusters/403).
 
-{{% /version/only %}}
+

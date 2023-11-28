@@ -4,7 +4,7 @@ slug: create-apps-workers
 section: Create-Apps
 ---
 
-**Last updated 27th November 2023**
+**Last updated 28th November 2023**
 
 
 
@@ -16,7 +16,7 @@ See how to [configure a worker](./app-reference.md#workers) for your app.
 
 {{% version/only "1" %}}
 Note that to have enough resources to support a worker and a service, you need at least a [{{< partial "plans/multiapp-plan-name" >}} plan](../administration/pricing/_index.md#multiple-apps-in-a-single-project).
-{{% /version/only %}}
+
 
 ## Access the worker container
 
@@ -86,21 +86,15 @@ run only on the [`web`](./app-reference.md#web) container, not on workers.
 
 ## Inheritance
 
-{{% version/specific %}}
+
 Any top-level definitions for [`size`](./app-reference.md#sizes), [`relationships`](./app-reference.md#relationships),
 [`access`](../.././.-app-reference#access), [`disk`](../.././.-app-reference), [`mount`](../.././.-app-reference#mounts), and [`variables`](../.././.-app-reference#variables)
 are inherited by every worker, unless overridden explicitly.
-<--->
-Any top-level definitions for [`relationships`](./app-reference.md#relationships),
-[`access`](./app-reference.md#access), [`mount`](./app-reference.md#mounts), and [`variables`](./app-reference.md#variables)
-are inherited by every worker, unless overridden explicitly.
 
-Likewise [resources defined for the application container](../../manage-resources) are inherited by every worker, unless overridden explicitly.
-{{% /version/specific %}}
 
 That means, for example, that the following two `.platform.app.yaml` definitions produce identical workers.
 
-{{% version/specific %}}
+
 
 ```yaml {configFile="app"}
 name: app
@@ -156,73 +150,7 @@ workers:
         relationships:
             database: 'mysqldb:mysql'
 ```
-<--->
 
-```yaml {configFile="app"}
-applications:
-    name: app
-
-    type: python:3.12
-
-    mounts:
-        test:
-            source: local
-            source_path: test
-
-    relationships:
-        database: 'mysqldb:mysql'
-
-    workers:
-        queue:
-            commands:
-                start: |
-                    python queue-worker.py
-        mail:
-            commands:
-                start: |
-                    python mail-worker.py
-
-services:
-    mysqldb:
-        type: mariadb:11.0
-        disk: 256
-```
-
-```yaml {configFile="app"}
-applications:
-    name: app
-
-    type: python:3.12
-
-    workers:
-        queue:
-            commands:
-                start: |
-                    python queue-worker.py
-            mounts:
-                test:
-                    source: local
-                    source_path: test
-            relationships:
-                database: 'mysqldb:mysql'
-        mail:
-            commands:
-                start: |
-                    python mail-worker.py
-            mounts:
-                test:
-                    source: local
-                    source_path: test
-            relationships:
-                database: 'mysqldb:mysql'
-
-services:
-    mysqldb:
-        type: mariadb:11.0
-        disk: 256
-```
-
-{{% /version/specific %}}
 
 In both cases, there are two worker instances named `queue` and `mail`.
 Both have access to a MySQL/MariaDB service defined in `{{< vendor/configfile "services" >}}` named `mysqldb` through the `database` relationship.
@@ -230,21 +158,16 @@ Both also have their own separate, independent local disk mount at `/app/test` w
 
 ## Customizing a worker
 
-{{% version/specific %}}
+
 The most common properties to set in a worker to override the top-level settings are `size` and `variables`.
 `size` lets you allocate fewer resources to a container that is running only a single background process
 (unlike the web site which is handling many requests at once),
 while `variables` lets you instruct the application to run differently as a worker than as a web site.
-<--->
-The most common properties to set in a worker to override the top-level settings are `variables` and its resources.
-`variables` lets you instruct the application to run differently as a worker than as a web site,
-whereas you can allocate [fewer worker-specific resources](../../manage-resources) for a container that is running only a single background process
-(unlike the web site which is handling many requests at once).
-{{% /version/specific %}}
+
 
 For example, consider the following configuration:
 
-{{% version/specific %}}
+
 
 ```yaml {configFile="services"}
 mysqldb:
@@ -324,81 +247,7 @@ workers:
             emails: 'rabbitqueue:rabbitmq'
 ```
 
-<--->
 
-```yaml {configFile="app"}
-applications:
-    name: app
-
-    type: "python:3.12"
-
-    hooks:
-        build: |
-        pip install -r requirements.txt
-        pip install -e .
-        pip install gunicorn
-
-    relationships:
-        database: 'mysqldb:mysql'
-        messages: 'rabbitqueue:rabbitmq'
-
-    variables:
-        env:
-            type: 'none'
-
-    web:
-        commands:
-            start: "gunicorn -b $PORT project.wsgi:application"
-        variables:
-            env:
-                type: 'web'
-        mounts:
-            uploads:
-                source: local
-                source_path: uploads
-        locations:
-            "/":
-                root: ""
-                passthru: true
-                allow: false
-            "/static":
-                root: "static/"
-                allow: true
-
-    workers:
-        queue:
-            commands:
-                start: |
-                    python queue-worker.py
-            variables:
-                env:
-                    type: 'worker'
-            mounts:
-                scratch:
-                    source: local
-                    source_path: scratch
-        mail:
-            commands:
-                start: |
-                    python mail-worker.py
-            variables:
-                env:
-                    type: 'worker'
-            mounts: {}
-            relationships:
-                emails: 'rabbitqueue:rabbitmq'
-
-services:
-    mysqldb:
-        type: "mariadb:11.0"
-        disk: 2048
-
-    rabbitqueue:
-        type: rabbitmq:3.12
-        disk: 512
-```
-
-{{% /version/specific %}}
 
 There's a lot going on here, but it's all reasonably straightforward.
 The configuration in `.platform.app.yaml` takes a single Python 3.12 code base from your repository,
@@ -420,7 +269,7 @@ The `queue` instance is a worker that isn't web-accessible.
 * It has a writable mount at `/app/scratch` with a maximum space of 512 MB.
 * It has access to both a MySQL database and a RabbitMQ server,
   both of which are defined in `{{< vendor/configfile "services" >}}` (because it doesn't specify otherwise).
-{{% version/only "1" %}}* It has "Medium" levels of CPU and RAM allocated to it, always.{{% /version/only %}}
+{{% version/only "1" %}}* It has "Medium" levels of CPU and RAM allocated to it, always.
 
 The `mail` instance is a worker that isn't web-accessible.
 
@@ -429,7 +278,7 @@ The `mail` instance is a worker that isn't web-accessible.
 * It has no writable file mounts at all.
 * It has access only to the RabbitMQ server, through a different relationship name than on the `web` instance.
   It has no access to MySQL.
-{{% version/only "1" %}}* It has "Small" levels of CPU and RAM allocated to it, always.{{% /version/only %}}
+{{% version/only "1" %}}* It has "Small" levels of CPU and RAM allocated to it, always.
 
 This way, the web instance has a large upload space, the queue instance has a small amount of scratch space for temporary files,
 and the mail instance has no persistent writable disk space at all as it doesn't need it.

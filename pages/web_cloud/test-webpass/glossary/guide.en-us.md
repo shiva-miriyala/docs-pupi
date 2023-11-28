@@ -5,7 +5,7 @@ section: Glossary
 hidden: true
 ---
 
-**Last updated 27th November 2023**
+**Last updated 28th November 2023**
 
 
 ## Active environment
@@ -125,16 +125,14 @@ as it merely describes a non-production environment.
 
 Find out more about [user roles on each environment type](../administration/users.md#environment-type-roles).
 
-{{% version/specific %}}
+
 ## Grid
 
 Grid environments are standard for Professional plans.
 They run on shared infrastructure.
 This architecture makes them different from [{{% names/dedicated-gen-2 %}} environments](#dedicated-gen-2).
 
-<--->
 
-{{% /version/specific %}}
 
 ## Inactive environment
 

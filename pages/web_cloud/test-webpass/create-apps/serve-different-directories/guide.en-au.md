@@ -4,7 +4,7 @@ slug: serve-different-directories
 section: Web
 ---
 
-**Last updated 27th November 2023**
+**Last updated 28th November 2023**
 
 
 
@@ -16,7 +16,7 @@ You might want to create a URL structure different than the structure on your di
 For example, in Git you might have a folder for your app and another folder that builds your documentation.
 Your entire Git repository might look like the following:
 
-{{% version/specific %}}
+
 ```text
 {{% vendor/configdir %}}
     {{< vendor/configfile "routes" "strip" >}}
@@ -27,16 +27,7 @@ application/
 docs-src/
     [docs-code-files]
 ```
-<--->
-```text
-{{% vendor/configdir %}}
-    {{< vendor/configfile "routes" "strip" >}}
-application/
-    [app-code-files]
-docs-src/
-    [docs-code-files]
-```
-{{% /version/specific %}}
+
 
 And your build process might build the documentation with an output folder such as `docs-public`.
 
@@ -44,7 +35,7 @@ If so, you can serve all requests by your app code except for those that start w
 which you serve with your generated docs.
 Use a [`web` configuration](../app-reference.md#web) similar to the following:
 
-{{% version/specific %}}
+
 ```yaml {configfile="apps"}
 web:
     locations:
@@ -58,25 +49,7 @@ web:
             scripts: false
             allow: true
 ```
-<--->
-```yaml {configfile="apps"}
-applications:
-    docs:
-        source:
-            root: "/"
-            web:
-                locations:
-                    '/':
-                        passthru: true
-                    '/docs':
-                        root: 'docs-public'
-                        index:
-                            - "index.html"
-                        expires: 24h
-                        scripts: false
-                        allow: true
-```
-{{% /version/specific %}}
+
 
 This way, your app can safely coexist with static files as if it were a single site hierarchy.
 And you can keep the static pages separate from your app code.

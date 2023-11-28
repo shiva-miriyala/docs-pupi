@@ -5,7 +5,7 @@ section: Development
 order: 5
 ---
 
-**Last updated 27th November 2023**
+**Last updated 28th November 2023**
 
 
 
@@ -23,32 +23,24 @@ the various dependencies, certificates, and connections your app needs to run.
 The **recommended tool** for local development with Web PaaS is **[DDEV](../.././.-ddev)**.
 The integration with DDEV is maintained by Web PaaS to ensure it works smoothly.
 
-{{% version/specific %}}
+
 <!-- Web PaaS -->
 Other Docker-based tools are also supported, such as [Docksal](../.././.-docksal) and [Lando](../.././.-lando).
 If you choose to use a Docker-based tool, follow the steps on its page.
 
-<--->
-<!-- Upsun -->
-If you choose to use DDEV, follow the steps [on its page](../.././.-ddev).
-{{% /version/specific %}}
+
 Otherwise, follow these steps to run your app on your computer.
 
 ## Before you begin
 
 You need to have:
-{{% version/specific %}}
+
 <!-- Web PaaS -->
 - A {{< vendor/name >}} account:
 
   new users can sign up for a [free trial account](https://auth.api.platform.sh/register)
 
-<--->
-<!-- Upsun -->
-- A {{< vendor/name >}} account:
 
-  new users can [register here](https://upsun.com/register/)
-{{% /version/specific %}}
 - A working project
 
 - [Git](https://git-scm.com/downloads)

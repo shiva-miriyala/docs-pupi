@@ -4,7 +4,7 @@ slug: relationships
 section: Multi-App
 ---
 
-**Last updated 27th November 2023**
+**Last updated 28th November 2023**
 
 
 
@@ -28,20 +28,13 @@ You have two apps, `app1` and `app2`, and `app1` needs data from `app2`.
 
 In your app configuration for `app1`, define a relationship to `app2`:
 
-{{% version/specific %}}
+
 ```yaml {configFile="apps"}
 app1:
   relationships:
     api: "app2:http"
 ```
-<--->
-```yaml {configFile="apps"}
-applications:
-  app1:
-    relationships:
-      api: "app2:http"
-```
-{{% /version/specific %}}
+
 
 Once they're both built, `app1` can access `app2` at the following URL: `http://api.internal`.
 The specific URL is always available through the [`PLATFORM_RELATIONSHIPS` variable](/development/variables/use-variables.md#use-provided-variables):

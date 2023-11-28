@@ -5,7 +5,7 @@ section: Overview
 order: 2
 ---
 
-**Last updated 27th November 2023**
+**Last updated 28th November 2023**
 
 
 > [!primary]  
@@ -21,7 +21,7 @@ order: 2
 Each environment you deploy on Web PaaS is built as a set of containers.
 Each container is an isolated instance with specific resources.
 
-{{% version/specific %}}
+
 <!-- Web PaaS -->
 Each environment has 2 to 4 types of containers:
 
@@ -34,20 +34,7 @@ Each environment has 2 to 4 types of containers:
 - Zero or more [*worker* containers](#workers) (configured in the files for apps)
 
 
-<--->
-<!-- Upsun -->
-Each environment has 2 to 4 types of containers, all usually configured from your `.platform.app.yaml` file.
 
-- One [*router*](#router)
-
-- One or more [*app* containers](#apps)
-
-- Zero or more [*service* containers](#services)
-
-- Zero or more [*worker* containers](#workers)
-
-
-{{% /version/specific %}}
 
 If you have two app containers, two services (a database and a search engine), and a worker,
 requests to your environment might look something like this:
@@ -56,7 +43,7 @@ requests to your environment might look something like this:
 
 If you have only one app container, your repository might look like this:
 
-{{% version/specific %}}
+
 <!-- Web PaaS -->
 ```text
 project
@@ -68,16 +55,7 @@ project
 └── <YOUR_APP_FILES>
 ```
 
-<--->
-<!-- Upsun -->
-```text
-project
-├── .git
-├── {{< vendor/configdir >}}
-│   └── {{< vendor/configfile "app" "strip" >}}
-└── <YOUR_APP_FILES>
-```
-{{% /version/specific %}}
+
 
 ## Router
 
@@ -99,16 +77,12 @@ App containers run the code you provide via your Git repository.
 They handle requests from the outside world and can communicate with other containers within the environment.
 Each app container is built from a specific language image with a given version for the language.
 
-{{% version/specific %}}
+
 <!-- Web PaaS -->
 To configure your apps, you usually create one `.platform.app.yaml` file for each app container.
 A basic app generally has only one such file placed in the repository root.
 
-<--->
-<!-- Upsun -->
-To configure your apps, you usually create a single `.platform.app.yaml` file
-and place it in the repository root.
-{{% /version/specific %}}
+
 
 Read more about how to [configure apps](../../create-apps).
 

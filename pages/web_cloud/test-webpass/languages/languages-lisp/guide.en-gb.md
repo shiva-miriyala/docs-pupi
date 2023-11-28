@@ -5,7 +5,7 @@ section: Languages
 order: 4
 ---
 
-**Last updated 27th November 2023**
+**Last updated 28th November 2023**
 
 
 ## Objective  
@@ -16,8 +16,8 @@ Web PaaS supports building and deploying applications written in Lisp using Comm
 
 You can select the major and minor version. Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
-{{% version/specific %}}
-<!-- API Version 1 -->
+
+
 
 <table>
     <thead>
@@ -36,20 +36,13 @@ You can select the major and minor version. Patch versions are applied periodica
     </tbody>
 </table>
 
-<--->
-<!-- API Version 2 -->
 
-3.2 |  
-|  3.1 |  
-|  3.0
-
-{{% /version/specific %}}
 
 ### Specify the language
 
 To use Lisp, specify lisp as your [app's `lisp`](/create-apps/app-reference.html#lisps):
 
-{{% version/specific %}}
+
 
 ```yaml {configFile="app"}
 type: 'lisp:<VERSION_NUMBER>'
@@ -61,25 +54,7 @@ For example:
 type: 'lisp:2.1'
 ```
 
-<--->
 
-```yaml {configFile="app"}
-applications:
-    # The app's name, which must be unique within the project.
-    <APP_NAME>:
-        type: 'lisp:<VERSION_NUMBER>'
-```
-
-For example:
-
-```yaml {configFile="app"}
-applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'lisp:2.1'
-```
-
-{{% /version/specific %}}
 
 ## Assumptions
 
@@ -92,24 +67,14 @@ Web PaaS will then run `(asdf:make :example)` on your system to build a binary.
 
 If you don't want these assumptions, you can disable this behavior by specifying in your `.platform.app.yaml`:
 
-{{% version/specific %}}
+
 
 ```yaml {configFile="app"}
 build:
     flavor: none
 ```
 
-<--->
 
-```yaml {configFile="app"}
-applications:
-    app:
-        type: 'lisp:2.1'
-        build:
-            flavor: none
-```
-
-{{% /version/specific %}}
 
 ## Dependencies
 
@@ -119,7 +84,7 @@ The recommended way to handle Lisp dependencies on Web PaaS is using ASDF. Commi
 
 If you wish to change the distributions that QuickLisp is using, you can specify those as follows, specifying a distribution name, its URL and, an optional version:
 
-{{% version/specific %}}
+
 
 ```yaml {configFile="app"}
 runtime:
@@ -139,35 +104,7 @@ runtime:
             version: '2019-07-11'
 ```
 
-<--->
 
-```yaml {configFile="app"}
-applications:
-    # The app's name, which must be unique within the project.
-    <APP_NAME>:
-        type: 'lisp:<VERSION_NUMBER>'
-        runtime:
-            quicklisp:
-                {{< variable "DISTRIBUTION_NAME" >}}:
-                    url: "..."
-                    version: "..."
-```
-
-For example:
-
-```yaml {configFile="app"}
-applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'lisp:2.1'
-        runtime:
-            quicklisp:
-                quicklisp:
-                    url: 'http://beta.quicklisp.org/dist/quicklisp.txt'
-                    version: '2019-07-11'
-```
-
-{{% /version/specific %}}
 
 
 ## Built-in variables
@@ -187,7 +124,7 @@ Note that the start command _must_ run in the foreground. Should the program ter
 
 The following basic `.platform.app.yaml` file is sufficient to run most Lisp applications.
 
-{{% version/specific %}}
+
 
 ```yaml {configFile="app"}
 name: app
@@ -202,22 +139,7 @@ web:
 disk: 512
 ```
 
-<--->
 
-```yaml {configFile="app"}
-applications:
-    app:
-        type: 'lisp:2.1'
-        web:
-            commands:
-                start: ./example
-            locations:
-                /:
-                    allow: false
-                    passthru: true
-```
-
-{{% /version/specific %}}
 
 Note that a proxy server is still in front of your app.
 If desired, certain paths may be served directly by the router without hitting your app (for static files, primarily) or you may route all requests to the Lisp application unconditionally, as in the example above.
@@ -244,24 +166,14 @@ The following is an example of accessing a PostgreSQL instance:
 
 Given a relationship defined in `.platform.app.yaml`:
 
-{{% version/specific %}}
+
 
 ```yaml {configFile="app"}
 relationships:
     pg: postgresql:postgresql
 ```
 
-<--->
 
-```yaml {configFile="app"}
-applications:
-    app:
-        type: 'lisp:2.1'
-        relationships:
-            pg: postgresql:postgresql
-```
-
-{{% /version/specific %}}
 
 The following would access that relationship, and provide your Lisp program the credentials to connect to a PostgreSQL instance. Add this to your `.asd` file:
 
@@ -319,7 +231,7 @@ as `(start acceptor)` immediately yields and Web PaaS requires apps to run in th
 
 {{% version/only "1" %}}
 ## Project templates
-{{% /version/only %}}
 
-{{< repolist lang="lisp" displayName="Lisp" >}}
+
+
 

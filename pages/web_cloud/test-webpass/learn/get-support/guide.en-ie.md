@@ -5,7 +5,7 @@ section: Overview
 order: 2
 ---
 
-**Last updated 27th November 2023**
+**Last updated 28th November 2023**
 
 
 ## Objective  
@@ -46,15 +46,11 @@ The [Web PaaS Community site](https://community.platform.sh/) has how-to guides 
 on how to get the most out of Web PaaS.
 
 ## Contact Sales
-{{% version/specific %}}
+
 <!-- Web PaaS -->
 If you have questions about pricing or need help figuring out if Web PaaS is the right solution for your team,
 get in touch with [Sales](https://{{< vendor/urlraw "host" >}}/contact/).
-<--->
-<!-- Version 2 -->
-If you have questions about pricing or need help figuring out if Web PaaS is the right solution for your team,
-get in touch with [Sales](https://{{< vendor/urlraw "host" >}}/register/).
-{{% /version/specific %}}
+
 
 ## Delete your account
 

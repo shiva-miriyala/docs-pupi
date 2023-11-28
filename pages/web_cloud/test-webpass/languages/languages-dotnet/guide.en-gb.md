@@ -5,7 +5,7 @@ section: Languages
 order: 4
 ---
 
-**Last updated 27th November 2023**
+**Last updated 28th November 2023**
 
 
 ## Objective  
@@ -16,8 +16,8 @@ Web PaaS supports deploying .NET applications by allowing developers to define a
 
 You can select the major and minor version. Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
-{{% version/specific %}}
-<!-- API Version 1 -->
+
+
 
 <table>
     <thead>
@@ -35,19 +35,13 @@ You can select the major and minor version. Patch versions are applied periodica
     </tbody>
 </table>
 
-<--->
-<!-- API Version 2 -->
 
-7.0 |  
-|  6.0
-
-{{% /version/specific %}}
 
 ### Specify the language
 
 To use .Net Core, specify dotnet as your [app's `dotnet`](/create-apps/app-reference.html#dotnets):
 
-{{% version/specific %}}
+
 
 ```yaml {configFile="app"}
 type: 'dotnet:<VERSION_NUMBER>'
@@ -59,32 +53,14 @@ For example:
 type: 'dotnet:7.0'
 ```
 
-<--->
 
-```yaml {configFile="app"}
-applications:
-    # The app's name, which must be unique within the project.
-    <APP_NAME>:
-        type: 'dotnet:<VERSION_NUMBER>'
-```
-
-For example:
-
-```yaml {configFile="app"}
-applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'dotnet:7.0'
-```
-
-{{% /version/specific %}}
 
 ## Building the application
 
 To build basic applications in .NET containers, it's enough to use the [`dotnet publish` command](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-publish)
 with the default [framework-dependent deployment](https://docs.microsoft.com/en-us/dotnet/core/deploying/#publish-framework-dependent):
 
-{{% version/specific %}}
+
 ```yaml {configFile="app"}
 hooks:
     build: |
@@ -93,19 +69,7 @@ hooks:
             -p:UseRazorBuildServer=false \
             -p:UseSharedCompilation=false
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    app:
-        type: 'dotnet:7.0'
-        hooks:
-            build: |
-                set -xe
-                dotnet publish --output "$PLATFORM_OUTPUT_DIR" \
-                    -p:UseRazorBuildServer=false \
-                    -p:UseSharedCompilation=false
-```
-{{% /version/specific %}}
+
 
 where `PLATFORM_OUTPUT_DIR` is the output directory for compiled languages available at build time.
 
@@ -142,7 +106,7 @@ so the `app.UseHttpsRedirection();` line in `Startup.cs` should be removed.
 The following example configures an environment to serve the static content folders commonly found in [ASP.NET MVC](https://dotnet.microsoft.com/apps/aspnet/mvc) templates using Nginx,
 while routing other traffic to the .NET application.
 
-{{% version/specific %}}
+
 ```yaml {configFile="app"}
 web:
     locations:
@@ -158,30 +122,11 @@ web:
     commands:
         start: "dotnet WebApplication1.dll"
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    app:
-        type: 'dotnet:7.0'
-        web:
-            locations:
-                "/":
-                    root: "wwwroot"
-                    allow: true
-                    passthru: true
-                    rules:
-                        # Serve these common asset types with customs cache headers.
-                        \.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$:
-                            allow: true
-                            expires: 300s
-            commands:
-                start: "dotnet WebApplication1.dll"
-```
-{{% /version/specific %}}
+
 
 You can also route all requests to the application unconditionally:
 
-{{% version/specific %}}
+
 ```yaml {configFile="app"}
 web:
     locations:
@@ -192,24 +137,10 @@ web:
     commands:
         start: "dotnet WebApplication1.dll"
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    app:
-        type: 'dotnet:7.0'
-        web:
-            locations:
-                "/":
-                    allow: false
-                    passthru: true
 
-            commands:
-                start: "dotnet WebApplication1.dll"
-```
-{{% /version/specific %}}
 
 {{% version/only "1" %}}
 ## Project templates
-{{% /version/only %}}
 
-{{< repolist lang="dotnet" displayName=".NET Core" >}}
+
+

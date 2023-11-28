@@ -4,7 +4,7 @@ slug: add-services-postgresql
 section: Add-Services
 ---
 
-**Last updated 27th November 2023**
+**Last updated 28th November 2023**
 
 
 
@@ -29,8 +29,8 @@ See the [PostgreSQL documentation](../../https:/https:-/www.postgresql.org/docs/
 
 {{% major-minor-versions-note %}}
 
-{{% version/specific %}}
-<!-- API Version 1 -->
+
+
 
 <table>
     <thead>
@@ -59,16 +59,7 @@ See the [PostgreSQL documentation](../../https:/https:-/www.postgresql.org/docs/
 
 \* No High-Availability on {{% names/dedicated-gen-2 %}}.
 
-<--->
-<!-- API Version 2 -->
 
-15 |  
-|  14 |  
-|  13 |  
-|  12 |  
-|  11
-
-{{% /version/specific %}}
 
 > [!primary]  
 > 
@@ -80,8 +71,8 @@ See the [PostgreSQL documentation](../../https:/https:-/www.postgresql.org/docs/
 ### Deprecated versions
  The following versions are deprecated. They're available, but they aren't receiving security updates from upstream and aren't guaranteed to work. They'll be removed in the future, so migrate to one of the [supported versions](#supported-versions).
 
-{{% version/specific %}}
-<!-- API Version 1 -->
+
+
 
 <table>
     <thead>
@@ -112,16 +103,7 @@ See the [PostgreSQL documentation](../../https:/https:-/www.postgresql.org/docs/
     </tbody>
 </table>
 
-<--->
-<!-- API Version 2 -->
 
-10 |  
-|  9.6 |  
-|  9.5 |  
-|  9.4 |  
-|  9.3
-
-{{% /version/specific %}}
 
 {{% relationship-ref-intro %}}
 
@@ -209,7 +191,7 @@ export DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}
 
 {{< /v2connect2app >}}
 
-{{% /version/only %}}
+
 
 ## Access the service directly
 
@@ -334,373 +316,4 @@ Consider the following illustrative example:
 {{< /snippet >}}
 ```
 
-<--->
-<!-- Version 2 -->
-
-```yaml {configFile="services"}
-{{< snippet name="dbpostgres" config="service" >}}
-    type: "postgresql:15"
-    configuration:
-        databases:
-            - main
-            - legacy
-        endpoints:
-            admin:
-                privileges:
-                    main: admin
-                    legacy: admin
-            reporter:
-                default_database: main
-                privileges:
-                    main: ro
-            importer:
-                default_database: legacy
-                privileges:
-                    legacy: rw
-{{< /snippet >}}
-```
-
-{{< /version/specific >}}
-
-This example creates a single PostgreSQL service named `dbpostgres`. The server has two databases, `main` and `legacy` with three endpoints created.
-
-* `admin`: has full access to both databases.
-* `reporter`: has `SELECT` query access to the `main` database, but no access to `legacy`.
-* `importer`: has `SELECT`/`INSERT`/`UPDATE`/`DELETE` access (but not DDL access) to the `legacy` database. It doesn't have access to `main`.
-
-If a given endpoint has access to multiple databases you should also specify which is listed by default in the relationships array. If one isn't specified, the `path` property of the relationship is `null`. While that may be acceptable for an application that knows the name of the database it's connecting to, automated tools like the Web PaaS CLI can't access the database on that relationship. For that reason, defining the `default_database` property is always recommended.
-
-Once these endpoints are defined, you need to expose them to your application as a relationship. Continuing with the above example, your `relationships` in `.platform.app.yaml` might look like:
-
-{{< version/specific >}}
-<!-- Version 1 -->
-
-```yaml {configFile="app"}
-{{< snippet name="false" config="app" root="false" >}}
-relationships:
-    database: "dbpostgres:admin"
-    reports: "dbpostgres:reporter"
-    imports: "dbpostgres:importer"
-{{< /snippet >}}
-
-{{< snippet name="dbpostgres" config="service" placeholder="true" >}}
-    type: "postgresql:15"
-    disk: 2048
-    configuration:
-        databases:
-            - main
-            - legacy
-        endpoints:
-            admin:
-                privileges:
-                    main: admin
-                    legacy: admin
-            reporter:
-                default_database: main
-                privileges:
-                    main: ro
-            importer:
-                default_database: legacy
-                privileges:
-                    legacy: rw
-{{< /snippet >}}
-```
-
-<--->
-<!-- Version 2 -->
-
-```yaml {configFile="app"}
-{{< snippet name="false" config="app" root="false" >}}
-relationships:
-    database: "dbpostgres:admin"
-    reports: "dbpostgres:reporter"
-    imports: "dbpostgres:importer"
-{{< /snippet >}}
-
-{{< snippet name="dbpostgres" config="service" placeholder="true" >}}
-    type: "postgresql:15"
-    configuration:
-        databases:
-            - main
-            - legacy
-        endpoints:
-            admin:
-                privileges:
-                    main: admin
-                    legacy: admin
-            reporter:
-                default_database: main
-                privileges:
-                    main: ro
-            importer:
-                default_database: legacy
-                privileges:
-                    legacy: rw
-{{< /snippet >}}
-```
-
-{{< /version/specific >}}
-
-Each database is accessible to your application through the `database`, `reports`, and `imports` relationships. They'll be available in the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable and all have the same structure documented above, but with different credentials. You can use those to connect to the appropriate database with the specified restrictions using whatever the SQL access tools are for your language and application.
-
-A service configuration without the `configuration` block defined is equivalent to the following default values:
-
-{{< version/specific >}}
-<!-- Version 1 -->
-
-```yaml {configFile="services"}
-{{< snippet name="dbpostgres" config="service" >}}
-    type: "postgresql:15"
-    disk: 2048
-    configuration:
-        databases:
-            - main
-        endpoints:
-            postgresql:
-                default_database: main
-                privileges:
-                    main: admin
-{{< /snippet >}}
-```
-
-<--->
-<!-- Version 2 -->
-
-```yaml {configFile="services"}
-{{< snippet name="dbpostgres" config="service" >}}
-    type: "postgresql:15"
-    configuration:
-        databases:
-            - main
-        endpoints:
-            postgresql:
-                default_database: main
-                privileges:
-                    main: admin
-{{< /snippet >}}
-```
-
-{{< /version/specific >}}
-
-If you do not define `database` but `endpoints` are defined, then the single database `main` is created with the following assumed configuration:
-
-{{< version/specific >}}
-<!-- Version 1 -->
-
-```yaml {configFile="services"}
-{{< snippet name="dbpostgres" config="service" >}}
-    type: "postgresql:15"
-    disk: 2048
-    configuration:
-        databases:
-            - main
-        endpoints: <your configuration>
-{{< /snippet >}}
-```
-
-<--->
-<!-- Version 2 -->
-
-```yaml {configFile="services"}
-{{< snippet name="dbpostgres" config="service" >}}
-    type: "postgresql:15"
-    configuration:
-        databases:
-            - main
-        endpoints: <your configuration>
-{{< /snippet >}}
-```
-
-{{< /version/specific >}}
-
-Alternatively, if you define multiple databases but no endpoints, a single user `main` is created with `admin` access to each of your databases, equivalent to the configuration below:
-
-{{< version/specific >}}
-<!-- Version 1 -->
-
-```yaml {configFile="services"}
-{{< snippet name="dbpostgres" config="service" >}}
-    type: "postgresql:15"
-    disk: 2048
-    configuration:
-        databases:
-            - firstdb
-            - seconddb
-            - thirddb
-        endpoints:
-            main:
-                firstdb: admin
-                seconddb: admin
-                thirddb: admin
-{{< /snippet >}}
-```
-
-<--->
-<!-- Version 2 -->
-
-```yaml {configFile="services"}
-{{< snippet name="dbpostgres" config="service" >}}
-    type: "postgresql:15"
-    configuration:
-        databases:
-            - firstdb
-            - seconddb
-            - thirddb
-        endpoints:
-            main:
-                firstdb: admin
-                seconddb: admin
-                thirddb: admin
-{{< /snippet >}}
-```
-
-{{< /version/specific >}}
-
-{{% databases-passwords %}}
-
-## Service timezone
-
-To change the timezone for the current session, run `SET TIME ZONE {{< variable "TIMEZONE" >}};`.
-
-## Extensions
-
-Web PaaS supports a number of PostgreSQL extensions. To enable them, list them under the `configuration.extensions` key in your `{{< vendor/configfile "services" >}}` file, like so:
-
-{{< version/specific >}}
-<!-- Version 1 -->
-
-```yaml {configFile="services"}
-{{< snippet name="dbpostgres" config="service" >}}
-    type: "postgresql:15"
-    disk: 2048
-    configuration:
-        extensions:
-            - pg_trgm
-            - hstore
-{{< /snippet >}}
-```
-
-<--->
-<!-- Version 2 -->
-
-```yaml {configFile="services"}
-{{< snippet name="dbpostgres" config="service" >}}
-    type: "postgresql:15"
-    configuration:
-        extensions:
-            - pg_trgm
-            - hstore
-{{< /snippet >}}
-```
-
-{{< /version/specific >}}
-
-In this case, you have `pg_trgm` installed, providing functions to determine the similarity of text based on trigram matching, and `hstore` providing a key-value store.
-
-### Available extensions
-
-The following is the extensive list of supported extensions. Note that you can't currently add custom
-extensions not listed here.
-
-* `address_standardizer` - Used to parse an address into constituent elements. Generally used to support geocoding address normalization step.
-* `address_standardizer_data_us` - For standardizing addresses based on US dataset example
-* `adminpack` - administrative functions for PostgreSQL
-* `autoinc` - functions for auto-incrementing fields
-* `bloom` - bloom access method - signature file based index (requires 9.6 or higher)
-* `btree_gin` - support for indexing common data types in GIN
-* `btree_gist` - support for indexing common data types in GiST
-* `chkpass` - data type for auto-encrypted passwords
-* `citext` - data type for case-insensitive character strings
-* `cube` - data type for multidimensional cubes
-* `dblink` - connect to other PostgreSQL databases from within a database
-* `dict_int` - text search dictionary template for integers
-* `dict_xsyn` - text search dictionary template for extended synonym processing
-* `earthdistance` - calculate great-circle distances on the surface of the Earth
-* `file_fdw` - foreign-data wrapper for flat file access
-* `fuzzystrmatch` - determine similarities and distance between strings
-* `hstore` - data type for storing sets of (key, value) pairs
-* `insert_username` - functions for tracking who changed a table
-* `intagg` - integer aggregator and enumerator (obsolete)
-* `intarray` - functions, operators, and index support for 1-D arrays of integers
-* `isn` - data types for international product numbering standards
-* `lo` - Large Object maintenance
-* `ltree` - data type for hierarchical tree-like structures
-* `moddatetime` - functions for tracking last modification time
-* `pageinspect` - inspect the contents of database pages at a low level
-* `pg_buffercache` - examine the shared buffer cache
-* `pg_freespacemap` - examine the free space map (FSM)
-* `pg_prewarm` - prewarm relation data (requires 9.6 or higher)
-* `pg_stat_statements` - track execution statistics of all SQL statements executed
-* `pg_trgm` - text similarity measurement and index searching based on trigrams
-* `pg_visibility` - examine the visibility map (VM) and page-level visibility info (requires 9.6 or higher)
-* `pgcrypto` - cryptographic functions
-* `pgrouting` - pgRouting Extension (requires 9.6 or higher)
-* `pgrowlocks` - show row-level locking information
-* `pgstattuple` - show tuple-level statistics
-* `plpgsql` - PL/pgSQL procedural language
-* `postgis` - PostGIS geometry, geography, and raster spatial types and functions
-* `postgis_sfcgal` - PostGIS SFCGAL functions
-* `postgis_tiger_geocoder` - PostGIS tiger geocoder and reverse geocoder
-* `postgis_topology` - PostGIS topology spatial types and functions
-* `postgres_fdw` - foreign-data wrapper for remote PostgreSQL servers
-* `refint` - functions for implementing referential integrity (obsolete)
-* `seg` - data type for representing line segments or floating-point intervals
-* `sslinfo` - information about SSL certificates
-* `tablefunc` - functions that manipulate whole tables, including `crosstab`
-* `tcn` - Triggered change notifications
-* `timetravel` - functions for implementing time travel
-* `tsearch2` - compatibility package for pre-8.3 text search functions (obsolete, only available for 9.6 and 9.3)
-* `tsm_system_rows` - TABLESAMPLE method which accepts number of rows as a limit (requires 9.6 or higher)
-* `tsm_system_time` - TABLESAMPLE method which accepts time in milliseconds as a limit (requires 9.6 or higher)
-* `unaccent` - text search dictionary that removes accents
-* `uuid-ossp` - generate universally unique identifiers (UUIDs)
-* `vector` - Open-source [vector](https://github.com/pgvector/pgvector) similarity search for PostgreSQL 11+
-* `xml2` - XPath querying and XSLT
-
-> [!primary]  
-> 
-> You can't upgrade to PostgreSQL 12 with the `postgis` extension enabled.
-> For more details, see how to [upgrade to PostgreSQL 12 with `postgis`](#upgrade-to-postgresql-12-with-the-postgis-extension).
-> 
-> 
-
-## Notes
-
-### Could not find driver
-
-If you see this error: `Fatal error: Uncaught exception 'PDOException' with message 'could not find driver'`, this means you are missing the `pdo_pgsql` PHP extension. You need to enable it in your `.platform.app.yaml` ([see above](#1-configure-the-service)).
-
-## Upgrading
-
-PostgreSQL 10 and later include an upgrade utility that can convert databases from previous versions to version 10 or later. If you upgrade your service from a previous version of PostgreSQL to version 10 or above, it upgrades automatically.
-
-The utility can't upgrade PostgreSQL 9 versions, so upgrades from PostgreSQL 9.3 to 9.6 aren't supported. Upgrade straight to version 11 instead.
-
-> [!primary]  
-> 
-> Make sure you first test your migration on a separate branch.
-> 
-
-> [!primary]  
-> 
-> Be sure to take a backup of your production environment **before** you merge this change.
-> 
-
-Downgrading isn't supported. If you want, for whatever reason, to downgrade you should dump to SQL, remove the service, recreate the service, and import your dump.
-
-### Upgrade to PostgreSQL 12 with the `postgis` extension
-
-You can't upgrade to PostgreSQL 12 with the `postgis` extension enabled.
-It involves a change to a major version that results in a failed deployment that requires support intervention to fix.
-Upgrading from 12 to a higher version is possible.
-
-If you need to upgrade to version 12, follow the same steps recommended for downgrading:
-
-1\. Dump the database.
-
-2\. Remove the service.
-
-3\. Create a new service with PostgreSQL 12.
-
-4\. Import the dump to that service.
 

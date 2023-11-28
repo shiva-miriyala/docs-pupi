@@ -5,7 +5,7 @@ section: Development
 order: 5
 ---
 
-**Last updated 27th November 2023**
+**Last updated 28th November 2023**
 
 
 ## Common tasks
@@ -111,15 +111,13 @@ Typical causes and potential solutions include:
   - You may want to [check if bots are overwhelming your site](https://community.platform.sh/t/diagnosing-and-resolving-issues-with-excessive-bot-access/792).
   {{% version/only "1" %}}
   - Alternatively, you may need to [increase your plan size](../development-administration/pricing).
-  {{% /version/only %}}
+  
 - Certain code paths in your application are too slow and timing out.
 
   - Check your code is running smoothly.
-  {{% version/specific %}}
+  
   - Consider adding an [observability solution](../development-increase-observability/integrate-observability) to get a better view of your application.
-  <--->
-  - Consider using the [observability solution](../development-increase-observability/application-metrics) included in your project to get a better view of your application.
-  {{% /version/specific %}}
+  
 - A PHP process is crashing because of a segmentation fault.
 
   - See [how to deal with crashed processes](../languages/php/troubleshoot.md#troubleshoot-a-crashed-php-process).

@@ -4,7 +4,7 @@ slug: environments-cancel-activity
 section: Environments
 ---
 
-**Last updated 27th November 2023**
+**Last updated 28th November 2023**
 
 
 

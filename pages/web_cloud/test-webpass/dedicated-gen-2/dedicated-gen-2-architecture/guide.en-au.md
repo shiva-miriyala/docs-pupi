@@ -4,7 +4,7 @@ slug: dedicated-gen-2-architecture
 section: Dedicated-Gen-2
 ---
 
-**Last updated 27th November 2023**
+**Last updated 28th November 2023**
 
 
 ## Objective  

@@ -4,59 +4,36 @@ slug: create-apps-app-reference
 section: Create-Apps
 ---
 
-**Last updated 27th November 2023**
+**Last updated 28th November 2023**
 
 
 ## Objective  
 
 See all of the options for controlling your apps and how they're built and deployed on Web PaaS.
 
-{{% version/specific %}}
+
 For single-app projects, the configuration is all done in a `.platform.app.yaml` file,
 usually located at the root of your app folder in your Git repository.
 [Multi-app projects](../.././.-multi-app) can be set up in various ways.
-<--->
-Configuration is all done in a `.platform.app.yaml` file,
-located at the root of your Git repository.
-{{% /version/specific %}}
+
 
 See a [comprehensive example](./_index.md#comprehensive-example) of a configuration in a `.platform.app.yaml` file.
 
 {{% version/only "1" %}}
 For reference, see a [log of changes to app configuration](../.././.-upgrading).
-{{% /version/only %}}
 
-{{% version/specific %}}
+
+
 ## Top-level properties
 
 The following table presents all properties available at the top level of the YAML for the app.
 
-<--->
-## Primary application properties
 
-All application configuration takes place in a `.platform.app.yaml` file, with each application configured under a unique key beneath the top-level `applications` key.
-For example, it is possible to deploy two application containers - one JavaScript and the other Python - for the frontend and backend components of a deployed site. 
-
-In this case, the unified `.platform.app.yaml` file would look like:
-
-```yaml {configFile="app"}
-applications:
-    frontend:
-        type: 'nodejs:20'
-        # Additional frontend configuration
-    backend:
-        type: 'python:3.12'
-        # Additional backend configuration
-```
-
-The following table presents all properties available at the level just below the unique application name (`frontend` and `backend` above).
-
-{{% /version/specific %}}
 
 The column _Set in instance?_ defines whether the given property can be overridden within a `web` or `workers` instance.
 To override any part of a property, you have to provide the entire property.
 
-{{% version/specific %}}
+
 
 | Name               | Type                                                | Required | Set in instance? | Description |
 | ------------------ | --------------------------------------------------- | -------- | ---------------- | ----------- |
@@ -80,51 +57,14 @@ To override any part of a property, you have to provide the entire property.
 | `runtime`          | A [runtime dictionary](#runtime)                    |          | No               | Customizations to your PHP or Lisp runtime. |
 | `additional_hosts` | An [additional hosts dictionary](#additional-hosts) |          | Yes              | Maps of hostnames to IP addresses. |
 
-<--->
 
-| Name               | Type                                                | Required | Set in instance? | Description |
-| ------------------ | --------------------------------------------------- | -------- | ---------------- | ----------- |
-| `name`             | `string`                                            | Yes      | No               | A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated with the app. |
-| `type`             | A [type](#types)                                    | Yes      | No               | The base image to use with a specific app language. Format: `runtime:version`. |
-| `relationships`    | A dictionary of [relationships](#relationships)     |          | Yes              | Connections to other services and apps. |
-| `mounts`           | A dictionary of [mounts](#mounts)                   |          | Yes              | Directories that are writable even after the app is built. Allocated disk for mounts is defined with a separate resource configuration call using `platform resources:set`. |
-| `web`              | A [web instance](#web)                              |          | N/A              | How the web application is served. |
-| `workers`          | A [worker instance](#workers)                       |          | N/A              | Alternate copies of the application to run as background processes. |
-| `timezone`         | `string`                                            |          | No               | The timezone for crons to run. Format: a [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). Defaults to `UTC`, which is the timezone used for all logs no matter the value here. See also [app runtime timezones](../.././.-timezone) |
-| `access`           | An [access dictionary](#access)                     |          | Yes              | Access control for roles accessing app environments. |
-| `variables`        | A [variables dictionary](#variables)                |          | Yes              | Variables to control the environment. |
-| `firewall`         | A [firewall dictionary](#firewall)                  |          | Yes              | Outbound firewall rules for the application. |
-| `build`            | A [build dictionary](#build)                        |          | No               | What happens when the app is built. |
-| `dependencies`     | A [dependencies dictionary](#dependencies)          |          | No               | What global dependencies to install before the `build` hook is run. |
-| `hooks`            | A [hooks dictionary](#hooks)                        |          | No               | What commands run at different stages in the build and deploy process. |
-| `crons`            | A [cron dictionary](#crons)                         |          | No               | Scheduled tasks for the app. |
-| `source`           | A [source dictionary](#source)                      |          | No               | Information on the app's source code and operations that can be run on it.  |
-| `runtime`          | A [runtime dictionary](#runtime)                    |          | No               | Customizations to your PHP or Lisp runtime. |
-| `additional_hosts` | An [additional hosts dictionary](#additional-hosts) |          | Yes              | Maps of hostnames to IP addresses. |
-
-{{% /version/specific %}}
 
 ## Root directory
 
-{{% version/specific %}}
+
 Some of the properties you can define are relative to your app's root directory.
 The root defaults to the location of your `.platform.app.yaml` file.
-<--->
-Some of the properties you can define are relative to your app's root directory.
-The root defaults to the root of the repository.
 
-```yaml {configFile="app"}
-applications:
-    frontend:
-        type: 'nodejs:20'
-        # Default behavior of source.root
-        source: 
-            root: "/"
-```
-
-That is, if a custom value for `source.root` is not provided in your configuration, the default behavior is equivalent to the above.
-
-{{% /version/specific %}}
 
 To specify another directory, for example for a [multi-app project](../.././.-multi-app)),
 use the [`source.root` property](#source).
@@ -144,17 +84,11 @@ Available languages and their supported versions:
 
 These are used in the format `runtime:version`:
 
-{{% version/specific %}}
+
 ```yaml {configFile="app"}
 type: 'php:8.2'
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    myapp:
-        type: 'php:8.2'
-```
-{{% /version/specific %}}
+
 
 {{< version/specific >}}
 ## Sizes
@@ -193,65 +127,11 @@ Application containers are set based on the plan's setting for **Environments ap
 The default is **{{< partial "plans/default-dev-env-size" >}}**, but you can increase it by editing your plan.
 (Service containers in preview environments are always set to {{< partial "plans/default-dev-env-size" >}} size.)
 
-<--->
-## Resources
 
-Resources for application containers are not committed to YAML files, but instead managed over the API using either the Console or the `platform resources:set` command. 
-
-For more information, see how to [manage resources](../../manage-resources).
-
-{{< /version/specific>}}
-
-## Relationships
-
-To access another container within your project, you need to define a relationship to it.
-
-{{% version/only "1" %}}
-![Relationships Diagram](images/relationships.png "0.5")
-{{% /version/only %}}
-
-You can give each relationship any name you want.
-This name is used in the `PLATFORM_RELATIONSHIPS` environment variable,
-which gives you credentials for accessing the service.
-
-The relationship is specified in the form `service_name:endpoint_name`.
-The `service_name` is the name of the service given in the [services configuration](../create-apps-add-services)
-or the name of another application in the same project specified as the `name` in that app's configration.
-
-The `endpoint_name` is the exposed functionality of the service to use.
-For most services, the endpoint is the same as the service type.
-For some services (such as [MariaDB](../add-services/mysql/_index.md#multiple-databases) and [Solr](../add-services/solr.md#solr-6-and-later)),
-you can define additional explicit endpoints for multiple databases and cores in the [service's configuration](../create-apps-add-services).
-
-The following example shows a single MySQL service named `mysqldb` offering two databases,
-a Redis cache service named `rediscache`, and an Elasticsearch service named `searchserver`.
-
-{{% version/specific %}}
-```yaml {configFile="app"}
-relationships:
-    database: 'mysqldb:db1'
-    database2: 'mysqldb:db2'
-    cache: 'rediscache:redis'
-    search: 'searchserver:elasticsearch'
-```
-<--->
-```yaml {configFile="app"}
-applications:
-    myapp:
-        source:
-            root: "/"
-        type: 'nodejs:20'
-        relationships:
-            database: 'mysqldb:db1'
-            database2: 'mysqldb:db2'
-            cache: 'rediscache:redis'
-            search: 'searchserver:elasticsearch'
-```
-{{% /version/specific %}}
 
 ## Available disk space
 
-{{% version/specific %}}
+
 The maximum total space available to all apps and services is set by the storage in your plan settings.
 When deploying your project, the sum of all `disk` keys defined in app and service configurations
 must be *equal or less* than the plan storage size.
@@ -269,13 +149,7 @@ If you exceed the total space available, you receive an error on pushing your co
 You need to either increase your plan's storage or decrease the `disk` values you've assigned.
 
 {{% disk-space-mb %}}
-<--->
 
-Disk for application containers are not committed to YAML files, but instead managed over the API using either the Console or the `platform resources:set` command. 
-
-For more information, see how to [manage resources](../../manage-resources).
-
-{{% /version/specific %}}
 
 ### Downsize a disk
 
@@ -286,26 +160,14 @@ For more information, see how to [manage resources](../../manage-resources).
 Mounts define directories that are writable after the build is complete.
 They aren't available during the build.
 
-{{% version/specific %}}
+
 ```yaml {configFile="app"}
 mounts:
     '{{< variable "DIRECTORY" >}}':
         source: {{< variable "SOURCE_LOCATION" >}}
         source_path: {{< variable "SOURCE_PATH_LOCATION" >}}
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    myapp:
-        source:
-            root: "/"
-        type: 'nodejs:20'
-        mounts:
-            '{{< variable "DIRECTORY" >}}':
-                source: {{< variable "SOURCE_LOCATION" >}}
-                source_path: {{< variable "SOURCE_PATH_LOCATION" >}}
-```
-{{% /version/specific %}}
+
 
 The `{{< variable "DIRECTORY" >}}` is relative to the [app's root](#root-directory) and represents the path in the app.
 If you already have a directory with that name, you get a warning that it isn't accessible after the build.
@@ -319,26 +181,14 @@ See how to [troubleshoot the warning](./troubleshoot-mounts.md#overlapping-folde
 
 Basic example:
 
-{{% version/specific %}}
+
 ```yaml {configFile="app"}
 mounts:
     'web/uploads':
         source: local
         source_path: uploads
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    myapp:
-        source:
-            root: "/"
-        type: 'nodejs:20'
-        mounts:
-            'web/uploads':
-                source: local
-                source_path: uploads
-```
-{{% /version/specific %}}
+
 
 The accessibility to the web of a mounted directory depends on the [`web.locations` configuration](#web).
 Files can be all public, all private, or with different rules for different paths and file types.
@@ -400,7 +250,7 @@ If your project requires more disk, [contact Support](../../learn/learn-overview
 
 {{% /note %}}
 
-{{% /version/only %}}
+
 
 ## Web
 
@@ -417,7 +267,7 @@ See some [examples of how to configure what's served](../.././.-web).
 
 ### Web commands
 
-{{% version/specific %}}
+
 <!-- Version 1 -->
 
 | Name    | Type     | Required                      | Description |
@@ -425,19 +275,11 @@ See some [examples of how to configure what's served](../.././.-web).
 | `pre_start` | `string` |   | Command run just prior to `start`, which can be useful when you need to run _per-instance_ actions. |
 | `start` | `string` | See [note](#required-command) | The command to launch your app. If it terminates, it's restarted immediately. |
 
-<--->
-<!-- Version 2 -->
 
-| Name    | Type     | Required                      | Description |
-| ------- | -------- | ----------------------------- | ----------- |
-| `pre_start` | `string` |   | Command run just prior to `start`, which can be useful when you need to run _per-instance_ actions. See [Mounts, instances, and Network Storage](#mounts-instances-and-network-storage) for an example. |
-| `start` | `string` | See [note](#required-command) | The command to launch your app. If it terminates, it's restarted immediately. |
-
-{{% /version/specific %}}
 
 Example:
 
-{{% version/specific %}}
+
 <!-- Version 1 -->
 
 ```yaml {configFile="app"}
@@ -446,20 +288,7 @@ web:
         start: 'uwsgi --ini conf/server.ini'
 ```
 
-<--->
-<!-- Version 2 -->
 
-```yaml {configFile="app"}
-applications:
-    myapp:
-        source:
-            root: "/"
-        type: 'python:3.12'
-        web:
-            commands:
-                start: 'uwsgi --ini conf/server.ini'
-```
-{{% /version/specific %}}
 
 This command runs every time your app is restarted, regardless of whether or not new code is deployed.
 
@@ -472,10 +301,8 @@ This command runs every time your app is restarted, regardless of whether or not
 > 
 > 
 
-{{% version/specific %}}
-<--->
-For an example and common use case of the `pre_start` command, see [Mounts, instances, and Network Storage](#mounts-instances-and-network-storage).
-{{% /version/specific %}}
+
+
 
 #### Required command
 
@@ -499,26 +326,14 @@ For all other containers, the default for `protocol` is `http`.
 
 The following example is the default on non-PHP containers:
 
-{{% version/specific %}}
+
 ```yaml {configFile="app"}
 web:
     upstream:
         socket_family: tcp
         protocol: http
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    myapp:
-        source:
-            root: "/"
-        type: 'python:3.12'
-        web:
-            upstream:
-                socket_family: tcp
-                protocol: http
-```
-{{% /version/specific %}}
+
 
 #### Where to listen
 
@@ -565,7 +380,7 @@ except `root`, `index` and `request_buffering`.
 In the following example, the `allow` key disallows requests for static files anywhere in the site.
 This is overridden by a rule that explicitly allows common image file formats.
 
-{{% version/specific %}}
+
 ```yaml {configFile="app"}
 web:
     locations:
@@ -580,27 +395,7 @@ web:
                 '\.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$':
                     allow: true
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    myapp:
-        source:
-            root: "/"
-        type: 'python:3.12'
-        web:
-            locations:
-                '/':
-                    # Handle dynamic requests
-                    root: 'public'
-                    passthru: '/index.php'
-                    # Disallow static files
-                    allow: false
-                    rules:
-                        # Allow common image files only.
-                        '\.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$':
-                            allow: true
-```
-{{% /version/specific %}}
+
 
 #### Request buffering
 
@@ -614,7 +409,7 @@ The following table shows the keys in the `request_buffering` dictionary:
 
 The default configuration would look like this:
 
-{{% version/specific %}}
+
 ```yaml {configFile="app"}
 web:
     locations:
@@ -624,22 +419,7 @@ web:
                 enabled: true
                 max_request_size: 250m
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    myapp:
-        source:
-            root: "/"
-        type: 'python:3.12'
-        web:
-            locations:
-                '/':
-                    passthru: true
-                    request_buffering:
-                        enabled: true
-                        max_request_size: 250m
-```
-{{% /version/specific %}}
+
 
 ## Workers
 
@@ -664,7 +444,7 @@ Each worker can differ from the `web` instance in all properties _except_ for:
 
 A worker named `queue` that was small and had a different start command could look like this:
 
-{{% version/specific %}}
+
 ```yaml {configFile="app"}
 workers:
     queue:
@@ -676,23 +456,7 @@ workers:
 
 For resource allocation, using workers in your project requires a [{{< partial "plans/multiapp-plan-name" >}} plan or larger](https://platform.sh/pricing/).
 
-<--->
-```yaml {configFile="app"}
-applications:
-    myapp:
-        source:
-            root: "/"
-        type: 'python:3.12'
-        workers:
-            queue:
-                commands:
-                    start: |
-                        ./worker.sh
-```
 
-Workers require resource definition using `platform resources:set`, same as application containers.
-For more information, see how to [manage resources](../../manage-resources).
-{{% /version/specific %}}
 
 ## Access
 
@@ -705,22 +469,12 @@ The `access` dictionary has one allowed key:
 In the following example, only users with `admin` permissions for the given [environment type](../administration/users.md#environment-type-roles)
 can access the deployed environment via SSH:
 
-{{% version/specific %}}
+
 ```yaml {configFile="app"}
 access:
     ssh: admin
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    myapp:
-        source:
-            root: "/"
-        type: 'python:3.12'
-        access:
-            ssh: admin
-```
-{{% /version/specific %}}
+
 
 ## Variables
 
@@ -742,7 +496,7 @@ The following example sets two variables:
 
   that's available in the `PLATFORM_VARIABLES` environment variable
 
-{{% version/specific %}}
+
 ```yaml {configFile="app"}
 variables:
     env:
@@ -750,20 +504,7 @@ variables:
     d8config:
         "system.site:name": 'My site rocks'
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    myapp:
-        source:
-            root: "/"
-        type: 'python:3.12'
-        variables:
-            env:
-                AUTHOR: 'Juan'
-            d8config:
-                "system.site:name": 'My site rocks'
-```
-{{% /version/specific %}}
+
 
 You can also define and access more [complex values](../development/variables/use-variables.md#access-complex-values).
 
@@ -786,33 +527,20 @@ Each rule has the following properties where at least one is required and `ips` 
 
 The default settings would look like this:
 
-{{% version/specific %}}
+
 ```yaml {configFile="app"}
 firewall:
     outbound:
         - ips: ["0.0.0.0/0"]
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    myapp:
-        source:
-            root: "/"
-        type: 'python:3.12'
-        firewall:
-            outbound:
-                - ips: ["0.0.0.0/0"]
-```
-{{% /version/specific %}}
+
 
 ### Support for rules
 
-{{% version/specific %}}
+
 Where outbound rules for firewalls are supported in all environments.
 For {{% names/dedicated-gen-2 %}} projects, contact support for configuration.
-<--->
-Where outbound rules for firewalls are supported in all environments.
-{{% /version/specific %}}
+
 
 ### Multiple rules
 
@@ -822,7 +550,7 @@ In such cases, a given outbound request is allowed if it matches _any_ of the de
 So in the following example requests to any IP on port 80 are allowed
 and requests to 1.2.3.4 on either port 80 or 443 are allowed:
 
-{{% version/specific %}}
+
 ```yaml {configFile="app"}
 firewall:
     outbound:
@@ -830,20 +558,7 @@ firewall:
           ports: [443]
         - ports: [80]
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    myapp:
-        source:
-            root: "/"
-        type: 'python:3.12'
-        firewall:
-            outbound:
-                - ips: ["1.2.3.4/32"]
-                ports: [443]
-                - ports: [80]
-```
-{{% /version/specific %}}
+
 
 ### Outbound traffic to CDNs
 
@@ -862,7 +577,7 @@ This means that you allow potentially hundreds or thousands of other servers als
 
 An example rule filtering by domain:
 
-{{% version/specific %}}
+
 ```yaml {configFile="app"}
 firewall:
     outbound:
@@ -873,23 +588,7 @@ firewall:
         ips: ["1.2.3.4/29","2.3.4.5"]
         ports: [22]
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    myapp:
-        source:
-            root: "/"
-        type: 'python:3.12'
-        firewall:
-            outbound:
-                - protocol: tcp
-                domains: ["api.stripe.com", "api.twilio.com"]
-                ports: [80, 443]
-                - protocol: tcp
-                ips: ["1.2.3.4/29","2.3.4.5"]
-                ports: [22]
-```
-{{% /version/specific %}}
+
 
 #### Determine which domains to allow
 
@@ -930,22 +629,12 @@ See what the build flavor is for your language:
 In all languages, you can also specify a flavor of `none` to take no action at all
 (which is the default for any language other than PHP and Node.js).
 
-{{% version/specific %}}
+
 ```yaml {configFile="app"}
 build:
     flavor: none
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    myapp:
-        source:
-            root: "/"
-        type: 'nodejs:20'
-        build:
-            flavor: none
-```
-{{% /version/specific %}}
+
 
 ## Dependencies
 
@@ -967,7 +656,7 @@ The format for package names and version constraints are defined by the specific
 
 An example of dependencies in multiple languages:
 
-{{% version/specific %}}
+
 ```yaml {configFile="app"}
 dependencies:
     php: # Specify one Composer package per line.
@@ -983,28 +672,7 @@ dependencies:
     nodejs: # Specify one NPM package per line.
         pm2: '^4.5.0'
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    myapp:
-        source:
-            root: "/"
-        type: 'nodejs:20'
-        dependencies:
-            php: # Specify one Composer package per line.
-                drush/drush: '8.0.0'
-                composer/composer: '^2'
-            python2: # Specify one Python 2 package per line.
-                behave: '*'
-                requests: '*'
-            python3: # Specify one Python 3 package per line.
-                numpy: '*'
-            ruby: # Specify one Bundler package per line.
-                sass: '3.4.7'
-            nodejs: # Specify one NPM package per line.
-                pm2: '^4.5.0'
-```
-{{% /version/specific %}}
+
 
 ## Hooks
 
@@ -1104,7 +772,7 @@ See how to [get cron logs](../increase-observability/logs/access-logs.md#contain
 
 The following table shows the properties for each job:
 
-{{% version/specific %}}
+
 
 | Name               | Type                                         | Required | Description |
 | ------------------ | -------------------------------------------- | -------- | ----------- |
@@ -1113,16 +781,7 @@ The following table shows the properties for each job:
 | `shutdown_timeout` | `integer`                                    | No       | When a cron is canceled, this represents the number of seconds after which a `SIGKILL` signal is sent to the process to force terminate it. The default is `10` seconds. |
 | `timeout`          | `integer`                                    | No       | The maximum amount of time a cron can run before it's terminated. Defaults to the maximum allowed value of `86400` seconds (24 hours).
 
-<--->
 
-| Name               | Type                                         | Required | Description |
-| ------------------ | -------------------------------------------- | -------- | ----------- |
-| `spec`             | `string`                                     | Yes      | The [cron specification](https://en.wikipedia.org/wiki/Cron#Cron_expression). To prevent competition for resources that might hurt performance, use `H` in definitions to indicate an unspecified but invariant time. For example, instead of using `0 * * * *` to indicate the cron job runs at the start of every hour, you can use `H * * * *` to indicate it runs every hour, but not necessarily at the start. This prevents multiple cron jobs from trying to start at the same time. |
-| `commands`         | A [cron commands dictionary](#cron-commands) | Yes      | A definition of what commands to run when starting and stopping the cron job. |
-| `shutdown_timeout` | `integer`                                    | No       | When a cron is canceled, this represents the number of seconds after which a `SIGKILL` signal is sent to the process to force terminate it. The default is `10` seconds. |
-| `timeout`          | `integer`                                    | No       | The maximum amount of time a cron can run before it's terminated. Defaults to the maximum allowed value of `86400` seconds (24 hours).
-
-{{% /version/specific %}}
 
 Note that you can [cancel pending or running crons](../create-apps-environments/cancel-activity).
 
@@ -1133,7 +792,7 @@ Note that you can [cancel pending or running crons](../create-apps-environments/
 | `start`            | `string`  | Yes      | The command that's run. It's run in [Dash](https://en.wikipedia.org/wiki/Almquist_shell). |
 | `stop`             | `string`  | No       | The command that's issued to give the cron command a chance to shutdown gracefully, such as to finish an active item in a list of tasks. Issued when a cron task is interrupted by a user through the CLI or Console. If not specified, a `SIGTERM` signal is sent to the process. |
 
-{{% version/specific %}}
+
 ```yaml {configFile="app"}
 crons:
     mycommand:
@@ -1143,31 +802,14 @@ crons:
             stop: killall sleep
         shutdown_timeout: 18
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    myapp:
-        source:
-            root: "/"
-        type: 'nodejs:20'
-        crons:
-            mycommand:
-                spec: 'H * * * *'
-                commands:
-                    start: sleep 60 && echo sleep-60-finished && date
-                    stop: killall sleep
-                shutdown_timeout: 18
-```
-{{% /version/specific %}}
+
 
 In this example configuration, the [cron specification](#crons) uses the `H` syntax.
 
-{{% version/specific %}}
+
 Note that this syntax is only supported on Grid and {{% names/dedicated-gen-3 %}} projects.
 On {{% names/dedicated-gen-2 %}} projects, use the [standard cron syntax](https://en.wikipedia.org/wiki/Cron#Cron_expression).
-<--->
 
-{{% /version/specific %}}
 
 ### Example cron jobs
 
@@ -1197,7 +839,7 @@ If you want to set up customized cron schedules depending on the environment typ
 define conditional crons.
 To do so, use a configuration similar to the following:
 
-{{% version/specific %}}
+
 ```yaml {configFile="app"}
 crons:
     update:
@@ -1209,24 +851,7 @@ crons:
                    platform source-operation:run update --no-wait --yes
                 fi
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    myapp:
-        source:
-            root: "/"
-        type: 'php:8.2'
-        crons:
-            update:
-                spec: '0 0 * * *'
-                    commands:
-                        start: |
-                            if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-                            platform backup:create --yes --no-wait
-                            platform source-operation:run update --no-wait --yes
-                            fi
-```
-{{% /version/specific %}}
+
 
 ### Cron job timing
 
@@ -1239,37 +864,7 @@ Minimum time between cron jobs being triggered:
 | Professional        | 5 minutes |
 | Elite or Enterprise | 1 minute  |
 
-<--->
-<!-- Version 2 -->
-The minimum time between cron jobs being triggered is 5 minutes.
-{{< /version/specific >}}
 
-For each app container, only one cron job can run at a time.
-If a new job is triggered while another is running, the new job is paused until the other completes.
-
-To minimize conflicts, a random offset is applied to all triggers.
-The offset is a random number of seconds up to 20 minutes or the cron frequency, whichever is smaller.
-
-Crons are also paused while activities such as [backups](/environments/backup) are running.
-The crons are queued to run after the other activity finishes.
-
-To run cron jobs in a timezone other than UTC, set the [timezone property](#top-level-properties).
-
-### Paused crons
-
-[Preview environments](/glossary.md#preview-environment) are often used for a limited time and then abandoned.
-While it's useful for environments under active development to have scheduled tasks,
-unused environments don't need to run cron jobs.
-To minimize unnecessary resource use,
-crons on environments with no deployments are paused.
-
-{{% version/specific %}}
-This affects all environments that aren't live environments.
-This means all environments on Development plans
-and all preview environments on higher plans.
-<--->
-This affects all preview environments, _and_ production environment that do not yet have a domain attached to them.
-{{% /version/specific %}}
 
 Such environments with deployments within 14 days have crons with the status `running`.
 If there haven't been any deployments within 14 days, the status is `paused`.
@@ -1313,30 +908,18 @@ You can also set your [app's runtime timezone](../create-apps-create-apps/timezo
 
 You can enable [PHP extensions](../create-apps-languages/php/extensions) just with a list of extensions:
 
-{{% version/specific %}}
+
 ```yaml {configFile="app"}
 runtime:
     extensions:
         - geoip
         - tidy
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    myapp:
-        source:
-            root: "/"
-        type: 'php:8.2'
-        runtime:
-            extensions:
-                - geoip
-                - tidy
-```
-{{% /version/specific %}}
+
 
 Alternatively, if you need to include configuration options, use a dictionary for that extension:
 
-{{% version/specific %}}
+
 ```yaml {configFile="app"}
 runtime:
     extensions:
@@ -1346,22 +929,7 @@ runtime:
             server_id: foo
             server_token: bar
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    myapp:
-        source:
-            root: "/"
-        type: 'php:8.2'
-        runtime:
-            extensions:
-                - geoip
-                - name: blackfire
-                configuration:
-                    server_id: foo
-                    server_token: bar
-```
-{{% /version/specific %}}
+
 
 
 In this case, the `name` property is required.
@@ -1381,21 +949,14 @@ See more about [PHP-FPM workers and sizing](../create-apps-languages/php/fpm).
 
 The following table shows the properties that can be set in `source`:
 
-{{% version/specific %}}
+
 
 | Name         | Type                     | Required | Description |
 | ------------ | ------------------------ | -------- | ----------- |
 | `operations` | An operations dictionary |          |  Operations that can be applied to the source code. See [source operations](../.././.-source-operations) |
 | `root`       | `string`                 |          |  The path where the app code lives. Defaults to the directory of the `.platform.app.yaml` file. Useful for [multi-app setups](../.././.-multi-app). |
 
-<--->
 
-| Name         | Type                     | Required | Description |
-| ------------ | ------------------------ | -------- | ----------- |
-| `operations` | An operations dictionary |          |  Operations that can be applied to the source code. See [source operations](../.././.-source-operations) |
-| `root`       | `string`                 |          |  The path where the app code lives. Defaults to the root project directory. Useful for [multi-app setups](../.././.-multi-app). |
-
-{{% /version/specific %}}
 
 ## Additional hosts
 
@@ -1406,23 +967,12 @@ Then when your app tries to access the hostname, it's sent to the proper IP addr
 
 So in the following example, if your app tries to access `api.example.com`, it's sent to `192.0.2.23`.
 
-{{% version/specific %}}
+
 ```yaml {configFile="app"}
 additional_hosts:
     api.example.com: "192.0.2.23"
     web.example.com: "203.0.113.42"
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    myapp:
-        source:
-            root: "/"
-        type: 'php:8.2'
-        additional_hosts:
-            api.example.com: "192.0.2.23"
-            web.example.com: "203.0.113.42"
-```
-{{% /version/specific %}}
+
 
 This is equivalent to adding the mapping to the `/etc/hosts` file for the container.

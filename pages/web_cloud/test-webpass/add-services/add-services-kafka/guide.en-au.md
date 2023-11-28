@@ -4,7 +4,7 @@ slug: add-services-kafka
 section: Add-Services
 ---
 
-**Last updated 27th November 2023**
+**Last updated 28th November 2023**
 
 
 ## Objective  
@@ -18,8 +18,8 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 
 You can select the major and minor version. Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
-{{% version/specific %}}
-<!-- API Version 1 -->
+
+
 
 <table>
     <thead>
@@ -39,13 +39,7 @@ You can select the major and minor version. Patch versions are applied periodica
     </tbody>
 </table>
 
-<--->
-<!-- API Version 2 -->
 
-3.2 |  
-|  3.4
-
-{{% /version/specific %}}
 
 {{% relationship-ref-intro %}}
 

@@ -4,7 +4,7 @@ slug: add-services-memcached
 section: Add-Services
 ---
 
-**Last updated 27th November 2023**
+**Last updated 28th November 2023**
 
 
 ## Objective  
@@ -27,8 +27,8 @@ Both Memcached and Redis can be used for application caching. As a general rule,
 
 You can select the major and minor version. Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
-{{% version/specific %}}
-<!-- API Version 1 -->
+
+
 
 <table>
     <thead>
@@ -49,14 +49,7 @@ You can select the major and minor version. Patch versions are applied periodica
     </tbody>
 </table>
 
-<--->
-<!-- API Version 2 -->
 
-1.6 |  
-|  1.5 |  
-|  1.4
-
-{{% /version/specific %}}
 
 {{% relationship-ref-intro %}}
 
@@ -133,6 +126,6 @@ export CACHE_URL="${CACHE_HOST}:${CACHE_PORT}"
 
 {{< /v2connect2app >}}
 
-{{% /version/only %}}
+
 
 

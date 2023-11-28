@@ -4,7 +4,7 @@ slug: create-apps-troubleshoot-disks
 section: Create-Apps
 ---
 
-**Last updated 27th November 2023**
+**Last updated 28th November 2023**
 
 
 
@@ -35,7 +35,7 @@ To fix the error, do one of the following:
 * Increase your plan's storage limits.
   This can only be done by people with the [manage plans permission](../administration/users.md#organization-permissions).
 
-{{% /version/only %}}
+
 
 ## Low disk space
 
@@ -69,18 +69,14 @@ But if you notice that the usage percentage is high, you may need to increase th
 If you find that your application or service is running out of disk space,
 you can increase the available storage.
 
-{{% version/specific %}}
+
 To increase the space available for applications and services,
 use the `disk` keys in your `.platform.app.yaml` and `{{< vendor/configfile "services" >}}` files.
 The sum of all `disk` keys can't exceed the available storage in your plan.
 
 If you need more storage to fit the sum of all `disk` keys, increase your plan's storage limits.
 This can only be done by people with the [manage plans permission](../administration/users.md#organization-permissions).
-<--->
-To increase the space available for applications and services,
-use the `platform resources:set` command.
-For more information, see how to [manage resources](../../manage-resources).
-{{% /version/specific %}}
+
 
 ## No space left on device
 

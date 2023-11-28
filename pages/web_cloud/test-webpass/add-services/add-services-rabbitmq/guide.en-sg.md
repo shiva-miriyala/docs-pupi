@@ -4,7 +4,7 @@ slug: add-services-rabbitmq
 section: Add-Services
 ---
 
-**Last updated 27th November 2023**
+**Last updated 28th November 2023**
 
 
 
@@ -26,8 +26,8 @@ and your messages a safe place to live until they're received.
 
 You can select the major and minor version. Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
-{{% version/specific %}}
-<!-- API Version 1 -->
+
+
 
 <table>
     <thead>
@@ -54,21 +54,13 @@ You can select the major and minor version. Patch versions are applied periodica
     </tbody>
 </table>
 
-<--->
-<!-- API Version 2 -->
 
-3.12 |  
-|  3.11 |  
-|  3.10 |  
-|  3.9
-
-{{% /version/specific %}}
 
 ### Deprecated versions
  The following versions are deprecated. They're available, but they aren't receiving security updates from upstream and aren't guaranteed to work. They'll be removed in the future, so migrate to one of the [supported versions](#supported-versions).
 
-{{% version/specific %}}
-<!-- API Version 1 -->
+
+
 
 <table>
     <thead>
@@ -96,15 +88,7 @@ You can select the major and minor version. Patch versions are applied periodica
     </tbody>
 </table>
 
-<--->
-<!-- API Version 2 -->
 
-3.8 |  
-|  3.7 |  
-|  3.6 |  
-|  3.5
-
-{{% /version/specific %}}
 
 ## Usage example
 
@@ -165,7 +149,7 @@ export AMQP_URL="${QUEUE_SCHEME}://${QUEUE_USERNAME}:${QUEUE_PASSWORD}@${QUEUE_H
 
 {{< /v2connect2app >}}
 
-{{% /version/only %}}
+
 
 ## Connect to RabbitMQ
 
@@ -201,7 +185,7 @@ You can access this UI with an SSH tunnel.
 
 To open a tunnel, follow these steps.
 
-{{% version/specific %}}
+
 
 1\.  
 
@@ -219,19 +203,7 @@ ssh $(platform ssh --pipe) -L 15672:{{< variable "RELATIONSHIP_NAME" >}}.interna
 ssh $(platform ssh --pipe) -L 15672:localhost:15672
 ```
 
-<--->
 
-1\.  SSH into your app container with a flag for local port forwarding:
-
-2\.  
-
-```bash
-ssh $(platform ssh --pipe) -L 15672:{{< variable "RELATIONSHIP_NAME" >}}.internal:15672
-```
-    
-    {{< variable "RELATIONSHIP_NAME" >}} is the [name you defined](#2-add-the-relationship).
-
-{{% /version/specific %}}
 
 2\.  Open `http://localhost:15672` in your browser.
 
@@ -263,47 +235,4 @@ To create virtual hosts, add them to your configuration as in the following exam
 {{< /snippet >}}
 ```
 
-<--->
-<!-- Version 2 -->
 
-```yaml {configFile="services"}
-{{< snippet name="rabbitmq" config="service" >}}
-    type: "rabbitmq:3.12"
-    configuration:
-        vhosts:
-            - host1
-            - host2
-{{< /snippet >}}
-```
-
-{{< /version/specific >}}
-
-{{% relationship-ref-intro %}}
-
-{{% service-values-change %}}
-
-```yaml
-{
-    "username": "guest",
-    "scheme": "amqp",
-    "service": "rabbitmq38",
-    "fragment": null,
-    "ip": "169.254.57.5",
-    "hostname": "iwrccysk3gpam2zdlwdr5fgs2y.rabbitmq38.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
-    "port": 5672,
-    "cluster": "rjify4yjcwxaa-master-7rqtwti",
-    "host": "rabbitmq.internal",
-    "rel": "rabbitmq",
-    "path": null,
-    "query": [],
-    "password": "ChangeMe",
-    "type": "rabbitmq:3.12",
-    "public": false,
-    "host_mapped": false
-}
-```
-
-## Upgrading
-
-When upgrading RabbitMQ, skipping major versions (e.g. 3.7 -> 3.11) [is not supported](https://www.rabbitmq.com/upgrade.html#rabbitmq-version-upgradability).
-Make sure you upgrade sequentially (3.7 -> 3.8 -> 3.9 -> 3.10 -> 3.11).

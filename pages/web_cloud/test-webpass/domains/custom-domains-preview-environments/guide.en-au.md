@@ -4,16 +4,15 @@ slug: custom-domains-preview-environments
 section: Steps
 ---
 
-**Last updated 27th November 2023**
+**Last updated 28th November 2023**
 
 
 
 ## Objective  
 
-{{% version/specific %}}
+
 {{< partial "progressive-rollout/body.md" >}}
-<--->
-{{% /version/specific %}}
+
 
 [Preview environments](/glossary.md#preview-environment) in your project can't use the custom domain [set up on your production environment](../domains-steps).<br/>
 By default and for each preview environment,
@@ -59,7 +58,7 @@ based on the following elements:
 
 You need:
 
-{{% version/specific %}}
+
 - A Grid or {{% names/dedicated-gen-3 %}} project on which you have **admin rights** <BR> 
 
 

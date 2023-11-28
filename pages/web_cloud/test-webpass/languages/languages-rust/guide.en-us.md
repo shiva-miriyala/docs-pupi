@@ -5,7 +5,7 @@ section: Languages
 order: 4
 ---
 
-**Last updated 27th November 2023**
+**Last updated 28th November 2023**
 
 
 
@@ -17,8 +17,8 @@ Web PaaS supports building and deploying applications written in Rust.
 
 {{% major-minor-versions-note %}}
 
-{{% version/specific %}}
-<!-- API Version 1 -->
+
+
 
 <table>
     <thead>
@@ -37,12 +37,7 @@ Web PaaS supports building and deploying applications written in Rust.
     </tbody>
 </table>
 
-<--->
-<!-- API Version 2 -->
 
-1
-
-{{% /version/specific %}}
 
 ## Dependencies
 
@@ -62,7 +57,7 @@ If the program terminates for any reason it is automatically restarted.
 The following basic [app configuration](../../create-apps) is sufficient to run most Rust apps.
 See the [complete example](#complete-example) below for more details.
 
-{{% version/specific %}}
+
 ```yaml {configFile="app"}
 
 # The app's name, which must be unique within the project.
@@ -89,31 +84,7 @@ web:
             allow: false
             passthru: true
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    # The app's name, which must be unique within the project.
-    app:
 
-        # The language and version for your app.
-        type: 'rust:1'
-
-        hooks:
-            build:
-                cargo build
-
-        web:
-            commands:
-                # Customize the start command with your own target.
-                start: './target/debug/hello'
-        
-        locations:
-            /:
-                # Route all requests to the Rust app, unconditionally.
-                allow: false
-                passthru: true
-```
-{{% /version/specific %}}
 
 Note that there is still an Nginx proxy server sitting in front of your application. If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily) or you may route all requests to the Rust app unconditionally, as in the example above.
 
@@ -175,7 +146,7 @@ serde_json = "1.0"
 3\. Add the following [app configuration](../../create-apps):
 
 
-{{% version/specific %}}
+
 ```yaml {configFile="app"}
 
 # The app's name, which must be unique within the project.
@@ -202,31 +173,7 @@ web:
             allow: false
             passthru: true
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    # The app's name, which must be unique within the project.
-    app:
 
-        # The language and version for your app.
-        type: 'rust:1'
-
-        hooks:
-            build:
-                cargo build
-
-        web:
-            commands:
-                # Customize the start command with your own target.
-                start: './target/debug/hello'
-        
-        locations:
-            /:
-                # Route all requests to the Rust app, unconditionally.
-                allow: false
-                passthru: true
-```
-{{% /version/specific %}}
 
 4\. To generate a `Cargo.lock` file,
 

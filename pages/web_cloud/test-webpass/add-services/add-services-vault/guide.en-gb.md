@@ -4,7 +4,7 @@ slug: add-services-vault
 section: Add-Services
 ---
 
-**Last updated 27th November 2023**
+**Last updated 28th November 2023**
 
 
 
@@ -22,8 +22,8 @@ To store secrets such as API keys, create sensitive [environment variables](../a
 
 You can select the major and minor version. Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
-{{% version/specific %}}
-<!-- API Version 1 -->
+
+
 
 <table>
     <thead>
@@ -42,12 +42,7 @@ You can select the major and minor version. Patch versions are applied periodica
     </tbody>
 </table>
 
-<--->
-<!-- API Version 2 -->
 
-1.12
-
-{{% /version/specific %}}
 
 ## Add Vault
 

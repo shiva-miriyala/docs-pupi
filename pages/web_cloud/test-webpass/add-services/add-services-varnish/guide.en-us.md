@@ -4,7 +4,7 @@ slug: add-services-varnish
 section: Add-Services
 ---
 
-**Last updated 27th November 2023**
+**Last updated 28th November 2023**
 
 
 
@@ -19,8 +19,8 @@ But you can include Varnish as a service.
 
 You can select the major and minor version. Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
-{{% version/specific %}}
-<!-- API Version 1 -->
+
+
 
 <table>
     <thead>
@@ -41,14 +41,7 @@ You can select the major and minor version. Patch versions are applied periodica
     </tbody>
 </table>
 
-<--->
-<!-- API Version 2 -->
 
-7.3 |  
-|  7.2 |  
-|  6.3
-
-{{% /version/specific %}}
 
 ## How it works
 

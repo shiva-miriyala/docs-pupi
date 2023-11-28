@@ -5,7 +5,7 @@ section: Tutorials
 order: 9
 ---
 
-**Last updated 27th November 2023**
+**Last updated 28th November 2023**
 
 
 
@@ -18,7 +18,7 @@ To do so, follow these steps.
 
 You need:
 
-{{% version/specific %}}
+
 - An app that works and is ready to be built
 
 - Code in Git
@@ -27,16 +27,7 @@ You need:
 
 - The [{{< vendor/name >}} CLI](../../administration/administration-cli) installed locally
 
-<--->
-- An app that works and is ready to be built
 
-- Code in Git
-
-- A {{< vendor/name >}} account -- if you don't already have one, [register](https://upsun.com/register/).
-
-- The [{{< vendor/name >}} CLI](../../administration/administration-cli) installed locally
-
-{{% /version/specific %}}
 
 ## 1. Export from previous system
 
@@ -84,7 +75,7 @@ You likely want to configure three areas:
 <!-- Web PaaS -->
 You can also take guidance from the [project templates](../../development/development-templates),
 which are starting points for various technology stacks with working configuration examples.
-{{% /version/only %}}
+
 
 When you've added your configuration, make sure to commit it to Git.
 
@@ -127,7 +118,7 @@ upsun resources:set
 Follow the prompts to set CPU, RAM, disk, and number of instances for each container,
 and read [the manage resources](../../manage-resources) documentation for more information.
 
-{{% /version/only %}}
+
 
 ## {{% version/ifelse "5" "6" %}}. Import data
 
@@ -150,7 +141,7 @@ Upload to each mount separately.
 
 Suppose for instance you have the following file mounts defined:
 
-{{% version/specific %}}
+
 <!-- Web PaaS -->
 ```yaml {configFile="app"}
 mounts:
@@ -161,20 +152,7 @@ mounts:
         source: local
         source_path: private
 ```
-<--->
-<!-- Upsun -->
-```yaml {configFile="app"}
-applications:
-    myapp:
-        mounts:
-            'web/uploads':
-                source: local
-                source_path: uploads
-            'private':
-                source: local
-                source_path: private
-```
-{{% /version/specific %}}
+
 
 Upload to each of directories above by running the following commands:
 
@@ -197,17 +175,14 @@ Now that your app is ready to be deployed, you can do more:
 <!-- Web PaaS -->
 - Upgrade from a Development plan.
 
-{{% /version/only %}}
+
 - [Add a domain](../../domains/domains-steps).
 
 - Set up for [local development](../../development/development-local).
 
 - Configure [health notifications](../../integrations/integrations-notifications).
 
-{{% version/specific %}}
+
 - For monitoring and profiling, [integrate Blackfire](../../increase-observability/increase-observability-integrate-observability/blackfire).
 
-<--->
-- For monitoring and profiling, [integrate Blackfire](../../increase-observability/increase-observability-application-metrics/blackfire).
 
-{{% /version/specific %}}

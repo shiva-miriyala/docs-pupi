@@ -5,7 +5,7 @@ section: Environments
 hidden: true
 ---
 
-**Last updated 27th November 2023**
+**Last updated 28th November 2023**
 
 
 
@@ -204,7 +204,7 @@ Staging
 To prevent unnecessary consumption of resources,
 Web PaaS automatically pauses preview environments ([of both development and staging types](/glossary.md#environment-type)) that haven't been redeployed in 14 days.
 
-{{% version/specific %}}
+
 
 > [!primary]  
 > 
@@ -229,11 +229,7 @@ if you are in one of the following situations:
 - You are using your staging environment to run integration or penetration tests
 
 
-<--->
 
-You can also pause an environment manually at any time.
-
-{{% /version/specific %}}
 
 ### Pause an environment
 

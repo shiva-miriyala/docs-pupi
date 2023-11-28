@@ -5,7 +5,7 @@ section: Tutorials
 order: 9
 ---
 
-**Last updated 27th November 2023**
+**Last updated 28th November 2023**
 
 
 
@@ -92,7 +92,7 @@ so you can run a cron job in your app container.
 2\. Add a build hook to your app configuration to install the CLI as part of the build process:
 
 
-{{% version/specific %}}
+
 ```yaml {configFile="app"}
 hooks:
     build: |
@@ -103,26 +103,13 @@ hooks:
         echo "Testing Web PaaS CLI"
         platform
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    myapp:
-        hooks:
-            build: |
-                set -e
-                echo "Installing Web PaaS CLI"
-                curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
 
-                echo "Testing Web PaaS CLI"
-                platform
-```
-{{% /version/specific %}}
 
 3\. Then, to configure a cron job to automatically update your dependencies once a day,
 
    use a configuration similar to the following:
 
-{{% version/specific %}}
+
 ```yaml {configFile="app"}
 crons:
     update:
@@ -134,22 +121,7 @@ crons:
                 platform sync -e development code data --no-wait --yes
                 platform source-operation:run update --no-wait --yes
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    myapp:
-        # ...
-        crons:
-            update:
-                # Run the code below every day at midnight.
-                spec: '0 0 * * *'
-                commands:
-                    start: |
-                        set -e
-                        platform sync -e development code data --no-wait --yes
-                        platform source-operation:run update --no-wait --yes
-```
-{{% /version/specific %}}
+
 
 The example above synchronizes the `development` environment with its parent
 and then runs the `update` source operation defined [previously](#1-define-a-source-operation-to-update-your-dependencies).

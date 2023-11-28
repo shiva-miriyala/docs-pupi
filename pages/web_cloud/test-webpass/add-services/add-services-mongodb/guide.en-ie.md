@@ -4,7 +4,7 @@ slug: add-services-mongodb
 section: Add-Services
 ---
 
-**Last updated 27th November 2023**
+**Last updated 28th November 2023**
 
 
 ## Objective  
@@ -32,8 +32,8 @@ You can select the major and minor version. Patch versions are applied periodica
 
 {{% premium-features/add-on feature="MongoDB Enterprise" %}}
 
-{{% version/specific %}}
-<!-- API Version 1 -->
+
+
 
 <table>
     <thead>
@@ -58,21 +58,13 @@ You can select the major and minor version. Patch versions are applied periodica
     </tbody>
 </table>
 
-<--->
-<!-- API Version 2 -->
 
-6.0 |  
-|  5.0 |  
-|  4.4 |  
-|  4.2
-
-{{% /version/specific %}}
 
 ### Deprecated versions
  The following versions are deprecated. They're available, but they aren't receiving security updates from upstream and aren't guaranteed to work. They'll be removed in the future, so migrate to one of the [supported versions](#supported-versions).
 
-{{% version/specific %}}
-<!-- API Version 1 -->
+
+
 
 <table>
     <thead>
@@ -91,12 +83,7 @@ You can select the major and minor version. Patch versions are applied periodica
     </tbody>
 </table>
 
-<--->
-<!-- API Version 2 -->
 
-4.0
-
-{{% /version/specific %}}
 
 ### Legacy edition
 
@@ -212,7 +199,7 @@ export DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}
 
 {{< /v2connect2app >}}
 
-{{% /version/only %}}
+
 
 ## Access the service directly
 

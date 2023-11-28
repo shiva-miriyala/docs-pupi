@@ -4,7 +4,7 @@ slug: create-apps-runtime-operations
 section: Create-Apps
 ---
 
-**Last updated 27th November 2023**
+**Last updated 28th November 2023**
 
 
 
@@ -21,13 +21,13 @@ without having to rebuild your whole app.
 
 {{% version/only "1" %}}
 You can use runtime operations if you have Grid or {{% names/dedicated-gen-3 %}} environments.
-{{% /version/only %}}
+
 
 ## Define a runtime operation
 
 To define a runtime operation, add a configuration similar to the following:
 
-{{% version/specific %}}
+
 ```yaml {configFile="app"}
 operations:
   {{< variable "RUNTIME_OPERATION_NAME" >}}:
@@ -35,19 +35,7 @@ operations:
     commands:
       start: {{< variable "COMMAND" >}}
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    myapp:
-        source:
-            root: "/"
-        operations:
-            {{< variable "RUNTIME_OPERATION_NAME" >}}:
-                role: {{< variable "USER_ROLE" >}}
-                commands:
-                    start: {{< variable "COMMAND" >}}
-```
-{{% /version/specific %}}
+
 
 When you define a runtime operation,
 you can specify which users can trigger it according to their user `role`:
@@ -65,7 +53,7 @@ by default all users with the `contributor` role can trigger it.
 For example, to allow admin users to clear the cache of a Drupal site,
 you could define an operation like the following:
 
-{{% version/specific %}}
+
 ```yaml {configFile="app"}
 operations:
     clear-rebuild:
@@ -73,19 +61,7 @@ operations:
         commands:
             start: drush cache:rebuild
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    myapp:
-        source:
-            root: "/"
-        operations:
-            clear-rebuild:
-                role: admin
-                commands:
-                    start: drush cache:rebuild
-```
-{{% /version/specific %}}
+
 
 The name of the runtime operation in this case is `clear-rebuild`.
 
@@ -130,95 +106,7 @@ When you use a static site generator like [Gatsby](../create-apps-guides/gatsby)
 or [Next.js](../create-apps-guides/nextjs) with [a headless backend](../create-apps-guides/gatsby/headless),
 you need to run a second `build` step to get your app ready for production.
 
-<--->
 
-During every Web PaaS deployment, a standard [`build` step](/learn/overview/build-deploy.md#the-build) is run.
-When you use a static site generator like Gatsby
-or Next.js with a headless backend
-you need to run a second `build` step to get your app ready for production.
-
-{{< /version/specific >}}
-
-This is because, as its framework is being built,
-your frontend needs to pull content-related data from your backend’s API
-(to generate all the static HTML pages your site is to serve).
-To accomplish this on Web PaaS, where each app goes through a build-deploy pipeline in parallel,
-your frontend’s build must be delayed _until after_ your backend has fully deployed.
-It's often delayed up until the [`post_deploy` hook](../create-apps/hooks/hooks-comparison.md#post-deploy-hook) stage,
-when the filesystem is read-only.
-
-You can use a runtime operation to trigger the second `build` step
-after the initial deployment of your app or after a redeployment.
-You can also trigger it when you need to fetch content from your backend
-but want to avoid going through the whole Web PaaS [build and deploy processes](../../learn/learn-overview/build-deploy) again.
-
-> [!primary]  
-> 
-> The following examples assume that the frontend and backend containers are included in the same environment.
-> This isn’t necessary for the commands to run successfully.<BR>
-> What _is_ necessary is that the build destination for your frontend **is  writable at runtime**
-> (meaning, you must [define a mount](../create-apps/app-reference.md#mounts) for it).
-> If you don’t want to include a build within a mount (especially if your data source **isn’t** on Web PaaS),
-> you can use [source operations](../create-apps-create-apps/source-operations) to achieve a similar effect,
-> but through generating a new commit.
-> 
-> 
-
-> [!tabs]      
-> Gatsby     
->> ```      
->> {!> web/web-paas/ !}  
->> ```     
-
-### Execute actions on your Node.js app
-
-You can define runtime operations for common [pm2](https://pm2.io/docs/runtime/overview/) process manager tasks. 
-
-> [!tabs]      
-> Ping your app     
->> ```      
->> {!> web/web-paas/ !}  
->> ```     
-> Reload your app     
->> ```      
->> {!> web/web-paas/ !}  
->> ```     
-> Restart your app     
->> ```      
->> {!> web/web-paas/ !}  
->> ```     
-
-### Define management commands on your Django project
-
-On a Django project, you can [define custom `django-admin` commands](https://docs.djangoproject.com/en/4.2/howto/custom-management-commands/), for example to run a one-off management command (`manual migration` in the example above) outside of the Django ORM migration framework.
-To do so, define a runtime operation similar to the following:
-
-{{% version/specific %}}
-```yaml {configFile="app"}
-name: app
-
-type: python:3.12
-
-operations:
-    manual-migration:
-        role: admin 
-        commands: 
-            start: python manage.py manual_migration
-```
-<--->
-```yaml {configFile="app"}
-applications: 
-    myapp: 
-        source:
-            root: "/"
-        type: python:3.12
-        operations:
-            manual-migration:
-                role: admin 
-                commands: 
-                    start: python manage.py manual_migration
-```
-{{% /version/specific %}}
 
 To trigger your runtime operation, run a command similar to the following:
 
