@@ -1,12 +1,7 @@
 ---
 title: Pull code from a private Git repository
-slug: development-private-repository
-section: Development
-order: 5
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -47,7 +42,7 @@ For example, you can clone a repository in your [`build` hook](../development-cr
 
 
 <!-- Web PaaS -->
-```yaml {configFile="app"}
+```yaml 
 hooks:
     build: |
         set -e

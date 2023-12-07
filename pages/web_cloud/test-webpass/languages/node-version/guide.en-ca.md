@@ -1,11 +1,7 @@
 ---
 title: Manage Node.js versions
-slug: node-version
-section: Nodejs
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -42,7 +38,7 @@ including Windows Subsystem for Linux.
 
 
 
-```yaml {configFile="app"}
+```yaml 
 dependencies:
     nodejs:
         n: "*"
@@ -55,7 +51,7 @@ dependencies:
 
 
 
-```yaml {configFile="app"}
+```yaml 
 variables:
     env:
         N_PREFIX: /app/.global
@@ -66,7 +62,7 @@ variables:
 
 
 
-```yaml {configFile="app"}
+```yaml 
 hooks:
     build: |
         # Exit the hook on any failure
@@ -86,7 +82,7 @@ You can verify this by running `node -v`.
 Your final app configuration should look something like this:
 
 
-```yaml {configFile="app"}
+```yaml 
 name: app
 type: 'python:3.12'
 dependencies:
@@ -129,7 +125,7 @@ To use `nvm`, follow these steps:
    Add it to your [app configuration](../../create-apps):
 
 
-```yaml {configFile="app"}
+```yaml 
 variables:
     env:
         # Update for your desired NVM version.
@@ -142,7 +138,7 @@ variables:
    For your base version, set it in your app configuration:
 
 
-```yaml {configFile="app"}
+```yaml 
 variables:
     env:
         # Update these for your desired NVM and Node versions.
@@ -157,7 +153,7 @@ variables:
 
 
 
-```yaml {configFile="app"}
+```yaml 
 hooks:
     build: |
         set -e
@@ -188,7 +184,7 @@ hooks:
 
 
 
-```yaml {configFile="app"}
+```yaml 
 hooks:
     build: |
         ...
@@ -226,7 +222,7 @@ export NVM_DIR="$PLATFORM_APP_DIR/.nvm"
 Your final app configuration should look something like the following:
 
 
-```yaml {configFile="app"}
+```yaml 
 name: app
 type: 'python:3.12'
 variables:

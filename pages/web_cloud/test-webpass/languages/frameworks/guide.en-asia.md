@@ -1,11 +1,7 @@
 ---
 title: Java featured frameworks
-slug: frameworks
-section: Java
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 ## Hibernate
 

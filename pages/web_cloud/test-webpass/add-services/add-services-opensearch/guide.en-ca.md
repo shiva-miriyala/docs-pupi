@@ -1,11 +1,7 @@
 ---
 title: OpenSearch (search service)
-slug: add-services-opensearch
-section: Add-Services
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 ## Objective  
 
@@ -43,7 +39,7 @@ To update the versions in this table, use docs/data/registry.json
     </tbody>
 </table>
 
-On Grid and {{% names/dedicated-gen-3 %}}, from version 2, you only specify the major version.
+On Grid and Dedicated Gen 3, from version 2, you only specify the major version.
 The latest compatible minor version and patches are applied automatically. On Grid, version 1 represents a rolling release - the latest minor version available from the upstream.
 
 
@@ -117,10 +113,10 @@ switch to [a supported version](#supported-versions).
 
 To use the configured service in your app, add a configuration file similar to the following to your project.
 
-{{< version/specific >}}
+
 <!-- Version 1: .environment shortcode + context -->
 
-```yaml {configFile="app"}
+```yaml 
 {{< snippet name="myapp" config="app" root="myapp" >}}
 # Relationships enable an app container's access to a service.
 relationships:

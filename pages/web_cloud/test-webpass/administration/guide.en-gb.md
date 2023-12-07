@@ -1,10 +1,4 @@
 ---
 title: Administration
-slug: administration
-section: Administration
-hidden: true
-order: 11
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-

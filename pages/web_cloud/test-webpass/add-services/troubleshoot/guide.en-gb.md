@@ -1,11 +1,7 @@
 ---
 title: Troubleshoot MySQL
-slug: troubleshoot
-section: Mysql
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -64,7 +60,7 @@ Errors such as `PDO Exception 'MySQL server has gone away'` are usually the resu
 Get an estimate of current disk usage using the CLI command `platform db:size`.
 Just keep in mind it's an estimate and not exact.
 
-{{< version/specific >}}
+
 <!-- Version 1 -->
 
 Allocate more space to the service in [`{{< vendor/configfile "services" >}}`](../).

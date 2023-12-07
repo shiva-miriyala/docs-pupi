@@ -1,11 +1,7 @@
 ---
 title: PostgreSQL (Database service)
-slug: add-services-postgresql
-section: Add-Services
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -158,7 +154,7 @@ See the [PostgreSQL documentation](../../https:/https:-/www.postgresql.org/docs/
 <!-- Version 2: .environment shortcode + context -->
 {{% version/only "2" %}}
 
-```yaml {configFile="app"}
+```yaml 
 {{< snippet name="myapp" config="app" root="myapp" >}}
 # Relationships enable an app container's access to a service.
 relationships:
@@ -289,7 +285,7 @@ Under the `configuration` key of your service there are two additional keys:
 
 Consider the following illustrative example:
 
-{{< version/specific >}}
+
 <!-- Version 1 -->
 
 ```yaml {configFile="services"}

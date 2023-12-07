@@ -1,11 +1,7 @@
 ---
 title: Proxy routes
-slug: define-routes-proxy
-section: Define-Routes
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 > [!primary]  
 > 
@@ -20,7 +16,7 @@ Basic redirects only work within the same project, so use proxy routes for route
 
 You can define an external proxy on your Web PaaS project by defining a route like the following:
 
-{{< version/specific >}}
+
 <!-- Web PaaS configuration-->
 ```yaml {configFile="routes"}
 https://{default}/foo:

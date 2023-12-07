@@ -1,11 +1,7 @@
 ---
 title: Swoole
-slug: swoole
-section: Php
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -34,7 +30,7 @@ Override the default web server with a [custom start command](./_index.md#altern
 Octane should listen on a TCP socket.
 
 
-```yaml {configFile="app"}
+```yaml 
 web:
     upstream:
         socket_family: tcp

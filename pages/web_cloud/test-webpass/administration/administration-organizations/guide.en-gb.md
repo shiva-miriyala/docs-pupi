@@ -1,12 +1,7 @@
 ---
 title: Organizations
-slug: administration-organizations
-section: Administration
-order: 11
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  

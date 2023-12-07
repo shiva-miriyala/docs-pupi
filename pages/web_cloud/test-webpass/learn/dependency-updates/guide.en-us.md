@@ -1,12 +1,7 @@
 ---
 title: Automate your code updates
-slug: dependency-updates
-section: Tutorials
-order: 9
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -93,7 +88,7 @@ so you can run a cron job in your app container.
 
 
 
-```yaml {configFile="app"}
+```yaml 
 hooks:
     build: |
         set -e
@@ -110,7 +105,7 @@ hooks:
    use a configuration similar to the following:
 
 
-```yaml {configFile="app"}
+```yaml 
 crons:
     update:
         # Run the code below every day at midnight.

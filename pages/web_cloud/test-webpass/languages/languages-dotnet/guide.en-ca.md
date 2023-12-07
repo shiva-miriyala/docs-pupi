@@ -1,12 +1,7 @@
 ---
 title: C#/.NET Core
-slug: languages-dotnet
-section: Languages
-order: 4
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 ## Objective  
 
@@ -22,7 +17,7 @@ You can select the major and minor version. Patch versions are applied periodica
 <table>
     <thead>
         <tr>
-            <th>Grid and {{% names/dedicated-gen-3 %}}</th>
+            <th>Grid and Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
@@ -39,17 +34,17 @@ You can select the major and minor version. Patch versions are applied periodica
 
 ### Specify the language
 
-To use .Net Core, specify dotnet as your [app's `dotnet`](/create-apps/app-reference.html#dotnets):
+To use .Net Core, specify type as your app's `type`
 
 
 
-```yaml {configFile="app"}
+```yaml 
 type: 'dotnet:<VERSION_NUMBER>'
 ```
 
 For example:
 
-```yaml {configFile="app"}
+```yaml 
 type: 'dotnet:7.0'
 ```
 
@@ -61,7 +56,7 @@ To build basic applications in .NET containers, it's enough to use the [`dotnet 
 with the default [framework-dependent deployment](https://docs.microsoft.com/en-us/dotnet/core/deploying/#publish-framework-dependent):
 
 
-```yaml {configFile="app"}
+```yaml 
 hooks:
     build: |
         set -xe
@@ -107,7 +102,7 @@ The following example configures an environment to serve the static content fold
 while routing other traffic to the .NET application.
 
 
-```yaml {configFile="app"}
+```yaml 
 web:
     locations:
         "/":
@@ -127,7 +122,7 @@ web:
 You can also route all requests to the application unconditionally:
 
 
-```yaml {configFile="app"}
+```yaml 
 web:
     locations:
         "/":

@@ -1,11 +1,7 @@
 ---
 title: Authenticate the CLI using an API token
-slug: api-tokens
-section: Cli
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -134,7 +130,7 @@ To do so, set your API token as a [top-level environment variable](../../develop
 Then add a build hook to your app configuration to install the CLI as part of the build process.
 
 <!-- @todo: CLI installation path for CI -->
-```yaml {configFile="app"}
+```yaml 
 hooks:
     build: |
         set -e

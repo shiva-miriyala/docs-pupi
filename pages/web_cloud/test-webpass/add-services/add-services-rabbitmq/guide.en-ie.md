@@ -1,11 +1,7 @@
 ---
 title: RabbitMQ (message queue service)
-slug: add-services-rabbitmq
-section: Add-Services
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -116,7 +112,7 @@ You can select the major and minor version. Patch versions are applied periodica
 <!-- Version 2: .environment shortcode + context -->
 {{% version/only "2" %}}
 
-```yaml {configFile="app"}
+```yaml 
 {{< snippet name="myapp" config="app" root="myapp" >}}
 # Relationships enable an app container's access to a service.
 relationships:
@@ -221,7 +217,7 @@ You can configure additional [virtual hosts](../../https:/https:-/www.rabbitmq.c
 which can be useful for separating resources, such as exchanges, queues, and bindings, into their own namespaces.
 To create virtual hosts, add them to your configuration as in the following example:
 
-{{< version/specific >}}
+
 <!-- Version 1 -->
 
 ```yaml {configFile="services"}

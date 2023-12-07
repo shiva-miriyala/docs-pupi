@@ -1,11 +1,7 @@
 ---
 title: Source operations
-slug: create-apps-source-operations
-section: Create-Apps
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -61,7 +57,7 @@ A source operation requires two things:
 The syntax is similar to the following:
 
 
-```yaml {configFile="app"}
+```yaml 
 source:
     operations:
         {{< variable "SOURCE_OPERATION_NAME" >}}:
@@ -72,7 +68,7 @@ source:
 For example, to update a file from a remote location, you could define an operation like this:
 
 
-```yaml {configFile="app"}
+```yaml 
 source:
     operations:
         update-file:
@@ -117,7 +113,7 @@ For example, you might want to have a `FILE` variable available with the value `
 to pass to a source operation similar to the following:
 
 
-```yaml {configFile="app"}
+```yaml 
 source:
     operations:
         update-file:
@@ -192,7 +188,7 @@ so you can run a cron job in your app container.
 2\.  Add a build hook to your app configuration to install the CLI as part of the build process:
 
 
-```yaml {configFile="app"}
+```yaml 
 hooks:
     build: |
         set -e
@@ -208,7 +204,7 @@ hooks:
     use a configuration similar to the following:
 
 
-```yaml {configFile="app"}
+```yaml 
 crons:
     update:
         # Run the code below every day at midnight.
@@ -249,7 +245,7 @@ The following source operation syncronizes your branch with an upstream Git repo
 
 
    
-```yaml {configFile="app"}
+```yaml 
 source:
     operations:
         upstream-update:
@@ -278,7 +274,7 @@ This can be useful if you didn't properly test the changes of another operation
 and you need to quickly revert to the previous state.
 
 
-```yaml {configFile="app"}
+```yaml 
 source:
     operations:
         revert:
@@ -296,7 +292,7 @@ the operation reverts to the last commit pushed to that branch.
 The following source operation uses Composer to update Drupal Core:
 
 
-```yaml {configFile="app"}
+```yaml 
 source:
     operations:
         update-drupal-core:
@@ -320,7 +316,7 @@ You can define the Drupal extension by setting an `EXTENSION` variable
 or [overriding it](#use-variables-in-your-source-operations) when running the source operation.
 
 
-```yaml {configFile="app"}
+```yaml 
 source:
     operations:
         download-drupal-extension:
@@ -343,7 +339,7 @@ you need to enable the new extension via the Drupal management interface or usin
 The following source operation updates all Git submodules recursively:
 
 
-```yaml {configFile="app"}
+```yaml 
 source:
     operations:
         rebuild:

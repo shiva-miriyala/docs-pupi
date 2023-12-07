@@ -1,11 +1,7 @@
 ---
 title: Create a basic PHP app with a front controller
-slug: php-basic
-section: Web
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -18,7 +14,7 @@ The following example shows how for such an app you might start defining [your w
 Start by defining your document root (where all your publicly visible pages are).
 
 
-```yaml {configFile="app"}
+```yaml 
 web:
     locations:
         '/':
@@ -31,7 +27,7 @@ web:
 Define where all requests that don't match a file in the document root are sent.
 
 
-```yaml {configFile="app"}
+```yaml 
 web:
     locations:
         '/':
@@ -48,7 +44,7 @@ Because it handles dynamic requests, you want to ensure that scripts are enabled
 and responses aren't cached.
 
 
-```yaml {configFile="app"}
+```yaml 
 web:
     locations:
         '/':
@@ -66,7 +62,7 @@ You might want to define specific rules for the location.
 For example, you might want to allow all kinds of files except mp4 files.
 
 
-```yaml {configFile="app"}
+```yaml 
 web:
     locations:
         '/':
@@ -87,7 +83,7 @@ For example, you might have files in your `/public/images` directory that are se
 You could define a specific cache time for them and limit them to only static image files.
 
 
-```yaml {configFile="app"}
+```yaml 
 web:
     locations:
         '/':
@@ -112,7 +108,7 @@ web:
 ## Complete example
 
 
-```yaml {configFile="app"}
+```yaml 
 web:
     locations:
         '/':

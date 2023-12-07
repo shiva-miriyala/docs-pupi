@@ -1,11 +1,7 @@
 ---
 title: Manage Python dependencies
-slug: dependencies
-section: Python
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -98,7 +94,7 @@ To set up Poetry on Web PaaS, follow these steps:
     Set the variables as follows:
 
 
-```yaml {configFile="app"}
+```yaml 
 variables:
     env:
         POETRY_VIRTUALENVS_IN_PROJECT: true

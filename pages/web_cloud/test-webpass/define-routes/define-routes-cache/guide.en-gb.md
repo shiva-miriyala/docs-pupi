@@ -1,11 +1,7 @@
 ---
 title: HTTP cache
-slug: define-routes-cache
-section: Define-Routes
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 ## Objective  
 
@@ -34,7 +30,7 @@ The HTTP cache is enabled by default, however you may wish to override this beha
 
 To configure the HTTP cache, add a `cache` key to your route. You may like to start with the defaults:
 
-{{< version/specific >}}
+
 <!-- Web PaaS configuration-->
 ```yaml {configFile="routes"}
 https://{default}/:

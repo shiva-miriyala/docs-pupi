@@ -1,11 +1,7 @@
 ---
 title: Memcached (Object cache)
-slug: add-services-memcached
-section: Add-Services
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 ## Objective  
 
@@ -94,7 +90,7 @@ You can select the major and minor version. Patch versions are applied periodica
 <!-- Version 2: .environment shortcode + context -->
 {{% version/only "2" %}}
 
-```yaml {configFile="app"}
+```yaml 
 {{< snippet name="myapp" config="app" root="myapp" >}}
 
 # Other options...

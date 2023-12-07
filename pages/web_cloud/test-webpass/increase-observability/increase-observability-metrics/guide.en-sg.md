@@ -1,18 +1,14 @@
 ---
 title: Infrastructure metrics
-slug: increase-observability-metrics
-section: Increase-Observability
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
 
 Web PaaS projects are accompanied by live infrastructure metrics that provide an overview of resource usage for environments.
 
-{{< version/specific >}}
+
 <!-- Web PaaS, version 1 -->
 Within the Console, metrics can be found for an environment under **Metrics**.
 
@@ -26,10 +22,10 @@ but are available for Grid environments (such as your preview environments).
 
 ![A screenshot of what the metrics dashboard displays for {{% names/dedicated-gen-2 %}} environments](images/all-dedicated.png "0.45")
 
-[{{% names/dedicated-gen-3 %}} environments](../../dedicated-gen-3): each of the three hosts and their average.
-These metrics are available for all of your {{% names/dedicated-gen-3 %}} environments.
+[Dedicated Gen 3 environments](../../dedicated-gen-3): each of the three hosts and their average.
+These metrics are available for all of your Dedicated Gen 3 environments.
 
-![A screenshot of what the metrics dashboard displays for {{% names/dedicated-gen-3 %}} environments](images/all-dedicated-gen3.png "0.45")
+![A screenshot of what the metrics dashboard displays for Dedicated Gen 3 environments](images/all-dedicated-gen3.png "0.45")
 
 Grid environments: your service, app, and worker containers.
 These metrics are available for all of your Grid environments.
@@ -44,9 +40,9 @@ These metrics are available for all of your Grid environments.
 
 
 
-#### {{% names/dedicated-gen-3 %}} environments
+#### Dedicated Gen 3 environments
 
-For {{% names/dedicated-gen-3 %}} environments, the thresholds are set for each container.
+For Dedicated Gen 3 environments, the thresholds are set for each container.
 
 
 

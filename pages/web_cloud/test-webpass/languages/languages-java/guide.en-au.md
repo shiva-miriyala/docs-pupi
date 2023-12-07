@@ -1,12 +1,7 @@
 ---
 title: Java
-slug: languages-java
-section: Languages
-order: 4
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 ## Objective  
 
@@ -24,7 +19,7 @@ Java is a general-purpose programming language, and one of the most popular in t
 <table>
     <thead>
         <tr>
-            <th>Grid and {{% names/dedicated-gen-3 %}}</th>
+            <th>Grid and Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
@@ -50,17 +45,17 @@ To save space and reduce potential vulnerabilities, they don't contain GUI class
 
 ### Specify the language
 
-To use Java, specify java as your [app's `java`](/create-apps/app-reference.html#javas):
+To use Java, specify type as your app's `type`
 
 
 
-```yaml {configFile="app"}
+```yaml 
 type: 'java:<VERSION_NUMBER>'
 ```
 
 For example:
 
-```yaml {configFile="app"}
+```yaml 
 type: 'java:21'
 ```
 
@@ -83,7 +78,7 @@ If the version you need differs from the version on your container, you can inst
 Add something like the following to your [app configuration](../../create-apps):
 
 
-```yaml {configFile="app"}
+```yaml 
 variables:
     env:
         MAVEN_VERSION: {{< variable "DESIRED_VERSION_NUMBER" "3.8.6" >}}

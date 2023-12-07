@@ -1,11 +1,7 @@
 ---
 title: Network Storage
-slug: add-services-network-storage
-section: Add-Services
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -141,7 +137,7 @@ while `service` mounts refer to the same file system.
 
 For example, you can define a network storage service:
 
-{{< version/specific >}}
+
 <!-- Version 1 -->
 
 ```yaml {configFile="services"}
@@ -153,7 +149,7 @@ For example, you can define a network storage service:
 
 
 
-{{< version/specific >}}
+
 <!-- Version 1 -->
 Both the web instance and the `queue` worker have two mount points:
 
@@ -175,10 +171,10 @@ For that case, all that's needed is to set the necessary file mounts as `service
 For example, the following `.platform.app.yaml` file (fragment) keeps Drupal files directories shared between web and worker instances while keeping the Drush backup directory web-only (as it has no need to be shared).
 (This assumes a Network Storage service named `files` has also been defined in `{{< vendor/configfile "services" >}}`.)
 
-{{< version/specific >}}
+
 <!-- Version 1 -->
 
-```yaml {configFile="app"}
+```yaml 
 {{< snippet name="my-app" config="app" >}}
 
 # The type of the application to build.
@@ -253,7 +249,7 @@ However, the process is fundamentally "just" moving files around on disk, so it'
 
 Suppose you have this mount configuration:
 
-```yaml {configFile="app"}
+```yaml 
 {{% snippet name="false" config="app" root="false" %}}
 mounts:
     web/uploads:
@@ -269,7 +265,7 @@ The following approximate steps do so with a minimum of service interruption.
 
    that has at least enough space for your existing files with some buffer.
 
-{{< version/specific >}}
+
 <!-- Version 1 -->
 
 ```yaml {configFile="services"}

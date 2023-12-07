@@ -1,11 +1,7 @@
 ---
 title: {{% vendor/name %}} development environments
-slug: development
-section: Architecture
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 ## Architecture (Development Environments)
 

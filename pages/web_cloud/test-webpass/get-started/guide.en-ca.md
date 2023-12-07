@@ -1,9 +1,4 @@
 ---
 title: Get started
-slug: get-started
-section: Get-Started
-hidden: true
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-

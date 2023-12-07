@@ -1,12 +1,7 @@
 ---
 title: Going Live - Troubleshooting
-slug: domains-troubleshoot
-section: Domains
-order: 7
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 ## Objective  
 

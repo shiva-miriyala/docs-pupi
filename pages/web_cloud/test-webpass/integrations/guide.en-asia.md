@@ -1,9 +1,4 @@
 ---
 title: Integrations
-slug: integrations
-section: Integrations
-hidden: true
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-

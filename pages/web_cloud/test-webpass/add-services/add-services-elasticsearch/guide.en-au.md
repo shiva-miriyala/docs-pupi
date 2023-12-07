@@ -1,11 +1,7 @@
 ---
 title: Elasticsearch (Search service)
-slug: add-services-elasticsearch
-section: Add-Services
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 ## Objective  
 
@@ -181,7 +177,7 @@ Note that configuration for [premium versions](#supported-versions) may differ s
 <!-- Version 2: .environment shortcode + context -->
 {{% version/only "2" %}}
 
-```yaml {configFile="app"}
+```yaml 
 {{< snippet name="myapp" config="app" root="myapp" >}}
 
 # Other options...
@@ -234,7 +230,7 @@ No username or password is required to connect to it.
 Starting with Elasticsearch 7.2 you may optionally enable HTTP Basic authentication.
 To do so, include the following in your `{{< vendor/configfile "services" >}}` configuration:
 
-{{< version/specific >}}
+
 <!-- Version 1 -->
 
 ```yaml {configFile="services"}

@@ -1,11 +1,7 @@
 ---
 title: PHP-FPM sizing
-slug: fpm
-section: Php
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -131,7 +127,7 @@ and your reserved memory to be 80 MB,
 you can use:
 
 
-```yaml {configFile="app"}
+```yaml 
 runtime:
     sizing_hints:
         request_memory: 110

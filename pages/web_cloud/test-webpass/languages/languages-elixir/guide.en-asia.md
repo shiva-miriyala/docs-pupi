@@ -1,12 +1,7 @@
 ---
 title: Elixir
-slug: languages-elixir
-section: Languages
-order: 4
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 ## Objective  
 
@@ -22,7 +17,7 @@ You can select the major and minor version. Patch versions are applied periodica
 <table>
     <thead>
         <tr>
-            <th>Grid and {{% names/dedicated-gen-3 %}}</th>
+            <th>Grid and Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
@@ -41,17 +36,17 @@ You can select the major and minor version. Patch versions are applied periodica
 
 ### Specify the language
 
-To use Elixir, specify elixir as your [app's `elixir`](/create-apps/app-reference.html#elixirs):
+To use Elixir, specify type as your app's `type`
 
 
 
-```yaml {configFile="app"}
+```yaml 
 type: 'elixir:<VERSION_NUMBER>'
 ```
 
 For example:
 
-```yaml {configFile="app"}
+```yaml 
 type: 'elixir:1.15'
 ```
 
@@ -80,7 +75,7 @@ Some of the environment variables are in JSON format and are base64 encoded. You
 If you are using Hex to manage your dependencies, you need to specify the `MIX_ENV` environment variable:
 
 
-```yaml {configFile="app"}
+```yaml 
 variables:
     env:
         MIX_ENV: 'prod'
@@ -93,7 +88,7 @@ You can change it.
 Include in your build hook the steps to retrieve a local Hex and `rebar`, and then run `mix do deps.get, deps.compile, compile` on your application to build a binary.
 
 
-```yaml {configFile="app"}
+```yaml 
 hooks:
     build: |
         mix local.hex --force
@@ -114,7 +109,7 @@ you can then start it from the `web.commands.start` directive.
 The following basic app configuration is sufficient to run most Elixir applications.
 
 
-```yaml {configFile="app"}
+```yaml 
 name: app
 
 type: 'elixir:1.15'
@@ -186,7 +181,7 @@ The services configuration is available in the environment variable `PLATFORM_RE
 Given a relationship defined in `.platform.app.yaml`:
 
 
-```yaml {configFile="app"}
+```yaml 
 relationships:
     postgresdatabase: "dbpostgres:postgresql"
 ```
@@ -223,5 +218,9 @@ deploy: |
 ```
 
 {{% version/only "1" %}}
-{{% config-reader %}}[ Elixir configuration reader library](https://github.com/platformsh/config-reader-elixir/){{% /config-reader %}}
+### Configuration reader
+
+While you can read the environment directly from your app,
+ you might want to use the [ Elixir configuration reader library](https://github.com/platformsh/config-reader-elixir/).
+ It decodes service credentials, the correct port, and other information for you.
 

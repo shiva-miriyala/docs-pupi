@@ -1,11 +1,7 @@
 ---
 title: Integrate with Bitbucket
-slug: bitbucket
-section: Source
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  

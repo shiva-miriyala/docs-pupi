@@ -1,11 +1,7 @@
 ---
 title: HTTPS
-slug: define-routes-https
-section: Define-Routes
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -59,7 +55,7 @@ So the duration of the redeployment depends on what needs to be upgraded.
 
 To enable HTTPS, add a routing configuration similar to the following:
 
-{{< version/specific >}}
+
 <!-- Web PaaS configuration-->
 ```yaml {configFile="routes"}
 "https://{default}/":

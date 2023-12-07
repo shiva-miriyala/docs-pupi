@@ -1,11 +1,7 @@
 ---
 title: Multiple availability zones
-slug: dedicated-gen-3-multiple-az
-section: Dedicated-Gen-3
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  

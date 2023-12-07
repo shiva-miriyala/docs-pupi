@@ -1,11 +1,7 @@
 ---
 title: Configure environments
-slug: configure-environment
-section: Web
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  

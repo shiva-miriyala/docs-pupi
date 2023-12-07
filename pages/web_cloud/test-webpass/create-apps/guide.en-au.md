@@ -1,12 +1,7 @@
 ---
 title: Configure apps
-slug: create-apps
-section: Create-Apps
-hidden: true
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 ## Objective  
 
@@ -37,9 +32,9 @@ To create a very basic app, you need a few things:
 The following example shows such a basic setup for Node.js:
 
 <!-- @todo: code-links break the rendering. Removed for now, to revisit. -->
-{{< version/specific >}}
 
-```yaml {configFile="app"}
+
+```yaml 
 # The app's name, which must be unique within the project.
 name: 'app'
 

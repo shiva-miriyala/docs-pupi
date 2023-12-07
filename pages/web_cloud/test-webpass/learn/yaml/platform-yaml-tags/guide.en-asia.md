@@ -1,11 +1,7 @@
 ---
 title: {{% vendor/name %}} YAML tags
-slug: platform-yaml-tags
-section: Yaml
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -32,7 +28,7 @@ Use `string` to include an external file inline in the YAML file as if entered a
 
 For example, if you have a build hook like the following:
 
-```yaml {configFile="app"}
+```yaml 
 hooks:
     build: |
         set -e
@@ -48,7 +44,7 @@ cp a.txt b.txt
 
 And replace the hook with an include tag for an identical result:
 
-```yaml {configFile="app"}
+```yaml 
 hooks:
     build: !include
         type: string
@@ -65,7 +61,7 @@ The file is base64 encoded.
 For example, you could include a `favicon.ico` file in the same folder as your app configuration.
 Then you can include it as follows:
 
-```yaml {configFile="app"}
+```yaml 
 properties:
     favicon: !include
         type: binary
@@ -90,19 +86,19 @@ variables:
 
 Then the following three configurations are exactly equivalent:
 
-```yaml {configFile="app"}
+```yaml 
 workers:
     queue1: !include "worker.yaml"
 ```
 
-```yaml {configFile="app"}
+```yaml 
 workers:
     queue1: !include
         type: yaml
         path: 'worker.yaml'
 ```
 
-```yaml {configFile="app"}
+```yaml 
 workers:
     queue1: 
         size: S

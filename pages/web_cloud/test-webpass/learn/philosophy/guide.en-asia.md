@@ -1,12 +1,7 @@
 ---
 title: Philosophy
-slug: philosophy
-section: Overview
-order: 2
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -73,7 +68,7 @@ versions, with no service downtime.
 Depending on your needs, you can also [set up a **post-deploy** hook](#add-a-post-deploy-hook) to run after your app is deployed and your application container starts accepting traffic.
 Adding a [`post-deploy` hook](/create-apps/hooks/hooks-comparison.md#post-deploy-hook) can be useful to run updates that don't require exclusive database access.
 
-{{< version/specific >}}
+
 Note that if you're using [Gatsby](../../guides/guides-gatsby/headless) to pull from a backend container on the same environment,
 you need a `post-deploy` hook to successfully build and deploy your app.
 

@@ -1,11 +1,7 @@
 ---
 title: Tethered local development
-slug: tethered
-section: Local
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  

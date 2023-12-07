@@ -1,12 +1,7 @@
 ---
 title: Migrating to {{% vendor/name %}}
-slug: migrating
-section: Tutorials
-order: 9
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -143,7 +138,7 @@ Suppose for instance you have the following file mounts defined:
 
 
 <!-- Web PaaS -->
-```yaml {configFile="app"}
+```yaml 
 mounts:
     'web/uploads':
         source: local

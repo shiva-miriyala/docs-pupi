@@ -1,11 +1,7 @@
 ---
 title: Forward {{% vendor/name %}} and Blackfire logs
-slug: forward-logs
-section: Logs
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -18,7 +14,7 @@ In such cases, forward your logs from Web PaaS and Blackfire to a third-party se
 You can use a [service with an integration](#use-a-log-forwarding-integration)
 or any service that supports a [syslog endpoint](#forward-to-a-syslog-endpoint) or [HTTP endpoint](#forward-to-an-http-endpoint).
 
-Log forwarding is available for Grid and {{% names/dedicated-gen-3 %}} projects.
+Log forwarding is available for Grid and Dedicated Gen 3 projects.
 For {{% names/dedicated-gen-2 %}} projects, see how to [log remotely with `rsyslog`](../../dedicated-gen-2/architecture/options.md#remote-logging).
 
 Logs to `stdout` and `stderr` are forwarded.

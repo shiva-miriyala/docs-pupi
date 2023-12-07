@@ -1,11 +1,7 @@
 ---
 title: What YAML is
-slug: what-is-yaml
-section: Yaml
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -47,7 +43,7 @@ The most straightforward data structure involves defining key–value pairs wher
 <!-- Web PaaS -->
 So you could have a basic configuration for an app:
 
-```yaml {configFile="app"}
+```yaml 
 name: app
 type: "golang:1.18"
 disk: 1024
@@ -83,7 +79,7 @@ each with their own mappings:
 In addition to maps defining further key–value pairs, you can also use sequences to include lists of information.
 
 
-```yaml {configFile="app"}
+```yaml 
 web:
     locations:
         '/':
@@ -98,7 +94,7 @@ web:
 You can also define sequences using a flow syntax:
 
 
-```yaml {configFile="app"}
+```yaml 
 web:
     locations:
         '/':
@@ -121,7 +117,7 @@ The new lines need to have at least the same indentation as the first
 So you could add a multi-line string to a `build` key in the `hooks` map:
 
 
-```yaml {configFile="app"}
+```yaml 
 hooks:
     build: |
         set -e
@@ -146,7 +142,7 @@ Then refer to the anchor using `*<NAME>`.
 The following example shows 4 different workers:
 
 
-```yaml {configFile="app"}
+```yaml 
 workers:
     queue1: &runner
         size: S

@@ -1,11 +1,7 @@
 ---
 title: Redis (Object cache)
-slug: add-services-redis
-section: Add-Services
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -157,7 +153,7 @@ To define the relationship, use the `redis` endpoint :
 
 <!-- Version 1 -->
 
-```yaml {configFile="app"}
+```yaml 
 # Relationships enable access from this app to a given service.
 relationships:
     <RELATIONSHIP_NAME>: "<SERVICE_NAME>:redis"
@@ -172,7 +168,7 @@ For PHP, enable the extension for the service:
 
 <!-- Version 1 -->
 
-```yaml {configFile="app"}
+```yaml 
 # PHP extensions.
 runtime:
     extensions:
@@ -197,7 +193,7 @@ data:
 
 #### [App configuration](../../create-apps)
 
-```yaml {configFile="app"}
+```yaml 
 relationships:
     redisdata: "data:redis"
 ```
@@ -225,7 +221,7 @@ To use the configured service in your app, add a configuration file similar to t
 <!-- Version 2: .environment shortcode + context -->
 {{% version/only "2" %}}
 
-```yaml {configFile="app"}
+```yaml 
 {{< snippet name="myapp" config="app" root="myapp" >}}
 
 # Other options...
@@ -303,7 +299,7 @@ To define the relationship, use the `redis` endpoint :
 
 <!-- Version 1 -->
 
-```yaml {configFile="app"}
+```yaml 
 # Relationships enable access from this app to a given service.
 relationships:
     <RELATIONSHIP_NAME>: "<SERVICE_NAME>:redis"
@@ -318,7 +314,7 @@ For PHP, enable the extension for the service:
 
 <!-- Version 1 -->
 
-```yaml {configFile="app"}
+```yaml 
 # PHP extensions.
 runtime:
     extensions:
@@ -343,7 +339,7 @@ data:
 
 #### [App configuration](../../create-apps)
 
-```yaml {configFile="app"}
+```yaml 
 relationships:
     redisdata: "data:redis"
 ```
@@ -371,7 +367,7 @@ To use the configured service in your app, add a configuration file similar to t
 <!-- Version 2: .environment shortcode + context -->
 {{% version/only "2" %}}
 
-```yaml {configFile="app"}
+```yaml 
 {{< snippet name="myapp" config="app" root="myapp" >}}
 
 # Other options...
@@ -527,7 +523,7 @@ To set up Redis as your session handler, add a configuration similar to the foll
 {{< /snippet >}}
 ```
 
-```yaml {configFile="app"}
+```yaml 
 {{< snippet name="myapp" config="app" root="false" >}}
 type: "php:8.2"
 

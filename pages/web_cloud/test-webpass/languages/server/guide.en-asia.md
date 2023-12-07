@@ -1,11 +1,7 @@
 ---
 title: Web servers
-slug: server
-section: Python
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -38,7 +34,7 @@ For example, to add a Uvicorn worker class to the pip example for Unix,
 adjust the start command to the following:
 
 
-```yaml {configFile="app"}
+```yaml 
 web:
     upstream:
         socket_family: unix
@@ -92,7 +88,7 @@ For example, to add a Asyncio worker class to the pip example for Unix,
 adjust the start command to the following:
 
 
-```yaml {configFile="app"}
+```yaml 
 web:
     upstream:
         socket_family: unix

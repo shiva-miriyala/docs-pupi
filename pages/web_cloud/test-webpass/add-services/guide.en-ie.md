@@ -1,12 +1,7 @@
 ---
 title: Add services
-slug: add-services
-section: Add-Services
-hidden: true
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -45,7 +40,7 @@ Configure your service in the following pattern:
 
 An example service configuration for two databases might look like this:
 
-{{< version/specific >}}
+
 <!-- Version 1 -->
 
 ```yaml {configFile="services"}
@@ -116,7 +111,7 @@ This is done in your [app configuration for relationships](../create-apps/app-re
 
 The relationship follows this pattern:
 
-```yaml {configFile="app"}
+```yaml 
 {{% snippet name="<APP_NAME>" config="app" root="false"%}}
 
 # Other options...
@@ -136,7 +131,7 @@ An example relationship to connect to the databases given in the [example in ste
 
 <!-- Version 1 -->
 
-```yaml {configFile="app"}
+```yaml 
 {{< snippet name="<APP_NAME>" config="app" root="false">}}
 
 # Other options...

@@ -1,11 +1,7 @@
 ---
 title: Change hooks in different environments
-slug: vary-hooks-by-environment
-section: Hooks
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -20,7 +16,7 @@ Use this to vary those hooks based on the environment.
 Check the `PLATFORM_ENVIRONMENT_TYPE` variable to see if it's in a production environment:
 
 
-```yaml {configFile="app"}
+```yaml 
 hooks:
     deploy: |
         if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then

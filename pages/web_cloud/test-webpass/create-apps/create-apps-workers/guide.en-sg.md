@@ -1,11 +1,7 @@
 ---
 title: Work with workers
-slug: create-apps-workers
-section: Create-Apps
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -96,7 +92,7 @@ That means, for example, that the following two `.platform.app.yaml` definitions
 
 
 
-```yaml {configFile="app"}
+```yaml 
 name: app
 
 type: python:3.12
@@ -121,7 +117,7 @@ workers:
                 python mail-worker.py
 ```
 
-```yaml {configFile="app"}
+```yaml 
 name: app
 
 type: python:3.12
@@ -179,7 +175,7 @@ rabbitqueue:
     disk: 512
 ```
 
-```yaml {configFile="app"}
+```yaml 
 name: app
 
 type: "python:3.12"

@@ -1,11 +1,7 @@
 ---
 title: Resource and incident monitoring
-slug: dedicated-gen-3-monitoring
-section: Dedicated-Gen-3
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  

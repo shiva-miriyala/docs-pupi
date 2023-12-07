@@ -1,11 +1,7 @@
 ---
 title: Moving a Java application to {{% vendor/name %}}
-slug: migration
-section: Java
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -43,7 +39,7 @@ and [services](../../add-services).
 ### Application
 
 
-```yaml {configFile="app"}
+```yaml 
 name: app
 type: 'java:<VERSION>' [1]
 disk: 1024

@@ -1,11 +1,7 @@
 ---
 title: Git merge
-slug: merge
-section: Add-Data
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -46,7 +42,7 @@ db:
 3\. Add a relationship between the database and your app in your app configuration:
 
 
-```yaml {configFile="app"}
+```yaml 
 relationships:
     database: "db:mysql"
 ```

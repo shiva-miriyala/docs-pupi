@@ -1,11 +1,7 @@
 ---
 title: Choose a project structure
-slug: project-structure
-section: Multi-App
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  

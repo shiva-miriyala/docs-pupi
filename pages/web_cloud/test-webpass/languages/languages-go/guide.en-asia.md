@@ -1,12 +1,7 @@
 ---
 title: Go
-slug: languages-go
-section: Languages
-order: 4
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 ## Objective  
 
@@ -41,17 +36,17 @@ You can select the major and minor version. Patch versions are applied periodica
 
 ### Specify the language
 
-To use Go, specify golang as your [app's `golang`](/create-apps/app-reference.html#golangs):
+To use Go, specify type as your app's `type`
 
 
 
-```yaml {configFile="app"}
+```yaml 
 type: 'golang:<VERSION_NUMBER>'
 ```
 
 For example:
 
-```yaml {configFile="app"}
+```yaml 
 type: 'golang:1.21'
 ```
 
@@ -85,7 +80,7 @@ The following basic `.platform.app.yaml` file is sufficient to run most Go appli
 
 
 
-```yaml {configFile="app"}
+```yaml 
 name: app
 
 type: golang:1.14

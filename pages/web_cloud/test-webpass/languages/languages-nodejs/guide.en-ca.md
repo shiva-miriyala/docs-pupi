@@ -1,12 +1,7 @@
 ---
 title: JavaScript/Node.js
-slug: languages-nodejs
-section: Languages
-order: 4
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -25,7 +20,7 @@ You can also develop a microservice architecture mixing JavaScript and other app
 <table>
     <thead>
         <tr>
-            <th>Grid and {{% names/dedicated-gen-3 %}}</th>
+            <th>Grid and Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
@@ -43,17 +38,17 @@ You can also develop a microservice architecture mixing JavaScript and other app
 
 ### Specify the language
 
-To use Node.js, specify nodejs as your [app's `nodejs`](/create-apps/app-reference.html#nodejss):
+To use Node.js, specify type as your app's `type`
 
 
 
-```yaml {configFile="app"}
+```yaml 
 type: 'nodejs:<VERSION_NUMBER>'
 ```
 
 For example:
 
-```yaml {configFile="app"}
+```yaml 
 type: 'nodejs:20'
 ```
 
@@ -110,7 +105,7 @@ and add it to your app configuration:
 
 
 
-```yaml {configFile="app"}
+```yaml 
 type: 'nodejs:20'
 ```
 
@@ -123,7 +118,7 @@ Add the following to your app configuration:
 
 
 
-```yaml {configFile="app"}
+```yaml 
 type: 'nodejs:20'
 dependencies:
     nodejs:
@@ -140,7 +135,7 @@ Include any commands needed to build and setup your app in the `hooks`, as in th
 
 
 
-```yaml {configFile="app"}
+```yaml 
 type: 'nodejs:20'
 dependencies:
     nodejs:
@@ -159,7 +154,7 @@ Specify a command to start serving your app (it must be a process running in the
 
 
 
-```yaml {configFile="app"}
+```yaml 
 type: 'nodejs:20'
 dependencies:
     nodejs:
@@ -204,7 +199,7 @@ A complete basic app configuration looks like the following:
 
 
 
-```yaml {configFile="app"}
+```yaml 
 name: node-app
 
 type: 'nodejs:20'
@@ -247,7 +242,7 @@ To switch to Yarn to manage dependencies, follow these steps:
 
 
 
-```yaml {configFile="app"}
+```yaml 
    build:
        flavor: none
 ```
@@ -308,7 +303,11 @@ To configure a given service, see the page dedicated to that service.
 
 
 {{% version/only "1" %}}
-{{% config-reader %}}[Node.js configuration reader library](https://github.com/platformsh/config-reader-nodejs){{% /config-reader%}}
+### Configuration reader
+
+While you can read the environment directly from your app,
+ you might want to use the [Node.js configuration reader library](https://github.com/platformsh/config-reader-nodejs).
+ It decodes service credentials, the correct port, and other information for you.
 
 ## Project templates
 

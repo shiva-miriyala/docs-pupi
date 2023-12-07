@@ -1,12 +1,7 @@
 ---
 title: Glossary
-slug: glossary
-section: Glossary
-hidden: true
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 ## Active environment
 
@@ -74,7 +69,7 @@ They're always deployed together as a single unit.
 Their dedicated architecture makes them differ from [Grid environments](#grid).
 See a [list of differences](../dedicated-gen-2/dedicated-gen-2-overview/grid).
 
-These differences aren't present with [{{% names/dedicated-gen-3 %}} projects](../dedicated-gen-3).
+These differences aren't present with [Dedicated Gen 3 projects](../dedicated-gen-3).
 
 {{< /version/only >}}
 

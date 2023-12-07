@@ -1,12 +1,7 @@
 ---
 title: Build and deploy
-slug: build-deploy
-section: Overview
-order: 2
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  

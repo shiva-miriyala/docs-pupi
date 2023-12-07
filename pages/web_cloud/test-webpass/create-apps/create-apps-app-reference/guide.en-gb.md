@@ -1,11 +1,7 @@
 ---
 title: App reference
-slug: create-apps-app-reference
-section: Create-Apps
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 ## Objective  
 
@@ -85,12 +81,12 @@ Available languages and their supported versions:
 These are used in the format `runtime:version`:
 
 
-```yaml {configFile="app"}
+```yaml 
 type: 'php:8.2'
 ```
 
 
-{{< version/specific >}}
+
 ## Sizes
 
 Resources are distributed across all containers in an environment from the total available from your [plan size](../create-apps-administration/pricing).
@@ -161,7 +157,7 @@ Mounts define directories that are writable after the build is complete.
 They aren't available during the build.
 
 
-```yaml {configFile="app"}
+```yaml 
 mounts:
     '{{< variable "DIRECTORY" >}}':
         source: {{< variable "SOURCE_LOCATION" >}}
@@ -182,7 +178,7 @@ See how to [troubleshoot the warning](./troubleshoot-mounts.md#overlapping-folde
 Basic example:
 
 
-```yaml {configFile="app"}
+```yaml 
 mounts:
     'web/uploads':
         source: local
@@ -282,7 +278,7 @@ Example:
 
 <!-- Version 1 -->
 
-```yaml {configFile="app"}
+```yaml 
 web:
     commands:
         start: 'uwsgi --ini conf/server.ini'
@@ -327,7 +323,7 @@ For all other containers, the default for `protocol` is `http`.
 The following example is the default on non-PHP containers:
 
 
-```yaml {configFile="app"}
+```yaml 
 web:
     upstream:
         socket_family: tcp
@@ -381,7 +377,7 @@ In the following example, the `allow` key disallows requests for static files an
 This is overridden by a rule that explicitly allows common image file formats.
 
 
-```yaml {configFile="app"}
+```yaml 
 web:
     locations:
         '/':
@@ -410,7 +406,7 @@ The following table shows the keys in the `request_buffering` dictionary:
 The default configuration would look like this:
 
 
-```yaml {configFile="app"}
+```yaml 
 web:
     locations:
         '/':
@@ -445,7 +441,7 @@ Each worker can differ from the `web` instance in all properties _except_ for:
 A worker named `queue` that was small and had a different start command could look like this:
 
 
-```yaml {configFile="app"}
+```yaml 
 workers:
     queue:
         size: S
@@ -470,7 +466,7 @@ In the following example, only users with `admin` permissions for the given [env
 can access the deployed environment via SSH:
 
 
-```yaml {configFile="app"}
+```yaml 
 access:
     ssh: admin
 ```
@@ -497,7 +493,7 @@ The following example sets two variables:
   that's available in the `PLATFORM_VARIABLES` environment variable
 
 
-```yaml {configFile="app"}
+```yaml 
 variables:
     env:
         AUTHOR: 'Juan'
@@ -528,7 +524,7 @@ Each rule has the following properties where at least one is required and `ips` 
 The default settings would look like this:
 
 
-```yaml {configFile="app"}
+```yaml 
 firewall:
     outbound:
         - ips: ["0.0.0.0/0"]
@@ -551,7 +547,7 @@ So in the following example requests to any IP on port 80 are allowed
 and requests to 1.2.3.4 on either port 80 or 443 are allowed:
 
 
-```yaml {configFile="app"}
+```yaml 
 firewall:
     outbound:
         - ips: ["1.2.3.4/32"]
@@ -578,7 +574,7 @@ This means that you allow potentially hundreds or thousands of other servers als
 An example rule filtering by domain:
 
 
-```yaml {configFile="app"}
+```yaml 
 firewall:
     outbound:
         - protocol: tcp
@@ -630,7 +626,7 @@ In all languages, you can also specify a flavor of `none` to take no action at a
 (which is the default for any language other than PHP and Node.js).
 
 
-```yaml {configFile="app"}
+```yaml 
 build:
     flavor: none
 ```
@@ -657,7 +653,7 @@ The format for package names and version constraints are defined by the specific
 An example of dependencies in multiple languages:
 
 
-```yaml {configFile="app"}
+```yaml 
 dependencies:
     php: # Specify one Composer package per line.
         drush/drush: '8.0.0'
@@ -776,7 +772,7 @@ The following table shows the properties for each job:
 
 | Name               | Type                                         | Required | Description |
 | ------------------ | -------------------------------------------- | -------- | ----------- |
-| `spec`             | `string`                                     | Yes      | The [cron specification](https://en.wikipedia.org/wiki/Cron#Cron_expression). To prevent competition for resources that might hurt performance, on **Grid or {{% names/dedicated-gen-3 %}}** projects use `H` in definitions to indicate an unspecified but invariant time. For example, instead of using `0 * * * *` to indicate the cron job runs at the start of every hour, you can use `H * * * *` to indicate it runs every hour, but not necessarily at the start. This prevents multiple cron jobs from trying to start at the same time. **The `H` syntax isn't available on {{% names/dedicated-gen-2 %}} projects.**|
+| `spec`             | `string`                                     | Yes      | The [cron specification](https://en.wikipedia.org/wiki/Cron#Cron_expression). To prevent competition for resources that might hurt performance, on **Grid or Dedicated Gen 3** projects use `H` in definitions to indicate an unspecified but invariant time. For example, instead of using `0 * * * *` to indicate the cron job runs at the start of every hour, you can use `H * * * *` to indicate it runs every hour, but not necessarily at the start. This prevents multiple cron jobs from trying to start at the same time. **The `H` syntax isn't available on {{% names/dedicated-gen-2 %}} projects.**|
 | `commands`         | A [cron commands dictionary](#cron-commands) | Yes      | A definition of what commands to run when starting and stopping the cron job. |
 | `shutdown_timeout` | `integer`                                    | No       | When a cron is canceled, this represents the number of seconds after which a `SIGKILL` signal is sent to the process to force terminate it. The default is `10` seconds. |
 | `timeout`          | `integer`                                    | No       | The maximum amount of time a cron can run before it's terminated. Defaults to the maximum allowed value of `86400` seconds (24 hours).
@@ -793,7 +789,7 @@ Note that you can [cancel pending or running crons](../create-apps-environments/
 | `stop`             | `string`  | No       | The command that's issued to give the cron command a chance to shutdown gracefully, such as to finish an active item in a list of tasks. Issued when a cron task is interrupted by a user through the CLI or Console. If not specified, a `SIGTERM` signal is sent to the process. |
 
 
-```yaml {configFile="app"}
+```yaml 
 crons:
     mycommand:
         spec: 'H * * * *'
@@ -807,7 +803,7 @@ crons:
 In this example configuration, the [cron specification](#crons) uses the `H` syntax.
 
 
-Note that this syntax is only supported on Grid and {{% names/dedicated-gen-3 %}} projects.
+Note that this syntax is only supported on Grid and Dedicated Gen 3 projects.
 On {{% names/dedicated-gen-2 %}} projects, use the [standard cron syntax](https://en.wikipedia.org/wiki/Cron#Cron_expression).
 
 
@@ -840,7 +836,7 @@ define conditional crons.
 To do so, use a configuration similar to the following:
 
 
-```yaml {configFile="app"}
+```yaml 
 crons:
     update:
        spec: '0 0 * * *'
@@ -855,7 +851,7 @@ crons:
 
 ### Cron job timing
 
-{{< version/specific >}}
+
 <!-- Version 1 -->
 Minimum time between cron jobs being triggered:
 
@@ -909,7 +905,7 @@ You can also set your [app's runtime timezone](../create-apps-create-apps/timezo
 You can enable [PHP extensions](../create-apps-languages/php/extensions) just with a list of extensions:
 
 
-```yaml {configFile="app"}
+```yaml 
 runtime:
     extensions:
         - geoip
@@ -920,7 +916,7 @@ runtime:
 Alternatively, if you need to include configuration options, use a dictionary for that extension:
 
 
-```yaml {configFile="app"}
+```yaml 
 runtime:
     extensions:
         - geoip
@@ -968,7 +964,7 @@ Then when your app tries to access the hostname, it's sent to the proper IP addr
 So in the following example, if your app tries to access `api.example.com`, it's sent to `192.0.2.23`.
 
 
-```yaml {configFile="app"}
+```yaml 
 additional_hosts:
     api.example.com: "192.0.2.23"
     web.example.com: "203.0.113.42"

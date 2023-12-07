@@ -1,12 +1,7 @@
 ---
 title: Lisp
-slug: languages-lisp
-section: Languages
-order: 4
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 ## Objective  
 
@@ -22,7 +17,7 @@ You can select the major and minor version. Patch versions are applied periodica
 <table>
     <thead>
         <tr>
-            <th>Grid and {{% names/dedicated-gen-3 %}}</th>
+            <th>Grid and Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
@@ -40,17 +35,17 @@ You can select the major and minor version. Patch versions are applied periodica
 
 ### Specify the language
 
-To use Lisp, specify lisp as your [app's `lisp`](/create-apps/app-reference.html#lisps):
+To use Lisp, specify type as your app's `type`
 
 
 
-```yaml {configFile="app"}
+```yaml 
 type: 'lisp:<VERSION_NUMBER>'
 ```
 
 For example:
 
-```yaml {configFile="app"}
+```yaml 
 type: 'lisp:2.1'
 ```
 
@@ -69,7 +64,7 @@ If you don't want these assumptions, you can disable this behavior by specifying
 
 
 
-```yaml {configFile="app"}
+```yaml 
 build:
     flavor: none
 ```
@@ -86,7 +81,7 @@ If you wish to change the distributions that QuickLisp is using, you can specify
 
 
 
-```yaml {configFile="app"}
+```yaml 
 runtime:
     quicklisp:
         {{< variable "DISTRIBUTION_NAME" >}}:
@@ -96,7 +91,7 @@ runtime:
 
 For example:
 
-```yaml {configFile="app"}
+```yaml 
 runtime:
     quicklisp:
         quicklisp:
@@ -126,7 +121,7 @@ The following basic `.platform.app.yaml` file is sufficient to run most Lisp app
 
 
 
-```yaml {configFile="app"}
+```yaml 
 name: app
 type: lisp:1.5
 web:
@@ -168,7 +163,7 @@ Given a relationship defined in `.platform.app.yaml`:
 
 
 
-```yaml {configFile="app"}
+```yaml 
 relationships:
     pg: postgresql:postgresql
 ```

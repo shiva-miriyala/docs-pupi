@@ -1,11 +1,7 @@
 ---
 title: Change an environment's parent
-slug: environments-change-parent
-section: Environments
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  

@@ -1,12 +1,7 @@
 ---
 title: Rust
-slug: languages-rust
-section: Languages
-order: 4
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -58,7 +53,7 @@ The following basic [app configuration](../../create-apps) is sufficient to run 
 See the [complete example](#complete-example) below for more details.
 
 
-```yaml {configFile="app"}
+```yaml 
 
 # The app's name, which must be unique within the project.
 name: 'app'
@@ -147,7 +142,7 @@ serde_json = "1.0"
 
 
 
-```yaml {configFile="app"}
+```yaml 
 
 # The app's name, which must be unique within the project.
 name: 'app'

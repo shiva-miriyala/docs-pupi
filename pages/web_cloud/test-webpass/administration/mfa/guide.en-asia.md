@@ -1,11 +1,7 @@
 ---
 title: Set up multi-factor authentication
-slug: mfa
-section: Web
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  

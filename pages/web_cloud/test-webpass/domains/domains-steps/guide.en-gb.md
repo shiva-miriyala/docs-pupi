@@ -1,12 +1,7 @@
 ---
 title: Set up a custom domain
-slug: domains-steps
-section: Domains
-order: 7
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -15,7 +10,7 @@ Once your project is ready for production, replace the automatically generated d
 Note that adding a domain disables the automatically generated URL for your Production environment only.
 
 
-If you are an Enterprise or Elite customer and have a Grid or {{% names/dedicated-gen-3 %}} project, you can [customize the URLs for your non-production environments](/domains/steps/custom-domains-preview-environments).
+If you are an Enterprise or Elite customer and have a Grid or Dedicated Gen 3 project, you can [customize the URLs for your non-production environments](/domains/steps/custom-domains-preview-environments).
 {{% names/dedicated-gen-2 %}} customers can also customize the domain for their Staging environment.
 
 

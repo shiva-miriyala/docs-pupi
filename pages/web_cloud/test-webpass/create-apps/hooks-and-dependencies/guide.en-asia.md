@@ -1,11 +1,7 @@
 ---
 title: Use hooks with dependencies
-slug: hooks-and-dependencies
-section: Hooks
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -28,7 +24,7 @@ You also need a script to compile the files, such as the following:
 Set your app configuration to have Sass available globally and use it:
 
 
-```yaml {configFile="app"}
+```yaml 
 # Ensure sass is available globally
 dependencies:
     nodejs:

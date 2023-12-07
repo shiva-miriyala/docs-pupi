@@ -1,11 +1,7 @@
 ---
 title: Troubleshoot mounts
-slug: create-apps-troubleshoot-mounts
-section: Create-Apps
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -58,7 +54,7 @@ Do so by managing their [location](./app-reference.md#locations)
 This example defines two mounts, one named `private` and one `upload`:
 
 
-```yaml {configFile="app"}
+```yaml 
 mounts:
     'private':
         source: local
@@ -74,7 +70,7 @@ With only this definition, their behavior is the same.
 To make `uploads` accessible, define a location with different rules as in the following example:
 
 
-```yaml {configFile="app"}
+```yaml 
 web:
     locations:
         '/':
@@ -98,7 +94,7 @@ This causes a mount like `.myhiddenfolder` to be ignored.
 To mount a directory starting with a dot, put a `/` at the start of its definition:
 
 
-```yaml {configFile="app"}
+```yaml 
 mounts:
     '/.myhiddenfolder':
         source: local

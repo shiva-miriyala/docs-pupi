@@ -1,11 +1,7 @@
 ---
 title: Use variables
-slug: use-variables
-section: Variables
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -102,7 +98,7 @@ The following example shows nested structures in an [app configuration](../../cr
 
 
 <!-- Web PaaS -->
-```yaml {configFile="app"}
+```yaml 
 variables:
     env:
         BASIC: "a string"
@@ -172,7 +168,7 @@ and at runtime.
 | `PORT`                      | No    | Yes     | A `string` representing the port to which requests are sent if the [`web.upstream.socket_family` property](../../create-apps/app-reference.md#upstream) is unset or set to `tcp`. |
 | `SOCKET`                    | No    | Yes     | A `string` representing the path to the Unix socket file to use if the [`web.upstream.socket_family` property](../../create-apps/app-reference.md#upstream) is set to `unix`. |
 
-{{< version/specific >}}
+
 <!-- These two sections are Web PaaS-specific -->
 ### Variables on {{% names/dedicated-gen-2 %}} environments
 
@@ -185,8 +181,8 @@ and at runtime.
 
 > [!primary]  
 > 
-> The `PLATFORM_CLUSTER` environment variable isn't yet available on [{{% names/dedicated-gen-3 %}}](../../dedicated-gen-3).
-> If your application depends on whether it's running on a {{% names/dedicated-gen-3 %}} host, use `PLATFORM_MODE`.
+> The `PLATFORM_CLUSTER` environment variable isn't yet available on [Dedicated Gen 3](../../dedicated-gen-3).
+> If your application depends on whether it's running on a Dedicated Gen 3 host, use `PLATFORM_MODE`.
 > 
 > 
 
@@ -242,7 +238,7 @@ printf "user: %s\n" $(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".d
 
    
    <!-- Web PaaS -->
-```yaml {configFile="app"}
+```yaml 
 hooks:
     deploy: |
         bash export-config.sh

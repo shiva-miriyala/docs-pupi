@@ -1,16 +1,12 @@
 ---
 title: Monitor {{% names/dedicated-gen-3 %}} metrics
-slug: dedicated-generation-3
-section: Metrics
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
 
-{{% names/dedicated-gen-3 %}} environments consist of various containers running across dedicated hosts:
+Dedicated Gen 3 environments consist of various containers running across dedicated hosts:
 
 * App containers: one or more [app containers](../../create-apps)
 * Service containers: zero or more [service containers](../../add-services)
@@ -29,7 +25,7 @@ such as for accessing the environment using SSH.
 ## Example of how to read metrics
 
 This example should give you an idea of how the metrics appear.
-{{% names/dedicated-gen-3 %}} environments metrics show resource usage for each app, service, and worker container
+Dedicated Gen 3 environments metrics show resource usage for each app, service, and worker container
 across all hosts.
 
 This reference project has a single app, two services (MySQL and Redis), and one worker.

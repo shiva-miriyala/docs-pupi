@@ -1,11 +1,7 @@
 ---
 title: Upgrading
-slug: create-apps-upgrading
-section: Create-Apps
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 ## Changes in version 2022.02
 

@@ -1,11 +1,7 @@
 ---
 title: Set up multiple apps in a single project
-slug: create-apps-multi-app
-section: Create-Apps
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  

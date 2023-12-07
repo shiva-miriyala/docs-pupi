@@ -1,11 +1,7 @@
 ---
 title: Redirects
-slug: define-routes-redirects
-section: Define-Routes
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 ## Objective  
 
@@ -17,7 +13,7 @@ You can manage redirection rules on your Web PaaS projects in two different ways
 
 Using whole-route redirects, you can define very basic routes in your [`{{< vendor/configfile "routes" >}}`](../../.) file whose sole purpose is to redirect. A typical use case for this type of route is adding or removing a `www.` prefix to your domain, as the following example shows:
 
-{{< version/specific >}}
+
 <!-- Web PaaS configuration-->
 ```yaml
 https://{default}/:

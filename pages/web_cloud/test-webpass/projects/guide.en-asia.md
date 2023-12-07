@@ -1,12 +1,7 @@
 ---
 title: Manage projects
-slug: projects
-section: Projects
-hidden: true
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  

@@ -1,11 +1,7 @@
 ---
 title: Rewrite requests without redirects
-slug: rewrite-requests
-section: Web
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -19,7 +15,7 @@ as if they were requests to `/?category=shoes&product=great-shoe`.
 If so, add a [rule](../app-reference.md#rules) similar to the following:
 
 
-```yaml {configFile="app"}
+```yaml 
 web:
     locations:
         '/':
@@ -34,7 +30,7 @@ Or you might organize your images by file type, but don't want to expose the org
 You could rewrite requests to do that behind the scenes:
 
 
-```yaml {configFile="app"}
+```yaml 
 web:
     locations:
         '/':

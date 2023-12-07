@@ -1,11 +1,7 @@
 ---
 title: Timezones
-slug: create-apps-timezone
-section: Create-Apps
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  

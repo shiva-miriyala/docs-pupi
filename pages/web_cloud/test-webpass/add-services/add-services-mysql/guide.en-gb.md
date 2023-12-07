@@ -1,11 +1,7 @@
 ---
 title: MariaDB/MySQL (database service)
-slug: add-services-mysql
-section: Add-Services
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -98,7 +94,7 @@ Configure your service with at least 256 MB in disk space.
 <!-- Version 2: .environment shortcode + context -->
 {{% version/only "2" %}}
 
-```yaml {configFile="app"}
+```yaml 
 {{< snippet name="myapp" config="app" root="myapp" >}}
 
 # Other options...
@@ -165,7 +161,7 @@ You can configure your MySQL service in the [services configuration](../) with t
 
 Example configuration:
 
-{{< version/specific >}}
+
 <!-- Version 1 -->
 
 ```yaml {configFile="services"}

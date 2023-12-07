@@ -1,11 +1,7 @@
 ---
 title: Deployment
-slug: deploying
-section: Architecture
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 ## Deploying to Production and Staging
 

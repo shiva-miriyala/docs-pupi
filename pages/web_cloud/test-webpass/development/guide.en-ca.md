@@ -1,10 +1,4 @@
 ---
 title: Development
-slug: development
-section: Development
-hidden: true
-order: 5
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-

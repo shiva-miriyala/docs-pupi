@@ -1,11 +1,7 @@
 ---
 title: Extensions
-slug: extensions
-section: Php
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -15,7 +11,7 @@ Some of them are available for Web PaaS containers.
 
 > [!primary]  
 > 
-> The information on this page applies to Grid and {{% names/dedicated-gen-3 %}} plans.
+> The information on this page applies to Grid and Dedicated Gen 3 plans.
 > See also [PHP extensions on {{% names/dedicated-gen-2 %}} plans](../../dedicated-gen-2/overview/grid.md#extensions).
 > 
 > 
@@ -23,7 +19,7 @@ Some of them are available for Web PaaS containers.
 You can define the PHP extensions you want to enable or disable:
 
 
-```yaml {configFile="app"}
+```yaml 
 runtime:
     extensions:
         - raphf
@@ -97,7 +93,7 @@ but it takes slightly more work:
    your configuration looks like the following:
 
 
-```yaml {configFile="app"}
+```yaml 
 variables:
     php:
         extension: /app/spiffy.so

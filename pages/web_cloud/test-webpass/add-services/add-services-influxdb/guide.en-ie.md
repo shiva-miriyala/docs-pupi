@@ -1,11 +1,7 @@
 ---
 title: InfluxDB (Database service)
-slug: add-services-influxdb
-section: Add-Services
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 ## Objective  
 
@@ -119,10 +115,10 @@ See more information on [how to upgrade to version 2.3 or later](#upgrade-to-ver
 
 {{% endpoint-description type="influxdb" /%}}
 
-{{< version/specific >}}
+
 <!-- Version 1 -->
 
-```yaml {configFile="app"}
+```yaml 
 {{< snippet name="myapp" config="app" root="myapp" >}}
 # Relationships enable an app container's access to a service.
 relationships:

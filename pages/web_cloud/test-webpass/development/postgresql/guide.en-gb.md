@@ -1,11 +1,7 @@
 ---
 title: Sanitizing databases: PostgreSQL and Django
-slug: postgresql
-section: Sanitize-Db
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  

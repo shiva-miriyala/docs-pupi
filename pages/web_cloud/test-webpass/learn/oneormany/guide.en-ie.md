@@ -1,12 +1,7 @@
 ---
 title: From monoliths through headless to microservices
-slug: oneormany
-section: Best practices
-order: 10
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  

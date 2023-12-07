@@ -1,11 +1,7 @@
 ---
 title: New Relic
-slug: new-relic
-section: Integrate-Observability
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 ## Objective  
 
@@ -18,9 +14,9 @@ Web PaaS supports [New Relic application performance monitoring](https://newreli
 Open a support ticket and let us know what your license key is.
 Our support team will install it and let you know when it's complete.
 
-## On a Grid plan or {{% names/dedicated-gen-3 %}} infrastructure
+## On a Grid plan or Dedicated Gen 3 infrastructure
 
-On Grid plans and {{% names/dedicated-gen-3 %}} infrastructure, configure your project.
+On Grid plans and Dedicated Gen 3 infrastructure, configure your project.
 
 
 The configuration for New Relic varies a bit by language.

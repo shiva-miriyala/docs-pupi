@@ -1,12 +1,7 @@
 ---
 title: HTTP caching
-slug: http-caching
-section: Best practices
-order: 10
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  

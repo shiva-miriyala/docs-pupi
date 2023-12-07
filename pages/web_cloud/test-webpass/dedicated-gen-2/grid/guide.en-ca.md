@@ -1,12 +1,7 @@
 ---
 title: Differences between Production and Development environments
-slug: grid
-section: Overview
-order: 2
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -15,7 +10,7 @@ With {{% names/dedicated-gen-2 %}} plans, your Production and Staging environmen
 while your Development environments run on the Grid, meaning shared redundant infrastructure.
 This difference means a few configuration options and tools function differently in the different environments.
 
-These differences should be gone with [{{% names/dedicated-gen-3 %}}](../../dedicated-gen-3).
+These differences should be gone with [Dedicated Gen 3](../../dedicated-gen-3).
 
 ## Syncing data between environments
 

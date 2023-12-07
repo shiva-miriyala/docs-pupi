@@ -1,11 +1,7 @@
 ---
 title: Cancel an activity
-slug: environments-cancel-activity
-section: Environments
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  

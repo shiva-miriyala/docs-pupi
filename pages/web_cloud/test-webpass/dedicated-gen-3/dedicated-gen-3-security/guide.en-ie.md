@@ -1,11 +1,7 @@
 ---
 title: Security and data privacy
-slug: dedicated-gen-3-security
-section: Dedicated-Gen-3
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -72,7 +68,7 @@ This log may include:
 ### AWS
 
 AWS EBS Volumes are encrypted on Web PaaS,
-which means {{% names/dedicated-gen-3 %}} and {{% names/dedicated-gen-2 %}} sites are fully encrypted.
+which means Dedicated Gen 3 and {{% names/dedicated-gen-2 %}} sites are fully encrypted.
 Keys are managed by the AWS Key Management Service.
 AWS automatically rotates these keys every three years.
 In some cases, temporary storage (such as swap) is stored on unencrypted local storage volumes.

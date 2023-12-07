@@ -1,12 +1,7 @@
 ---
 title: Ruby
-slug: languages-ruby
-section: Languages
-order: 4
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 ## Objective  
 
@@ -44,17 +39,17 @@ You can select the major and minor version. Patch versions are applied periodica
 
 ### Specify the language
 
-To use Ruby, specify ruby as your [app's `ruby`](/create-apps/app-reference.html#rubys):
+To use Ruby, specify type as your app's `type`
 
 
 
-```yaml {configFile="app"}
+```yaml 
 type: 'ruby:<VERSION_NUMBER>'
 ```
 
 For example:
 
-```yaml {configFile="app"}
+```yaml 
 type: 'ruby:3.2'
 ```
 
@@ -73,7 +68,7 @@ A complete example is included at the end of this section.
 
     
 
-```yaml {configFile="app"}
+```yaml 
 type: 'ruby:3.2'
 ```
 
@@ -88,7 +83,7 @@ type: 'ruby:3.2'
 
 
 
-```yaml {configFile="app"}
+```yaml 
 variables:
     env:
         BUNDLE_CACHE_ALL: '1'
@@ -120,7 +115,7 @@ variables:
 
 
 
-```yaml {configFile="app"}
+```yaml 
 hooks:
     build: |
         set -e
@@ -173,7 +168,7 @@ hooks:
    If you have assets, it's likely that you need NodeJS/yarn.
 
 
-```yaml {configFile="app"}
+```yaml 
 dependencies:
     nodejs:
         yarn: "*"
@@ -184,7 +179,7 @@ dependencies:
 
 
 
-```yaml {configFile="app"}
+```yaml 
 web:
     upstream:
         socket_family: unix
@@ -204,7 +199,7 @@ gem "unicorn", "~> 6.0", :group => :production
 
 
 
-```yaml {configFile="app"}
+```yaml 
 web:
     locations:
         "/":
@@ -225,7 +220,7 @@ web:
    You must explicitly describe writable mounts.
 
 
-```yaml {configFile="app"}
+```yaml 
 mounts:
     "/log":
         source: local
@@ -250,7 +245,7 @@ mounts:
 
 
 
-```yaml {configFile="app"}
+```yaml 
 "https://{default}/":
     type: upstream
     upstream: "app:http"
@@ -262,7 +257,7 @@ mounts:
 Here is a complete `.platform.app.yaml` file:
 
 
-```yaml {configFile="app"}
+```yaml 
 name: 'app'
 
 type: "ruby:3.0"
@@ -381,7 +376,7 @@ database:
 Once you have a service, link to it in your [app configuration](../languages-create-apps):
 
 
-```yaml {configFile="app"}
+```yaml 
 relationships:
     database: "database:mysql"
 ```

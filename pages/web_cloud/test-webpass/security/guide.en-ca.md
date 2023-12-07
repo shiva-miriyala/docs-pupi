@@ -1,10 +1,4 @@
 ---
 title: Security and compliance
-slug: security
-section: Security
-hidden: true
-order: 8
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-

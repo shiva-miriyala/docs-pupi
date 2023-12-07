@@ -1,11 +1,7 @@
 ---
 title: Set up a custom domain on a preview environment
-slug: custom-domains-preview-environments
-section: Steps
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -59,7 +55,7 @@ based on the following elements:
 You need:
 
 
-- A Grid or {{% names/dedicated-gen-3 %}} project on which you have **admin rights** <BR> 
+- A Grid or Dedicated Gen 3 project on which you have **admin rights** <BR> 
 
 
 > [!primary]  

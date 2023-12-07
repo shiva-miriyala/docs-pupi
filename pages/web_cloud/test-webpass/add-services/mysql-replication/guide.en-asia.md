@@ -1,11 +1,7 @@
 ---
 title: MariaDB/MySQL External Replication
-slug: mysql-replication
-section: Mysql
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 ## Objective  
 
@@ -22,7 +18,7 @@ Consult the MySQL or MariaDB documentation for steps to do so.
 To set up replication you need to create a replication-enabled user.
 For each database that you'd like to replicate, you need to assign a `replication` permission/role, under a corresponding `endpoint`:
 
-{{< version/specific >}}
+
 <!-- Version 1 -->
 
 ```yaml {configFile="services"}

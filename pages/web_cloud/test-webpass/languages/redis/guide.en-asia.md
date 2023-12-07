@@ -1,11 +1,7 @@
 ---
 title: Custom Redis versions
-slug: redis
-section: Php
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -34,7 +30,7 @@ Invoke this script from your build hook, specifying a version.
 Any tagged version of the library is acceptable:
 
 
-```yaml {configFile="app"}
+```yaml 
 hooks:
     build: |
         set -e
@@ -60,7 +56,7 @@ Invoke this script from your build hook, specifying a version.
 Any tagged version of the library is acceptable:
 
 
-```yaml {configFile="app"}
+```yaml 
 hooks:
     build: |
         set -e

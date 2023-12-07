@@ -1,12 +1,7 @@
 ---
 title: Command line interface (CLI)
-slug: administration-cli
-section: Administration
-order: 11
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 ## Objective  
 

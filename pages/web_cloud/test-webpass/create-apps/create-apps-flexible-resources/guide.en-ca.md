@@ -1,11 +1,7 @@
 ---
 title: Use flexible resources
-slug: create-apps-flexible-resources
-section: Create-Apps
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -45,7 +41,7 @@ When the `resources` key is set, the CPU sizes come from the following table:
 
 So you might have the `resources` set as follows:
 
-```yaml {configFile="app"}
+```yaml 
 resources: 
     base_memory: 128
     memory_ratio: 180

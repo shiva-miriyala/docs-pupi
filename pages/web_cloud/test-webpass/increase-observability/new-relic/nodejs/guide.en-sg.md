@@ -1,11 +1,7 @@
 ---
 title: Node.js
-slug: nodejs
-section: New-Relic
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 ## Get your license key
 

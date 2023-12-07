@@ -1,11 +1,7 @@
 ---
 title: Runtime operations
-slug: create-apps-runtime-operations
-section: Create-Apps
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -20,7 +16,7 @@ you may want to set up a runtime operation to occasionally fetch content from a 
 without having to rebuild your whole app.
 
 {{% version/only "1" %}}
-You can use runtime operations if you have Grid or {{% names/dedicated-gen-3 %}} environments.
+You can use runtime operations if you have Grid or Dedicated Gen 3 environments.
 
 
 ## Define a runtime operation
@@ -28,7 +24,7 @@ You can use runtime operations if you have Grid or {{% names/dedicated-gen-3 %}}
 To define a runtime operation, add a configuration similar to the following:
 
 
-```yaml {configFile="app"}
+```yaml 
 operations:
   {{< variable "RUNTIME_OPERATION_NAME" >}}:
     role: {{< variable "USER_ROLE" >}}
@@ -54,7 +50,7 @@ For example, to allow admin users to clear the cache of a Drupal site,
 you could define an operation like the following:
 
 
-```yaml {configFile="app"}
+```yaml 
 operations:
     clear-rebuild:
         role: admin
@@ -100,7 +96,7 @@ platform operation:list --project {{< variable "PROJECT_ID" >}} --environment {{
 
 ### Build your app when using a static site generator
 
-{{< version/specific >}}
+
 During every Web PaaS deployment, a standard [`build` step](/learn/overview/build-deploy.md#the-build) is run.
 When you use a static site generator like [Gatsby](../create-apps-guides/gatsby)
 or [Next.js](../create-apps-guides/nextjs) with [a headless backend](../create-apps-guides/gatsby/headless),

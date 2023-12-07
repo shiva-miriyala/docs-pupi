@@ -1,12 +1,7 @@
 ---
 title: Restrict access to a service
-slug: restrict-service-access
-section: Tutorials
-order: 9
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -60,7 +55,7 @@ Edit your app configuration and add new relationships to your new endpoints:
 
 
 <!-- Web PaaS -->
-```yaml {configFile="app"}
+```yaml 
 relationships:
     database: maindb:website
     reports: maindb:reporting
@@ -81,7 +76,7 @@ Edit your app configuration to add a new worker which:
 
 
 <!-- Web PaaS -->
-```yaml {configFile="app"}
+```yaml 
 workers:
     data_access:
         size: S

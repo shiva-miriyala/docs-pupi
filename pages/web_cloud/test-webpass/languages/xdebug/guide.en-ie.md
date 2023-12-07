@@ -1,11 +1,7 @@
 ---
 title: Using Xdebug
-slug: xdebug
-section: Php
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -46,7 +42,7 @@ Xdebug runs as a second PHP-FPM process used only for debugging requests, leavin
 To enable Xdebug, add the following to your [app configuration](../../create-apps/create-apps-app-reference):
 
 
-```yaml {configFile="app"}
+```yaml 
 runtime:
     xdebug:
         idekey: {{< variable "YOUR_KEY" >}}

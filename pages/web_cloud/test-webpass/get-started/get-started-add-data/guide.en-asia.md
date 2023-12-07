@@ -1,8 +1,4 @@
 ---
 title: Add data
-slug: get-started-add-data
-section: Get-Started
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-

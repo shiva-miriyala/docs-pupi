@@ -1,11 +1,7 @@
 ---
 title: Solr (Search service)
-slug: add-services-solr
-section: Add-Services
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -156,7 +152,7 @@ You can select the major and minor version. Patch versions are applied periodica
 <!-- Version 2: .environment shortcode + context -->
 {{% version/only "2" %}}
 
-```yaml {configFile="app"}
+```yaml 
 {{< snippet name="myapp" config="app" root="myapp" >}}
 # Relationships enable an app container's access to a service.
 relationships:
@@ -194,7 +190,7 @@ For Solr 4, Web PaaS supports only a single core per server called `collection1`
 
 You must provide your own Solr configuration via a `core_config` key in your `{{< vendor/configfile "services" >}}`:
 
-{{< version/specific >}}
+
 <!-- Version 1 -->
 
 ```yaml {configFile="services"}

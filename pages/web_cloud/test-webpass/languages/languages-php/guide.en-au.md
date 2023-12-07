@@ -1,12 +1,7 @@
 ---
 title: PHP
-slug: languages-php
-section: Languages
-order: 4
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 ## Supported versions
 
@@ -18,7 +13,7 @@ You can select the major and minor version. Patch versions are applied periodica
 <table>
     <thead>
         <tr>
-            <th>Grid and {{% names/dedicated-gen-3 %}}</th>
+            <th>Grid and Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
@@ -40,17 +35,17 @@ Note that from PHP versions 7.1 to 8.1, the images support the Zend Thread Safe 
 
 ### Specify the language
 
-To use PHP, specify php as your [app's `php`](/create-apps/app-reference.html#phps):
+To use PHP, specify type as your app's `type`
 
 
 
-```yaml {configFile="app"}
+```yaml 
 type: 'php:<VERSION_NUMBER>'
 ```
 
 For example:
 
-```yaml {configFile="app"}
+```yaml 
 type: 'php:8.2'
 ```
 
@@ -65,7 +60,7 @@ type: 'php:8.2'
 <table>
     <thead>
         <tr>
-            <th>Grid and {{% names/dedicated-gen-3 %}}</th>
+            <th>Grid and Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
@@ -103,7 +98,7 @@ Choose a [supported version](#supported-versions)
 and add it to your [app configuration](../../create-apps):
 
 
-```yaml {configFile="app"}
+```yaml 
 type: 'php:8.2'
 ```
 
@@ -140,7 +135,7 @@ In the following example, all requests made to your site's root (`/`) are sent t
 and nonexistent files are handled by `app.php`:
 
 
-```yaml {configFile="app"}
+```yaml 
 web:
     locations:
         '/':
@@ -157,7 +152,7 @@ To have more control, you can define rules to specify which files you want to al
 A complete basic app configuration looks like the following:
 
 
-```yaml {configFile="app"}
+```yaml 
 name: 'app'
 
 type: 'php:8.2'
@@ -184,7 +179,7 @@ composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimi
 To use Composer 2.x on your project, either use PHP 8.2+ or, in your app configuration, add the following [dependency](../../create-apps/app-reference.md#dependencies):
 
 
-```yaml {configFile="app"}
+```yaml 
 dependencies:
     php:
         composer/composer: '^2'
@@ -208,7 +203,7 @@ You can remove the default build flavor and run your own commands for complete c
 Set the build flavor to `none` and add the commands you need to your `build` hook, as in the following example:
 
 
-```yaml {configFile="app"}
+```yaml 
 build:
     flavor: none
 
@@ -236,7 +231,7 @@ To install from an alternative repository:
 
 
 
-```yaml {configFile="app"}
+```yaml 
 dependencies:
     php:
         require:
@@ -250,7 +245,7 @@ dependencies:
 
 
 
-```yaml {configFile="app"}
+```yaml 
 repositories:
     - type: vcs
       url: "git@github.com:platformsh/platformsh-client-php.git"
@@ -263,7 +258,7 @@ For example, to install Composer 2 and the `platform/client 2.x-dev` library fro
 use the following:
 
 
-```yaml {configFile="app"}
+```yaml 
 dependencies:
     php:
         composer/composer: '^2'
@@ -317,7 +312,11 @@ The individual service pages have more information on configuring each service.
 >> ```     
 
 {{% version/only "1" %}}
-{{% config-reader %}}[PHP configuration reader library](https://github.com/platformsh/config-reader-php){{% /config-reader %}}
+### Configuration reader
+
+While you can read the environment directly from your app,
+ you might want to use the [PHP configuration reader library](https://github.com/platformsh/config-reader-php).
+ It decodes service credentials, the correct port, and other information for you.
 
 
 
@@ -418,7 +417,7 @@ If you're sure a function isn't needed in your app, you can disable it.
 For example, to disable `pcntl_exec` and `pcntl_fork`, add the following to your [app configuration](../../create-apps):
 
 
-```yaml {configFile="app"}
+```yaml 
 variables:
     php:
         disable_functions: "pcntl_exec,pcntl_fork"
@@ -506,7 +505,7 @@ To leverage FFIs, follow these steps:
 
 
 
-```yaml {configFile="app"}
+```yaml 
 runtime:
     extensions:
         - ffi
@@ -524,7 +523,7 @@ runtime:
 
 
 
-```yaml {configFile="app"}
+```yaml 
 variables:
     php:
         opcache.enable_cli: true

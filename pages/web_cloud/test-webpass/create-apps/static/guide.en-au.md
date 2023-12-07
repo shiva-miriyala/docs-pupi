@@ -1,11 +1,7 @@
 ---
 title: Serve static sites
-slug: static
-section: Web
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -27,7 +23,7 @@ To successfully serve a static site using Web PaaS,
 you need to set up a minimal app configuration similar to the following:
 
 
-```yaml {configFile="app"}
+```yaml 
 app:
   # The type of the application to build.
   type: "nodejs:20"
@@ -65,7 +61,7 @@ To enable static files that don't match any rule while disabling server-side scr
 use the following configuration:
 
 
-```yaml {configFile="app"}
+```yaml 
 web:
     locations:
         '/':
@@ -86,7 +82,7 @@ you might want to cache text files for a day but all image files for longer.
 To do so, use a configuration similar to the following:
 
 
-```yaml {configFile="app"}
+```yaml 
 web:
     locations:
         '/':
@@ -105,7 +101,7 @@ To set a background process that blocks the server and conserves resources,
 use the following configuration:
 
 
-```yaml {configFile="app"}
+```yaml 
 web:
     commands:
         start: sleep infinity
@@ -118,7 +114,7 @@ such as a [script to handle 404 errors](https://community.platform.sh/t/custom-4
 ## Complete example configuration
 
 
-```yaml {configFile="app"}
+```yaml 
 name: app
 
 type: 'python:3.11'

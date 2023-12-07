@@ -1,11 +1,7 @@
 ---
 title: Manage Python versions in non-Python containers
-slug: python-version
-section: Python
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -20,7 +16,7 @@ to install the specific version you want to use.
 
 
 
-```yaml {configFile="app"}
+```yaml 
     variables:
         env:
             # Update for your desired Python version.
@@ -32,7 +28,7 @@ to install the specific version you want to use.
 
 
 
-```yaml {configFile="app"}
+```yaml 
     hooks:
         build: |
             # Exit the hook on any failure
@@ -73,7 +69,7 @@ If you want this Python version to be available in the runtime environment, foll
 
 
 
-```yaml {configFile="app"}
+```yaml 
     hooks:
         build: |
             ...

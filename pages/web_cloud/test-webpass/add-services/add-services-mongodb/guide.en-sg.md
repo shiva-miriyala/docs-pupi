@@ -1,11 +1,7 @@
 ---
 title: MongoDB (Database service)
-slug: add-services-mongodb
-section: Add-Services
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 ## Objective  
 
@@ -163,7 +159,7 @@ and are no longer receiving security updates from upstream.
 <!-- Version 2: .environment shortcode + context -->
 {{% version/only "2" %}}
 
-```yaml {configFile="app"}
+```yaml 
 {{< snippet name="myapp" config="app" root="myapp" >}}
 
 # Other options...

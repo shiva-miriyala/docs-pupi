@@ -1,11 +1,7 @@
 ---
 title: Performance tuning
-slug: tuning
-section: Php
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
@@ -58,7 +54,7 @@ you need to clear the OPcache explicitly on deployment (which can be done by res
 To enable preloading, add a variable that specifies a preload script:
 
 
-```yaml {configFile="app"}
+```yaml 
 variables:
     php:
         opcache.preload: '{{< variable "PRELOAD_SCRIPT" >}}'
@@ -118,7 +114,7 @@ find . -type f -name '*.php' | wc -l
 An example configuration:
 
 
-```yaml {configFile="app"}
+```yaml 
 variables:
     php:
         'opcache.max_accelerated_files': 22000
@@ -170,7 +166,7 @@ php cachetool.phar opcache:status --fcgi=$SOCKET
    An example configuration:
 
 
-```yaml {configFile="app"}
+```yaml 
 variables:
       php:
          'opcache.memory_consumption': 96
@@ -201,7 +197,7 @@ you can disable that check and get a small performance improvement.
 Timestamp validation can be disabled by adding the following variable to your [app configuration](../../create-apps):
 
 
-```yaml {configFile="app"}
+```yaml 
 variables:
       php:
          'opcache.validate_timestamps': 0

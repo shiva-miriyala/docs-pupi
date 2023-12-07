@@ -1,12 +1,7 @@
 ---
 title: Keep your Git repository clean
-slug: clean-repository
-section: Best practices
-order: 10
+updated: 2023-12-07
 ---
-
-**Last updated 28th November 2023**
-
 
 
 ## Objective  
