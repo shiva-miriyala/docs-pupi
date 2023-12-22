@@ -185,11 +185,9 @@ def application(env, start_response):
 ## Package management
 
 Your app container comes with pip pre-installed.
-For more about managing packages with pip, Pipenv, and Poetry,
-see how to [manage dependencies](../.././.-dependencies).
 
 To add global dependencies (packages available as commands),
-add them to the `dependencies` in your [app configuration](../../create-apps/app-reference.md#dependencies):
+add them to the `dependencies` in your [app configuration](/pages/web_cloud/web_paas_powered_by_platform_sh/configuration/configuration-app):
 
 
 ```yaml 
@@ -329,7 +327,7 @@ While you can read the environment directly from your app,
 - Pipfile-based build<br />  
  
 [View the repository](https://github.com/platformsh-templates/pyramid) on GitHub.
-
+/
 ### Wagtail 
 
 ![image](images/wagtail.png)
